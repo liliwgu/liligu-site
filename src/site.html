@@ -1053,13 +1053,13 @@ render("all");
 var V='https://player.vimeo.com',ID='158287395';function send(m,v){try{f.contentWindow.postMessage(JSON.stringify(v===undefined?{method:m}:{method:m,value:v}),V)}catch(e){}}
 var calm=!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
 if(calm){b.addEventListener('click',function(){b.classList.add('gone');send('play');setTimeout(function(){b.remove()},400)});return}
-st.classList.add('roll');f.src=V+'/video/'+ID+'?background=1&dnt=1';f.title='Lili Gu film reel, playing silently';
+st.classList.add('roll');f.src=V+'/video/'+ID+'?background=1&dnt=1';f.addEventListener('load',function(){send('addEventListener','timeupdate')});f.title='Lili Gu film reel, playing silently';
 var snd=st.querySelector('.rl-snd'),pz=st.querySelector('.rl-pz');snd.hidden=pz.hidden=false;
 var t0=Date.now(),at=0,ready=false,paused=false,sound=false;
 function go(){if(ready&&!st.classList.contains('rolled'))setTimeout(function(){st.classList.add('rolled')},Math.max(0,3200-(Date.now()-t0)))}
 addEventListener('message',function(e){if(e.origin!==V||e.source!==f.contentWindow||sound)return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}if(!d)return;
 if(d.event==='ready'){send('addEventListener','timeupdate')}
-else if(d.event==='timeupdate'&&d.data){at=d.data.seconds;if(at>0.15&&!ready){ready=true;go()}}});
+else if((d.event==='timeupdate'||d.event==='playProgress')&&d.data){at=d.data.seconds;if(at>0.15&&!ready){ready=true;go()}}});
 pz.addEventListener('click',function(){paused=!paused;send(paused?'pause':'play');pz.textContent=paused?'Play':'Pause';pz.setAttribute('aria-pressed',paused)});
 snd.addEventListener('click',function(){sound=true;st.classList.add('rolled','sound');f.src=V+'/video/'+ID+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1#t='+Math.floor(at)+'s';f.title='Lili Gu film reel';snd.remove();pz.remove()});
 new IntersectionObserver(function(es){if(sound||paused)return;send(es[0].isIntersecting?'play':'pause')}).observe(st.querySelector('.screen'));
