@@ -107,6 +107,15 @@ h1.name .ttl.live .sp{visibility:hidden}
 .roll .screen h1.name .ttl{width:100%}
 .roll .reel-embed{margin-top:clamp(1rem,2vw,1.5rem);--p:0;transform:translate3d(0,calc((1 - var(--p)) * 110px),0) scale(calc(.8 + var(--p) * .2));transform-origin:50% 100%;opacity:calc(.25 + var(--p) * .75);will-change:transform,opacity}
 .roll .reel-embed figcaption{opacity:calc((var(--p) - .7) * 3.4)}
+/* overscan the silent loop a touch so no hairline of the player shows at the frame edge */
+.roll:not(.sound) .reel-embed .frame iframe{transform:scale(1.025)}
+/* spotlight: the rest of the page dims while the reel is fully in view and playing */
+.spot{position:fixed;inset:0;background:rgb(3,9,13);opacity:calc(var(--spot,0) * .84);pointer-events:none;z-index:0}
+.roll .reel-embed{position:relative;z-index:1}
+.reel-embed figcaption{transition:color .4s}
+.lit .reel-embed figcaption,.lit .reel-embed figcaption button:hover{color:rgba(235,246,250,.82)}
+header.site{transition:opacity .3s}
+html.spotlit header.site{opacity:calc(1 - var(--spot,0) * .8)}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
@@ -525,11 +534,14 @@ var snd=st.querySelector('.rl-snd'),pz=st.querySelector('.rl-pz');snd.hidden=pz.
 addEventListener('message',function(e){if(e.origin!==V||e.source!==f.contentWindow)return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
 if(d&&(d.event==='timeupdate'||d.event==='playProgress')&&d.data)at=d.data.seconds});
 // rise: 0 while the frame's natural top sits at the bottom of the window, 1 once it has climbed most of the way up
-var scr=st.querySelector('.screen');
+var scr=st.querySelector('.screen');var sp=document.createElement('div');sp.className='spot';sp.setAttribute('aria-hidden','true');scr.insertBefore(sp,fig);var R=document.documentElement;
+
 function rise(){tick=false;var vh=innerHeight,y=scr.getBoundingClientRect().top+fig.offsetTop;
-var p=(vh-y)/(vh*.75);p=p<0?0:p>1?1:p;p=1-Math.pow(1-p,2);fig.style.setProperty('--p',p.toFixed(3))}
+var p=(vh-y)/(vh*.75);p=p<0?0:p>1?1:p;p=1-Math.pow(1-p,2);fig.style.setProperty('--p',p.toFixed(3));spot()}
+// how much of the frame is on screen (below the header): dim from 70% visible, full at 100%; none while paused
+function spot(){var r=fig.querySelector('.frame').getBoundingClientRect(),hd=document.querySelector('header.site'),t=hd?hd.getBoundingClientRect().bottom:0;var vis=(Math.min(r.bottom,innerHeight)-Math.max(r.top,t))/r.height;var k=paused?0:(vis-.7)/.28;k=k<0?0:k>1?1:k;k=k*(fig.style.getPropertyValue('--p')>.9?1:0);R.style.setProperty('--spot',k.toFixed(3));R.classList.toggle('spotlit',k>0);st.classList.toggle('lit',k>.5)}
 addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(rise)}},{passive:true});addEventListener('resize',rise);rise();
-pz.addEventListener('click',function(){paused=!paused;send(paused?'pause':'play');pz.textContent=paused?'Play':'Pause';pz.setAttribute('aria-pressed',paused)});
+pz.addEventListener('click',function(){paused=!paused;send(paused?'pause':'play');pz.textContent=paused?'Play':'Pause';pz.setAttribute('aria-pressed',paused);spot()});
 snd.addEventListener('click',function(){sound=true;st.classList.add('sound');f.src=V+'/video/'+ID+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1#t='+Math.floor(at)+'s';f.title='Lili Gu film reel';snd.remove();pz.remove()});
 new IntersectionObserver(function(es){if(sound||paused)return;send(es[0].isIntersecting?'play':'pause')}).observe(fig);
 })();

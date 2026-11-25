@@ -107,6 +107,15 @@ h1.name .ttl.live .sp{visibility:hidden}
 .roll .screen h1.name .ttl{width:100%}
 .roll .reel-embed{margin-top:clamp(1rem,2vw,1.5rem);--p:0;transform:translate3d(0,calc((1 - var(--p)) * 110px),0) scale(calc(.8 + var(--p) * .2));transform-origin:50% 100%;opacity:calc(.25 + var(--p) * .75);will-change:transform,opacity}
 .roll .reel-embed figcaption{opacity:calc((var(--p) - .7) * 3.4)}
+/* overscan the silent loop a touch so no hairline of the player shows at the frame edge */
+.roll:not(.sound) .reel-embed .frame iframe{transform:scale(1.025)}
+/* spotlight: the rest of the page dims while the reel is fully in view and playing */
+.spot{position:fixed;inset:0;background:rgb(3,9,13);opacity:calc(var(--spot,0) * .84);pointer-events:none;z-index:0}
+.roll .reel-embed{position:relative;z-index:1}
+.reel-embed figcaption{transition:color .4s}
+.lit .reel-embed figcaption,.lit .reel-embed figcaption button:hover{color:rgba(235,246,250,.82)}
+header.site{transition:opacity .3s}
+html.spotlit header.site{opacity:calc(1 - var(--spot,0) * .8)}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
