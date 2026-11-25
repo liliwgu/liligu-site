@@ -353,6 +353,7 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .social > *{border-radius:6px;overflow:hidden}
 .bgrid .work{grid-column:auto}
 .bgrid .photo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.photo > iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .bgrid .photo .mv iframe{inset:auto;top:50%;left:50%;width:max(100%,177.78cqh);height:max(100%,56.25cqw)}
 .bgrid .photo .mv.fit{background:#000}.bgrid .photo .mv.fit iframe{width:100cqh;height:100cqh}
 .bgrid .photo .mv.lw-scan{inset:auto;left:50%;top:9%;height:54%;aspect-ratio:1;transform:translateX(-50%);background:transparent;-webkit-mask-image:radial-gradient(closest-side,#000 82%,transparent);mask-image:radial-gradient(closest-side,#000 82%,transparent)}
@@ -657,11 +658,11 @@ main.inner section.block:has(> .bh){padding-top:0}
         </dl>
         <div class="cs-pair">
           <div class="cs-hero">
-            <div class="photo crop"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/863710506?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Lumafield x Trek"><img src="img/trek-bike.jpg" alt="" loading="lazy" width="1280" height="678"><span class="play" aria-hidden="true"></span></button></div>
             <div class="cs-cap"><p class="meta">Trek Bicycle · 2023</p><h4>Engineering better bikes with CT</h4></div>
           </div>
           <div class="cs-hero">
-            <div class="photo edge"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="photo"><button class="vid" type="button" data-src="https://fast.wistia.net/embed/iframe/feskvfyfgf?autoPlay=true" aria-label="Play Lumafield x Intrepid"><img src="https://embed-ssl.wistia.com/deliveries/3e3e80d40ae9bacfe059b705a8e6fa11.jpg?image_crop_resized=1280x720" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
             <div class="cs-cap"><p class="meta">Intrepid Automation · 2023</p><h4>Inspecting 3D-printed parts at production scale</h4></div>
           </div>
         </div>
