@@ -553,17 +553,20 @@ els.forEach(function(el){io.observe(el)});
 // ink-speck backdrop behind every page, fixed to the window: tiny paint specks cut from Tim's splatter sheet, loosely scattered; near the cursor they grow, turn, and spring aside (after Carter Ogunsola's spring-grid "Polka Dots")
 (function(){var SP=(window.__SPL||[]).filter(function(b){return b[4]>25});if(!SP.length)return;
 var cv=document.createElement('canvas');cv.className='dots-bg';cv.setAttribute('aria-hidden','true');document.body.insertBefore(cv,document.body.firstChild);
-var ctx=cv.getContext('2d'),W=0,H=0,DPR=1,dots=[],GAP=44,R=150,mx=-1e4,my=-1e4,tx=-1e4,ty=-1e4,run=false,vis=true,last=0,calm=0,sheet=new Image(),url='';
+// the Commercial page keeps the original polka-dot grid (Lili, 2026-11-25: confirm with her before changing it)
+var GRID=!!document.getElementById('brand'),dc='',tc=[0,0,0];
+var ctx=cv.getContext('2d'),W=0,H=0,DPR=1,dots=[],GAP=GRID?26:44,R=GRID?120:150,mx=-1e4,my=-1e4,tx=-1e4,ty=-1e4,run=false,vis=true,last=0,calm=0,sheet=new Image(),url='';
 function rnd(i){var x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
-function col(){var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
+function col(){var cs=getComputedStyle(document.documentElement);dc=cs.getPropertyValue('--dot').trim();var h=cs.getPropertyValue('--teal').trim().replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16);tc=[n>>16&255,n>>8&255,n&255];if(GRID){draw(0);return}var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
 function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);dots=[];var i=0;
-for(var y=GAP/2;y<H+GAP;y+=GAP)for(var x=GAP/2;x<W+GAP;x+=GAP){i++;var hx=x+(rnd(i)-.5)*GAP*.8,hy=y+(rnd(i+9)-.5)*GAP*.8;
+for(var y=GAP/2;y<H+GAP;y+=GAP)for(var x=GAP/2;x<W+GAP;x+=GAP){i++;var j=GRID?0:.8,hx=x+(rnd(i)-.5)*GAP*j,hy=y+(rnd(i+9)-.5)*GAP*j;
 dots.push({hx:hx,hy:hy,x:hx,y:hy,vx:0,vy:0,s:0,k:rnd(i+7),b:SP[(rnd(i+13)*SP.length)|0],rot:rnd(i+17)*6.283})}col();draw(0)}
 function draw(dt){ctx.clearRect(0,0,W,H);var moving=0,ok=sheet.complete&&sheet.naturalWidth,SW=sheet.naturalWidth,SH=sheet.naturalHeight;mx+=(tx-mx)*.35;my+=(ty-my)*.35;
 for(var i=0;i<dots.length;i++){var d=dots[i],dx=d.x-mx,dy=d.y-my,dist=Math.sqrt(dx*dx+dy*dy)||1,f=dist<R?1-dist/R:0;
 if(f){var p=f*f*900*dt/dist;d.vx+=dx*p;d.vy+=dy*p}
 d.vx+=(d.hx-d.x)*60*dt;d.vy+=(d.hy-d.y)*60*dt;d.vx*=.86;d.vy*=.86;d.x+=d.vx*dt*10;d.y+=d.vy*dt*10;d.s+=(f-d.s)*.15;
 if(d.s>.01||Math.abs(d.vx)+Math.abs(d.vy)>.05)moving++;
+if(GRID){ctx.fillStyle=d.s>.08?'rgba('+tc[0]+','+tc[1]+','+tc[2]+','+(.35+d.s*.6).toFixed(2)+')':dc;ctx.beginPath();ctx.arc(d.x,d.y,1.3+d.s*4.2,0,6.283);ctx.fill();continue}
 if(!ok)continue;var b=d.b,sw=b[2]/100*SW,sh=b[3]/100*SH,sc=(4.5/Math.max(sw,sh))*(1+d.k*.8)*(1+d.s*2.2);
 ctx.save();ctx.globalAlpha=.28+d.s*.5;ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sc,sc);ctx.drawImage(sheet,b[0]/100*SW,b[1]/100*SH,sw,sh,-sw/2,-sh/2,sw,sh);ctx.restore()}
 return moving}
