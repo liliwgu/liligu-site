@@ -246,7 +246,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @keyframes logos{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
-.bgrid + .sub,.social + .sub{margin-top:3.5rem}
+.bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
 .photo.crop iframe{transform:scale(1.1)}
 .bgrid .photo.edge iframe{inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px)}
 .social .tt{aspect-ratio:9/16;max-width:326px;background:#000}.social .tt iframe{width:100%;height:100%;border:0;display:block}
@@ -306,6 +306,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .cb h3{font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.1;letter-spacing:-.015em;margin:.4rem 0 .3rem}
 .cb .meta{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;color:var(--muted);margin:0}
 .cb .n{margin:.5rem 0 0;font-size:1rem;color:var(--muted);max-width:38ch}
+.cb .go + .go{margin-top:.45rem}
 .cb .go{margin-top:.8rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--teal);padding-bottom:.1rem}
 .pill{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:.2rem .55rem;border-radius:999px}
 @media (max-width:760px){.cb{grid-template-columns:1fr;min-height:0}.cb-m{aspect-ratio:4/3;min-height:0}.cb.r .cb-m{order:0}.cb.l .cb-c{align-items:flex-start;text-align:left}.bh{height:min(68vh,560px)}.bh-l{font-size:.64rem}}
@@ -337,6 +338,35 @@ main.inner section.block:has(> .bh){padding-top:0}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
 .ix ul.laurels li::before{content:"";position:absolute;left:0;top:.45em;width:.5rem;height:.5rem;border-radius:50%;background:linear-gradient(135deg,var(--wash1),var(--wash2))}
 @media (max-width:760px),(hover:none){.ix{padding-right:0}.ix-pv{display:none}.ixr{grid-template-columns:3rem minmax(0,1fr);row-gap:.35rem;padding:.8rem 0}.ixr .tags{grid-column:2;justify-content:flex-start;flex-wrap:wrap}.ixr .t{color:var(--ink)}.ixr .tags{opacity:1;transform:none}.ixr .det{position:static;width:auto;height:auto;clip:auto;grid-column:2}}
+
+/* social feed: phone-shaped cards, staggered; tap opens the real post */
+.feed{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.8rem,2vw,1.6rem);padding-bottom:5rem}
+.ph{position:relative;display:block;aspect-ratio:9/16;border:0;padding:0;margin:0;border-radius:22px;overflow:hidden;background:#0b151d;color:#fff;cursor:pointer;text-align:left;font:inherit;box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 18px 40px -18px rgba(5,20,30,.55);transition:transform .5s cubic-bezier(.2,.75,.2,1),box-shadow .5s;outline-offset:4px}
+.ph:nth-child(even){transform:translateY(2.5rem)}
+.ph:hover{transform:translateY(-.5rem) rotate(-1deg);box-shadow:0 30px 60px -20px rgba(5,20,30,.6)}
+.ph:nth-child(even):hover{transform:translateY(2rem) rotate(1deg)}
+.ph-m{position:absolute;inset:0}
+.ph-m img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.75,.2,1)}
+.ph:hover .ph-m img{transform:scale(1.06)}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(4,12,18,.88) 0,rgba(4,12,18,.35) 38%,transparent 60%),linear-gradient(to bottom,rgba(4,12,18,.45),transparent 22%);pointer-events:none}
+.ph-top{position:absolute;z-index:1;top:.8rem;left:.9rem;right:.9rem;display:flex;justify-content:space-between;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase}
+.ph-top .pf{background:rgba(255,255,255,.16);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:.2rem .5rem;border-radius:999px}
+.ph-b{position:absolute;z-index:1;left:.95rem;right:.95rem;bottom:.95rem;display:flex;flex-direction:column;gap:.25rem}
+.ph-b .h{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-b .cap{font-family:var(--display);font-weight:600;font-size:clamp(.95rem,1.35vw,1.15rem);line-height:1.15;letter-spacing:-.01em}
+.ph-b .st{font-family:var(--mono);font-size:.68rem;opacity:.85}
+.ph-play{position:absolute;z-index:1;left:50%;top:46%;width:3.4rem;height:3.4rem;margin:-1.7rem 0 0 -1.7rem;border-radius:50%;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:scale(.8);transition:opacity .35s,transform .35s}
+.ph-play::before{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:.6rem 0 .6rem 1rem;border-color:transparent transparent transparent #fff}
+.ph:hover .ph-play,.ph:focus-visible .ph-play{opacity:1;transform:none}
+.sp-pop{width:auto}
+.sp-pop .rp-frame{aspect-ratio:auto;width:min(420px,88vw);height:min(82vh,760px);background:#fff;border-radius:10px;overflow:hidden}
+@media (max-width:760px){.feed{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.9rem;margin:0 calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding:0 max(16px, env(safe-area-inset-left, 0px)) 1.2rem;scrollbar-width:none}.feed::-webkit-scrollbar{display:none}.ph{flex:0 0 64vw;scroll-snap-align:center}.ph:nth-child(even){transform:none}.ph-play{opacity:1;transform:none}}
+@media (hover:none){.ph-play{opacity:1;transform:none}}
+
+.mv.slides img{opacity:0;animation:slide 15s ease-in-out infinite}
+.mv.slides img:nth-child(2){animation-delay:5s}.mv.slides img:nth-child(3){animation-delay:10s}
+@keyframes slide{0%{opacity:0;transform:scale(1.02)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.1)}100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.mv.slides img:first-child{opacity:1}}
 
 </style>
 
@@ -392,14 +422,6 @@ main.inner section.block:has(> .bh){padding-top:0}
           <h3>Lumafield x Trek</h3>
         </article>
       </div>
-      <p class="sub">Partner collabs</p>
-      <div class="bgrid">
-        <article class="work">
-          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AD5aAd8Oy84?autoplay=1&amp;rel=0" aria-label="Play Partner collaboration with Tested"><img src="https://i.ytimg.com/vi/AD5aAd8Oy84/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
-          <h3>Tested &amp; California Academy of Sciences</h3>
-          <p>Collaborations with Adam Savage’s Tested and the California Academy of Sciences.</p>
-        </article>
-      </div>
       <p class="sub">Launch packages</p>
       <div class="bgrid">
         <article class="work">
@@ -408,12 +430,13 @@ main.inner section.block:has(> .bh){padding-top:0}
           <p>Storytelling series about applications for upcoming technology.</p>
         </article>
         <article class="work">
-          <div class="photo"><img src="img/b-atlas-ui.jpg" alt="Animated Atlas prompt asking whether a die-cast aluminum part is any good" loading="lazy" width="960" height="540"><span class="tag">Atlas</span></div>
+          <div class="photo"><div class="mv" data-v="864260626" data-t="3"><img src="img/b-atlas-scan.jpg" alt="An engineer holding a handheld scanner over a car part in a repair shop, from the Atlas launch video" loading="lazy" width="960" height="540"></div><span class="tag">Atlas</span></div>
           <h3>Lumafield Atlas launch</h3>
           <p class="meta">Launch videos · UX graphic animation · ads · web · social</p>
+          <div class="links"><a href="https://vimeo.com/864260626" target="_blank" rel="noopener">Watch the launch video ↗</a></div>
         </article>
         <article class="work">
-          <div class="photo"><img src="img/b-atlas-launch.jpg" alt="Gradient Launch Atlas button graphic" loading="lazy" width="960" height="540"><span class="tag">Atlas</span></div>
+          <div class="photo"><div class="mv" data-v="864260626" data-t="12"><img src="img/b-atlas-ui2.jpg" alt="Atlas answering how to reduce porosity in a die cast aluminum part, beside a colour-mapped CT scan" loading="lazy" width="960" height="540"></div><span class="tag">Atlas</span></div>
           <h3>Atlas launch graphics</h3>
           <p class="meta">Marketing animation</p>
         </article>
@@ -422,9 +445,6 @@ main.inner section.block:has(> .bh){padding-top:0}
           <h3>Lumafield Triton launch</h3>
           <p class="meta">Logo · graphics · web page · videos · delivered in 1 week</p>
         </article>
-      </div>
-      <p class="sub">Web &amp; social</p>
-      <div class="bgrid">
         <article class="work">
           <div class="photo"><img src="img/b-lumafield-web.jpg" alt="Lumafield homepage with a glowing CT scan of an earbud" loading="lazy" width="960" height="540"></div>
           <h3>Lumafield web</h3>
@@ -435,24 +455,33 @@ main.inner section.block:has(> .bh){padding-top:0}
           </ul>
           <div class="links"><a href="https://www.lumafield.com/" target="_blank" rel="noopener">Website refresh ↗</a><a href="https://www.lumafield.com/industries" target="_blank" rel="noopener">Industries landing page ↗</a><a href="https://www.lumafield.com/explore/case-studies" target="_blank" rel="noopener">Case studies ↗</a></div>
         </article>
-
       </div>
       <p class="sub">Social</p>
-      <div class="social">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL2RWQwMhcj/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DL2RWQwMhcj/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
-        <div class="tt"><iframe src="https://www.tiktok.com/player/v1/7148186094138297646?music_info=1&amp;description=1" title="Lumafield on TikTok: inside AirPods Pro" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/B22V164lB9u/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/B22V164lB9u/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/CCLdCEnAbdT/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/CCLdCEnAbdT/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
+      <div class="feed">
+        <button class="ph" type="button" data-embed="https://www.instagram.com/reel/DL2RWQwMhcj/embed/" aria-label="Play Priscilla Chan, Eric Topol and Jennifer Doudna on Instagram (@biohub × @erictopol1)"><span class="ph-m"><img src="img/s-biohub.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Reel</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@biohub × @erictopol1</span><span class="cap">Priscilla Chan, Eric Topol and Jennifer Doudna</span><span class="st"><span aria-hidden="true">♥</span> 1,438</span></span></button>
+        <button class="ph" type="button" data-embed="https://www.tiktok.com/player/v1/7148186094138297646?autoplay=1&amp;music_info=1&amp;description=1" aria-label="Play We CT scanned the new AirPods Pro (2nd Gen) on TikTok (@lumafield)"><span class="ph-m"><img src="img/s-tiktok.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">TikTok</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@lumafield</span><span class="cap">We CT scanned the new AirPods Pro (2nd Gen)</span><span class="st"><span aria-hidden="true">♥</span> 6,929</span></span></button>
+        <button class="ph" type="button" data-embed="https://www.instagram.com/p/B22V164lB9u/embed/" aria-label="Play Smartsheet on Instagram (@smartsheetplatform)"><span class="ph-m"><img src="img/s-smartsheet.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@smartsheetplatform</span><span class="cap">Smartsheet</span><span class="st"><span aria-hidden="true">♥</span> 87</span></span></button>
+        <button class="ph" type="button" data-embed="https://www.instagram.com/p/CCLdCEnAbdT/embed/" aria-label="Play AAPI &amp; Black Solidarity on Instagram (@kingcountyequitynow)"><span class="ph-m"><img src="img/s-kcen.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@kingcountyequitynow</span><span class="cap">AAPI &amp; Black Solidarity</span><span class="st"><span aria-hidden="true">♥</span> 145</span></span></button>
+      </div>
+      <dialog class="reel-pop sp-pop" id="sp-pop" aria-label="Social post"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close">×</button><div class="rp-frame"></div></div></dialog>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AD5aAd8Oy84?autoplay=1&amp;rel=0" aria-label="Play Partner collaboration with Tested"><img src="https://i.ytimg.com/vi/AD5aAd8Oy84/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>Tested &amp; California Academy of Sciences</h3>
+          <p>Collaborations with Adam Savage’s Tested and the California Academy of Sciences.</p>
+        </article>
       </div>
       <p class="sub">How-to videos</p>
       <div class="bgrid">
         <article class="work">
-          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play How-to video 1"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
-          <h3>How-to video</h3>
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play CT 101: Introduction to Industrial CT"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>CT 101: Introduction to Industrial CT</h3>
+          <p class="meta">Lumafield</p>
         </article>
         <article class="work">
-          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AgvtNUSVrQM?autoplay=1&amp;rel=0" aria-label="Play How-to video 2"><img src="https://i.ytimg.com/vi/AgvtNUSVrQM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
-          <h3>How-to video</h3>
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AgvtNUSVrQM?autoplay=1&amp;rel=0" aria-label="Play How to Set Up a Sheet"><img src="https://i.ytimg.com/vi/AgvtNUSVrQM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>How to Set Up a Sheet</h3>
+          <p class="meta">Smartsheet</p>
         </article>
       </div>
       <p class="sub">Other narratives</p>
@@ -492,7 +521,9 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 <script>
 document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
-if(document.querySelector('.social')){['https://www.instagram.com/embed.js'].forEach(function(u){var e=document.createElement('script');e.async=true;e.src=u;document.body.appendChild(e);});}
+(function(){var d=document.getElementById('sp-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
+document.querySelectorAll('.ph[data-embed]').forEach(function(b){b.addEventListener('click',function(){fr.innerHTML='<iframe src="'+b.dataset.embed+'" title="'+b.getAttribute('aria-label').replace(/^Play /,'')+'" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';d.showModal();});});
+d.addEventListener('close',function(){fr.innerHTML='';});d.querySelector('.rp-x').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});})();
 </script>
 <script>
 (function(){
