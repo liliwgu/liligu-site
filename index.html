@@ -150,8 +150,18 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);l
 .about .bio p{margin:0 0 1.2rem;max-width:var(--measure)}
 .about .bio > p:first-child{font-size:clamp(1.3rem,2.3vw,1.6rem);line-height:1.45}
 .about .bio > p:first-child::first-line{font-weight:500}
-.stmt-h{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
-.about .stmt p{margin:0 0 1.1rem;max-width:var(--measure);font-size:1.05rem;line-height:1.6}
+.statement{margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--line)}
+.stmt-h{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 1.2rem}
+.pull{margin:0}
+.pull p{margin:0;max-width:22ch;font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3.2vw,2.4rem);line-height:1.12;letter-spacing:-.02em;text-wrap:balance;background:linear-gradient(100deg,var(--wash3),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stmt{margin-top:1.6rem}
+.stmt summary{cursor:pointer;list-style:none;display:inline-flex;gap:.5rem;align-items:center;font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;color:var(--ink)}
+.stmt summary::-webkit-details-marker{display:none}
+.stmt summary:hover{border-color:var(--ink)}
+.stmt .close-l,.stmt[open] .open-l{display:none}.stmt[open] .close-l{display:inline}
+.stmt .chev{transition:transform .25s}.stmt[open] .chev{transform:rotate(180deg)}
+.stmt .cols{margin-top:1.6rem;max-width:var(--measure)}
+.stmt .cols p{margin:0 0 1.1rem;font-size:1.02rem;line-height:1.6;break-inside:avoid-column}
 .honors h3{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .8rem}
 .honors ul{list-style:none;margin:0 0 2rem;padding:0;border-top:1px solid var(--line)}
 .honors li{padding:.7rem 0;border-bottom:1px solid var(--line);font-size:1rem;line-height:1.35}
@@ -307,10 +317,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <p>Lili Gu (she/her) is a West Coast-based filmmaker, poet, and aspiring mixed media artist. She is passionate about exploring justice, liberation, and the human condition through storytelling.</p>
           <p>Her projects work to uncover language away from the white gaze, speaking truth to power on themes of Chinese American assimilation, queerness, and intergenerational strength. She makes art as an act of love—toward visions of an imagined future in which all humans can not just survive, but thrive.</p>
           <p>Lili trained under the mentorship of pioneering vérité documentarian Marina Goldovskaya. Her films have received numerous festival accolades, screening internationally and on television networks such as PBS.</p>
-          <h3 class="stmt-h">Artist statement</h3>
-          <div class="stmt">
-            <p>I work in film, sculpture, poetry, and sound. My objective is to create immersive spaces that narrate collective grief, healing, and liberation through mixed media installation. I use performative documentary to explore the human condition, particularly over long stretches of time. The act of observing a subject over decades is rooted in my mathematics background in dynamical systems, and becomes a form of social practice in which my subjects and I find intergenerational strength through deep connection. My experimental narrative film work plays with lens choice, camera movement, and editing tropes, subverting Hollywood filmmaking practices rooted in capitalist heteropatriarchy to uplift the bright, free, and even fun and funny aspects of queerness. Much of my film and poetry is on themes of queer and Asian American assimilation, rejecting and supplanting the consumable traumas of contemporary media.</p>
-            <p>I’m newer to sculpture and installation. I repurpose corporate promotional materials, reclaim trashed clay trimmings, and rehabilitate discarded plant scraps to create pieces that bring themes of profitability, conditional safety, and belonging into dialogue. I’m interested in everyday items that have physical utility but a more intimately connective purpose, just as I’m interested in transforming regular spaces into immersive experiences. I envision one’s path through these installations as having a time-based arc – documentary that takes place completely past the fourth wall, inside the viewer. I want to create moments of determined existence that liberate community. I want them to take up space.</p>
+          <div class="statement">
+            <p class="stmt-h">Artist statement</p>
+            <blockquote class="pull"><p>“I want to create moments of determined existence that liberate community. I want them to take up space.”</p></blockquote>
+            <details class="stmt">
+              <summary><span class="open-l">Read the full statement</span><span class="close-l">Hide the statement</span> <span aria-hidden="true" class="chev">↓</span></summary>
+              <div class="cols">
+                <p>I work in film, sculpture, poetry, and sound. My objective is to create immersive spaces that narrate collective grief, healing, and liberation through mixed media installation. I use performative documentary to explore the human condition, particularly over long stretches of time. The act of observing a subject over decades is rooted in my mathematics background in dynamical systems, and becomes a form of social practice in which my subjects and I find intergenerational strength through deep connection. My experimental narrative film work plays with lens choice, camera movement, and editing tropes, subverting Hollywood filmmaking practices rooted in capitalist heteropatriarchy to uplift the bright, free, and even fun and funny aspects of queerness. Much of my film and poetry is on themes of queer and Asian American assimilation, rejecting and supplanting the consumable traumas of contemporary media.</p>
+                <p>I’m newer to sculpture and installation. I repurpose corporate promotional materials, reclaim trashed clay trimmings, and rehabilitate discarded plant scraps to create pieces that bring themes of profitability, conditional safety, and belonging into dialogue. I’m interested in everyday items that have physical utility but a more intimately connective purpose, just as I’m interested in transforming regular spaces into immersive experiences. I envision one’s path through these installations as having a time-based arc – documentary that takes place completely past the fourth wall, inside the viewer. I want to create moments of determined existence that liberate community. I want them to take up space.</p>
+              </div>
+            </details>
           </div>
         </div>
         <aside class="honors" aria-label="Awards, fellowships and roles">
@@ -425,7 +441,7 @@ b.addEventListener('click',function(){b.classList.add('gone');try{f.contentWindo
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
-var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.about .bio > *','.honors','.press > li','.contact > div','.socials > li'];
+var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li'];
 var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,5)*0.07)+'s');els.push(el)})});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
 els.forEach(function(el){io.observe(el)});
