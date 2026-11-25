@@ -53,7 +53,7 @@ def page_head(title, path):
 REEL_POP = '''<dialog class="reel-pop" id="reel-pop" aria-label="Film reel"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close reel">×</button><div class="rp-frame"></div></div></dialog>
 <script>
 (function(){var d=document.getElementById('reel-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
-function open(e){e.preventDefault();fr.innerHTML='<iframe src="https://player.vimeo.com/video/158287395?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';d.showModal();}
+function open(e){e.preventDefault();var id=this.getAttribute('data-reel')||'158287395';fr.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';d.showModal();}
 function close(){d.close();}
 d.addEventListener('close',function(){fr.innerHTML='';});
 d.querySelector('.rp-x').addEventListener('click',close);
