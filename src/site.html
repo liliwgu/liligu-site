@@ -289,6 +289,13 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .cs-more{margin-top:1.8rem}
 @media (max-width:900px){.cs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cs-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.cs-grid{gap:1.4rem .9rem}.cs-grid .work h3{font-size:.92rem}.cs-hero .vid .play{width:64px;height:64px;margin:-32px 0 0 -32px}.cs-hero .vid .play::after{left:26px;top:20px;border-width:12px 0 12px 19px}}
+.cs-strip{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3.75rem)/4.4);gap:1.25rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:0 0 1rem;scrollbar-width:thin;scrollbar-color:var(--teal) transparent}
+.cs-strip .work{grid-column:auto;gap:.55rem;scroll-snap-align:start;min-width:0}
+.cs-strip .work h3{font-size:1rem;line-height:1.25}
+.cs-strip .meta{margin-top:.15rem}
+.cs-strip:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+@media (max-width:900px){.cs-strip{grid-auto-columns:calc((100% - 1.25rem)/2.3)}}
+@media (max-width:520px){.cs-strip{grid-auto-columns:70%;gap:.9rem}.cs-strip .work h3{font-size:.92rem}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
@@ -722,7 +729,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <article class="cs" id="smartsheet-howto" aria-labelledby="smartsheet-howto-h">
         <p class="cs-eb">How-to series · Smartsheet</p>
         <h3 class="cs-h" id="smartsheet-howto-h">The tutorials 1.7 million people learned Smartsheet from.</h3>
-        <p class="cs-lede">A library of short, animated tutorials that walk new users through Smartsheet one feature at a time, from setting up a first sheet to sharing, reports and automation. I produced, directed, animated and edited the series in-house.</p>
+        <p class="cs-lede">A library of short, animated tutorials that walk new users through Smartsheet one feature at a time, from setting up a first sheet to sharing, reports and automation. I designed the animation template every tutorial is built on, and produced, directed, animated and edited the series in-house.</p>
         <div class="cs-hero">
           <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AgvtNUSVrQM?autoplay=1&amp;rel=0" aria-label="Play How to Set Up a Sheet"><img src="https://i.ytimg.com/vi/AgvtNUSVrQM/maxresdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
           <div class="cs-cap"><p class="meta">Smartsheet</p><h4>How to Set Up a Sheet</h4></div>
@@ -733,7 +740,7 @@ main.inner section.block:has(> .bh){padding-top:0}
           <div><dt>Format</dt><dd>16 tutorials, 1–4 min each</dd></div>
           <div><dt>Reach</dt><dd>1.7M views on YouTube</dd></div>
         </dl>
-        <div class="cs-grid">
+        <div class="cs-strip" tabindex="0" role="region" aria-label="More Smartsheet tutorials, scrolls sideways">
           <article class="work">
             <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/RthO_mnO6Os?autoplay=1&amp;rel=0" aria-label="Play Welcome to Smartsheet"><img src="https://i.ytimg.com/vi/RthO_mnO6Os/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
             <p class="meta">Getting started</p>

@@ -289,6 +289,13 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .cs-more{margin-top:1.8rem}
 @media (max-width:900px){.cs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cs-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.cs-grid{gap:1.4rem .9rem}.cs-grid .work h3{font-size:.92rem}.cs-hero .vid .play{width:64px;height:64px;margin:-32px 0 0 -32px}.cs-hero .vid .play::after{left:26px;top:20px;border-width:12px 0 12px 19px}}
+.cs-strip{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 3.75rem)/4.4);gap:1.25rem;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:0 0 1rem;scrollbar-width:thin;scrollbar-color:var(--teal) transparent}
+.cs-strip .work{grid-column:auto;gap:.55rem;scroll-snap-align:start;min-width:0}
+.cs-strip .work h3{font-size:1rem;line-height:1.25}
+.cs-strip .meta{margin-top:.15rem}
+.cs-strip:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
+@media (max-width:900px){.cs-strip{grid-auto-columns:calc((100% - 1.25rem)/2.3)}}
+@media (max-width:520px){.cs-strip{grid-auto-columns:70%;gap:.9rem}.cs-strip .work h3{font-size:.92rem}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
