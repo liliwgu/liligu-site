@@ -369,8 +369,8 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .reel-btn{display:inline-flex;align-items:center;gap:.45rem;color:var(--ink)!important;border:1px solid currentColor;border-radius:999px;padding:.32rem .8rem .32rem .65rem;margin-top:-.32rem}
 .reel-btn .pl{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
 .reel-btn:hover{background:var(--ink);color:var(--paper)!important}
-.reel-pop{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:min(92vw,1200px)}
-.reel-pop::backdrop{background:rgba(5,12,17,.86)}
+.reel-pop{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:min(92vw,1400px,calc((100vh - 110px) * 16 / 9))}
+.reel-pop::backdrop{background:rgba(3,9,13,.9)}
 .rp-in{position:relative;padding-top:2.8rem}
 .rp-frame{aspect-ratio:16/9;background:#000}
 .rp-frame iframe{width:100%;height:100%;border:0;display:block}
@@ -1203,7 +1203,7 @@ function go(e){e.preventDefault();e.stopPropagation();if(window.lgVimeo)lgVimeo(
 m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e)})});
 </script>
 <script>
-document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){if(window.lgPop&&!b.closest('.feature,.cs-hero')&&b.getBoundingClientRect().width<innerWidth*.62){lgPop(b.dataset.src,b.getAttribute('aria-label').replace(/^Play /,''));return}var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);if(window.lgSpot)lgSpot(f);});});
+document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){if(window.lgPop){lgPop(b.dataset.src,b.getAttribute('aria-label').replace(/^Play /,''));return}var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);if(window.lgSpot)lgSpot(f);});});
 // spotlight: while a video you started is playing and mostly in view, the rest of the page dims
 (function(){var R=document.documentElement,ov=null,list=[],tick=false;
 function vis(el){var r=el.getBoundingClientRect(),hd=document.querySelector('header.site'),t=hd?hd.getBoundingClientRect().bottom:0;return (Math.min(r.bottom,innerHeight)-Math.max(r.top,t))/r.height}
