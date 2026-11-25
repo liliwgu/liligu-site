@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://player.vimeo.com"><link rel="preconnect" href="https://i.vimeocdn.com"><link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a single scrolling "program" — watercolor title card, now-showing works, a filmography set like end credits with real runtimes, then about / press / contact. */
 :root{
@@ -395,7 +395,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .mv.pop::after{content:"";position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(6,20,28,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23fff'/%3E%3C/svg%3E") center/30px no-repeat;backdrop-filter:blur(4px);opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
 .mv.pop:hover::after,.mv.pop:focus-visible::after{opacity:1;transform:none}
 .bh::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,17,.5),transparent 50%);pointer-events:none}
-.bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
+.bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:"Outfit",var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
 .bh-l{position:absolute;z-index:1;top:clamp(1.2rem,4vw,2.4rem);margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.65;color:#e9f3f5}
 .bh-l1{left:max(16px,4vw)} .bh-l2{right:max(16px,4vw);text-align:right}
 .cbs{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4.5rem)}
@@ -509,7 +509,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <div class="mv" data-v="158287395" data-t="20"><img src="img/experiment.jpg" alt="" width="1280" height="720"></div>
       <p class="bh-l bh-l1">Documentary<br>Narrative<br>Experimental<br>Installation</p>
       <p class="bh-l bh-l2">Film &amp; video<br>Since 2008</p>
-      <h2 class="bh-w" id="film-h" style="--fs:44vw">Film<span class="sr"> &amp; video</span></h2>
+      <h2 class="bh-w" id="film-h" style="--fs:53vw">Film<span class="sr"> &amp; video</span></h2>
     </header>
     <div class="cbs">
       <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/haircut.jpg" alt="An older man in glasses peers through a green gate behind leaves" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>HAIRCUT</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
@@ -538,7 +538,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <div class="mv" data-v="863710506" data-t="9"><img src="img/trek-bike.jpg" alt="" width="1280" height="678"></div>
       <p class="bh-l bh-l1">Brand stories<br>Launches<br>Web &amp; social</p>
       <p class="bh-l bh-l2">Commercial<br>&amp; branded</p>
-      <h2 class="bh-w" id="brand-h" style="--fs:19.4vw">Commercial<span class="sr"> &amp; branded</span></h2>
+      <h2 class="bh-w" id="brand-h" style="--fs:18.9vw">Commercial<span class="sr"> &amp; branded</span></h2>
     </header>
     <div class="wrap">
       <div class="logos" aria-label="Clients and partners">
@@ -916,7 +916,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <div class="mv wash"></div>
       <p class="bh-l bh-l1">Clay<br>Poetry<br>Photography</p>
       <p class="bh-l bh-l2">Other work</p>
-      <h2 class="bh-w" id="other-h" style="--fs:21vw">Other work</h2>
+      <h2 class="bh-w" id="other-h" style="--fs:20vw">Other work</h2>
     </header>
     <div class="cbs">
       <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/dontgiveup.jpg" alt="A ceramic mug glazed in coral and blue drips, stamped DON’T GIVE UP" loading="lazy" width="1000" height="1000"></div></div><div class="cb-c"><span class="pill">Clay</span><h3>Don’t Give Up</h3><p class="meta">2024</p><p class="n">Discarded clay trimmings, tears, underglaze, glaze</p></div></article>
@@ -1119,6 +1119,12 @@ S['line-'+L].forEach(function(b){var el=sprite('dt',b),s=el.style;s.setProperty(
 s.setProperty('--dx',((r()-.5)*14).toFixed(1)+'px');s.setProperty('--dy',((r()-.5)*7).toFixed(1)+'px');dots.appendChild(el)});
 dv.appendChild(bar);dv.appendChild(dots);dv.classList.add('live')});
 })();
+// big opener words: Outfit with its corners rounded like the LILI GU lettering (blur + alpha threshold, radius scales with the font size)
+(function(){var ws=document.querySelectorAll('.bh-w');if(!ws.length)return;var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');
+svg.setAttribute('width','0');svg.setAttribute('height','0');svg.setAttribute('aria-hidden','true');svg.style.position='absolute';document.body.appendChild(svg);
+function go(){svg.innerHTML='';ws.forEach(function(el,i){var fs=parseFloat(getComputedStyle(el).fontSize),id='rnd'+i;
+svg.insertAdjacentHTML('beforeend','<filter id="'+id+'" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur in="SourceGraphic" stdDeviation="'+(fs*.011).toFixed(2)+'"/><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10"/></filter>');el.style.filter='url(#'+id+')'})}
+(document.fonts&&document.fonts.ready||Promise.resolve()).then(go);var t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(go,200)});})();
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
