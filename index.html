@@ -583,7 +583,7 @@ els.forEach(function(el){io.observe(el)});
 // ink-speck backdrop behind every page, fixed to the window: tiny paint specks cut from Tim's splatter sheet, loosely scattered; near the cursor they grow, turn, and spring aside (after Carter Ogunsola's spring-grid "Polka Dots")
 (function(){var SP=(window.__SPL||[]).filter(function(b){return b[4]>25});if(!SP.length)return;
 var cv=document.createElement('canvas');cv.className='dots-bg';cv.setAttribute('aria-hidden','true');document.body.insertBefore(cv,document.body.firstChild);
-var ctx=cv.getContext('2d'),W=0,H=0,DPR=1,dots=[],GAP=26,R=130,mx=-1e4,my=-1e4,tx=-1e4,ty=-1e4,run=false,vis=true,last=0,calm=0,sheet=new Image(),url='';
+var ctx=cv.getContext('2d'),W=0,H=0,DPR=1,dots=[],GAP=44,R=150,mx=-1e4,my=-1e4,tx=-1e4,ty=-1e4,run=false,vis=true,last=0,calm=0,sheet=new Image(),url='';
 function rnd(i){var x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
 function col(){var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
 function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);dots=[];var i=0;
@@ -595,7 +595,7 @@ if(f){var p=f*f*900*dt/dist;d.vx+=dx*p;d.vy+=dy*p}
 d.vx+=(d.hx-d.x)*60*dt;d.vy+=(d.hy-d.y)*60*dt;d.vx*=.86;d.vy*=.86;d.x+=d.vx*dt*10;d.y+=d.vy*dt*10;d.s+=(f-d.s)*.15;
 if(d.s>.01||Math.abs(d.vx)+Math.abs(d.vy)>.05)moving++;
 if(!ok)continue;var b=d.b,sw=b[2]/100*SW,sh=b[3]/100*SH,sc=(4.5/Math.max(sw,sh))*(1+d.k*.8)*(1+d.s*2.2);
-ctx.save();ctx.globalAlpha=.55+d.s*.45;ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sc,sc);ctx.drawImage(sheet,b[0]/100*SW,b[1]/100*SH,sw,sh,-sw/2,-sh/2,sw,sh);ctx.restore()}
+ctx.save();ctx.globalAlpha=.28+d.s*.5;ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sc,sc);ctx.drawImage(sheet,b[0]/100*SW,b[1]/100*SH,sw,sh,-sw/2,-sh/2,sw,sh);ctx.restore()}
 return moving}
 function loop(t){var dt=Math.min(.05,(t-last)/1000||.016);last=t;var m=draw(dt);calm=m?0:calm+1;if(vis&&calm<30)requestAnimationFrame(loop);else run=false}
 function wake(){if(!run&&vis){run=true;calm=0;last=performance.now();requestAnimationFrame(loop)}}
