@@ -46,7 +46,7 @@ a:hover{color:var(--teal)}
 /* header */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--paper)}
 header.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:9;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:60px;flex-wrap:wrap}
+header.site .wrap{display:flex;align-items:center;justify-content:flex-end;gap:1rem;min-height:60px;flex-wrap:wrap}
 .mark{font-family:var(--display);font-weight:800;letter-spacing:.32em;font-size:.86rem;text-decoration:none;white-space:nowrap}
 nav ul{display:flex;gap:clamp(.8rem,2.4vw,1.8rem);list-style:none;margin:0;padding:0;flex-wrap:wrap}
 nav a{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
@@ -191,7 +191,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="wrap">
-    <a class="mark" href="#top">LILI·GU</a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#film">Film</a></li>
@@ -381,7 +380,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 <script>
 const FILMS=[
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
-  {y:2020,t:"BIPOC Excellence in Ultimate",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655"},
+  {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655"},
   {y:2016,t:"Experiment",img:"experiment",f:"Experimental",trt:"3:30",r:"Producer, Writer, Director, Editor",u:"https://vimeo.com/246539799",l:[
     "Finalist, Sight of Sound International Film Competition (2016)",
     "Featured on the Dallas-area PBS television show Frame of Mind (2016)",
