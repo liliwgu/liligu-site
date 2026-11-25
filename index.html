@@ -56,21 +56,17 @@ nav a:hover{color:var(--ink)}
 .hero{padding-block:clamp(2.5rem,6vw,5rem) clamp(1.5rem,3vw,2.5rem)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(2rem,5vw,4rem);row-gap:clamp(1.5rem,3vw,2.5rem);align-items:end}
 .hero-grid > div:first-child{grid-column:1 / -1}
-.hero-grid > div:nth-child(2){display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem}
 .eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 1.2rem}
 h1.name{margin:0;line-height:0}
 h1.name img{width:100%;height:auto;display:block}
 .t-dark{display:none!important}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-dark{display:block!important}:root:not([data-theme="light"]) .t-light{display:none!important}}
 :root[data-theme="dark"] .t-dark{display:block!important}:root[data-theme="dark"] .t-light{display:none!important}
-.hero .lede{font-size:clamp(1.25rem,2.2vw,1.55rem);line-height:1.45;margin:0;max-width:44ch;text-wrap:balance}
-.hero .lede em{color:var(--teal);font-style:italic}
-.reel{display:flex;align-items:center;gap:1rem;text-decoration:none;border:1px solid var(--ink);border-radius:999px;padding:.55rem 1.3rem .55rem .55rem;width:max-content;max-width:100%;transition:background .2s,color .2s}
-.reel:hover{background:var(--ink);color:var(--paper)}
-.reel .play{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--wash1),var(--wash2));color:#062a33}
-.reel .play svg{width:16px;height:16px;margin-left:3px}
-.reel b{font-family:var(--display);font-weight:600;font-size:1.05rem;display:block;line-height:1.1}
-.reel small{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:inherit;opacity:.7}
+.reel-embed{margin:0;grid-column:1 / -1}
+.reel-embed .frame{position:relative;aspect-ratio:16 / 9;border-radius:10px;overflow:hidden;background:#000;box-shadow:0 18px 50px -20px rgba(6,42,51,.45)}
+.reel-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.reel-embed figcaption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:.8rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.reel-embed figcaption a{color:inherit}
 
 /* sections */
 section.block{padding-block:clamp(1rem,2vw,1.5rem) clamp(3rem,7vw,5.5rem)}
@@ -139,8 +135,10 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);l
 .portrait img{width:100%;height:100%;object-fit:cover;display:block}
 .about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem)}
 .about .bio p{margin:0 0 1.2rem;max-width:var(--measure)}
-.about .bio p:first-child{font-size:clamp(1.3rem,2.3vw,1.6rem);line-height:1.45}
-.about .bio p:first-child::first-line{font-weight:500}
+.about .bio > p:first-child{font-size:clamp(1.3rem,2.3vw,1.6rem);line-height:1.45}
+.about .bio > p:first-child::first-line{font-weight:500}
+.stmt-h{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:2.4rem 0 1rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.about .stmt p{margin:0 0 1.1rem;max-width:var(--measure);font-size:1.05rem;line-height:1.6}
 .honors h3{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .8rem}
 .honors ul{list-style:none;margin:0 0 2rem;padding:0;border-top:1px solid var(--line)}
 .honors li{padding:.7rem 0;border-bottom:1px solid var(--line);font-size:1rem;line-height:1.35}
@@ -210,16 +208,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   <section class="hero" id="top">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Filmmaker · Poet · Mixed media · West Coast</p>
+        <p class="eyebrow">Filmmaker · Poet · Mixed media artist</p>
         <h1 class="name"><img class="t-light" src="img/title-splat.webp" alt="Lili Gu" width="1400" height="399"><img class="t-dark" src="img/title-splat-bright.webp" alt="Lili Gu" width="1400" height="399"></h1>
       </div>
-      <div>
-        <p class="lede">Exploring justice, liberation, and the human condition through storytelling, <em>as an act of love</em>.</p>
-        <a class="reel" href="https://vimeo.com/158287395" target="_blank" rel="noopener">
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 1l13 7-13 7z" fill="currentColor"/></svg></span>
-          <span><b>Watch the film reel</b><small>2:30 · on Vimeo</small></span>
-        </a>
-      </div>
+      <figure class="reel-embed">
+        <div class="frame"><iframe src="https://player.vimeo.com/video/158287395?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+        <figcaption><span>Film reel</span><span>2:30 · <a href="https://vimeo.com/158287395" target="_blank" rel="noopener">Watch on Vimeo ↗</a></span></figcaption>
+      </figure>
     </div>
   </section>
 
@@ -302,8 +297,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
         <article class="work">
           <div class="swatch" style="--g:radial-gradient(circle at 70% 35%,#5b8ff0 0 18%,transparent 48%),radial-gradient(circle at 25% 70%,#30e0c4 0 18%,transparent 50%),linear-gradient(130deg,#1d6fd6,#27b6e8)"><span class="tag">Poetry</span><span>Hugo Fellows Reading</span></div>
           <h3>Hugo Fellows Reading</h3>
-          <p class="meta">05/2023 · Hugo House</p>
-          <div class="links"><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener">Event page ↗</a></div>
+          <p class="meta">02/2023 &amp; 05/2023 · Hugo House</p>
+          <div class="links"><a href="https://hugohouse.org/event/hugo-fellows-mid-year-reading_2023-02-02/" target="_blank" rel="noopener">Mid-year reading ↗</a> <a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener">Final reading ↗</a></div>
         </article>
         <article class="work">
           <div class="swatch" style="--g:radial-gradient(circle at 45% 45%,#f3c64a 0 14%,transparent 40%),radial-gradient(circle at 80% 75%,#0a8f9c 0 22%,transparent 55%),linear-gradient(150deg,#3cc6f0,#1d6fd6)"><span class="tag">Photography</span><span>NPR · The Salt</span></div>
@@ -323,16 +318,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <p>Lili Gu (she/her) is a West Coast-based filmmaker, poet, and aspiring mixed media artist. She is passionate about exploring justice, liberation, and the human condition through storytelling.</p>
           <p>Her projects work to uncover language away from the white gaze, speaking truth to power on themes of Chinese American assimilation, queerness, and intergenerational strength. She makes art as an act of love—toward visions of an imagined future in which all humans can not just survive, but thrive.</p>
           <p>Lili trained under the mentorship of pioneering vérité documentarian Marina Goldovskaya. Her films have received numerous festival accolades, screening internationally and on television networks such as PBS.</p>
+          <h3 class="stmt-h">Artist statement</h3>
+          <div class="stmt">
+            <p>I work in film, sculpture, poetry, and sound. My objective is to create immersive spaces that narrate collective grief, healing, and liberation through mixed media installation. I use performative documentary to explore the human condition, particularly over long stretches of time. The act of observing a subject over decades is rooted in my mathematics background in dynamical systems, and becomes a form of social practice in which my subjects and I find intergenerational strength through deep connection. My experimental narrative film work plays with lens choice, camera movement, and editing tropes, subverting Hollywood filmmaking practices rooted in capitalist heteropatriarchy to uplift the bright, free, and even fun and funny aspects of queerness. Much of my film and poetry is on themes of queer and Asian American assimilation, rejecting and supplanting the consumable traumas of contemporary media.</p>
+            <p>I’m newer to sculpture and installation. I repurpose corporate promotional materials, reclaim trashed clay trimmings, and rehabilitate discarded plant scraps to create pieces that bring themes of profitability, conditional safety, and belonging into dialogue. I’m interested in everyday items that have physical utility but a more intimately connective purpose, just as I’m interested in transforming regular spaces into immersive experiences. I envision one’s path through these installations as having a time-based arc – documentary that takes place completely past the fourth wall, inside the viewer. I want to create moments of determined existence that liberate community. I want them to take up space.</p>
+          </div>
         </div>
-        <aside class="honors" aria-label="Awards and fellowships">
+        <aside class="honors" aria-label="Awards, fellowships and roles">
           <figure class="portrait"><img src="img/portrait.jpg" alt="Portrait of Lili Gu laughing, in a black top against a dark background" width="900" height="1125" loading="lazy"></figure>
-          <h3>Awards &amp; fellowships</h3>
+          <h3>Awards, fellowships &amp; roles</h3>
           <ul>
             <li>Mary Pickford Award</li>
             <li>Adobe Production Premium Award</li>
             <li>Hollywood Post Alliance Scholarship</li>
             <li>Edie and Lew Wasserman Film Production Fellowship</li>
             <li>Edna and Yu-Shan Han Endowed Award</li>
+            <li>Hugo House Fellow, 2022–23</li>
+            <li>Airlie Prize manuscript reader, Airlie Press, 2025–26</li>
           </ul>
         </aside>
       </div>
@@ -343,7 +345,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
     <div class="wrap">
       <div class="sec-head"><h2 id="press-h">Press &amp; readings</h2></div>
       <ul class="press">
-        <li><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener"><span class="d">05/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener"><span class="d">05/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows final reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://hugohouse.org/event/hugo-fellows-mid-year-reading_2023-02-02/" target="_blank" rel="noopener"><span class="d">02/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows mid-year reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://ultiworld.com/2020/07/31/sin-the-fields-bipoc-highlight-reel-the-first-ever-wildwood/" target="_blank" rel="noopener"><span class="d">07/2020</span><span class="o">Ultiworld · Sin The Fields<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://www.discnw.org/p/the-greatest-lili-gu" target="_blank" rel="noopener"><span class="d">11/2019</span><span class="o">DiscNW · The Greatest<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://open.spotify.com/episode/4XFbiYmBljoLFXr6coxrvX" target="_blank" rel="noopener"><span class="d">01/2019</span><span class="o">The Ultimate Podcast<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
