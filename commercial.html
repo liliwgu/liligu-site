@@ -296,6 +296,14 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .cs-strip:focus-visible{outline:2px solid var(--teal);outline-offset:4px}
 @media (max-width:900px){.cs-strip{grid-auto-columns:calc((100% - 1.25rem)/2.3)}}
 @media (max-width:520px){.cs-strip{grid-auto-columns:70%;gap:.9rem}.cs-strip .work h3{font-size:.92rem}}
+.cs-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem 1.25rem}.cs-pair .cs-hero{margin:0}
+@media (max-width:700px){.cs-pair{grid-template-columns:1fr}}
+.cs-sw{position:relative}
+.cs-strip.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}.cs-strip.drag .vid{pointer-events:none}
+.cs-nav{all:unset;position:absolute;top:calc(var(--cs-thumb,140px)/2);z-index:2;width:44px;height:44px;margin-top:-22px;border-radius:50%;background:rgba(7,16,22,.78);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:1.3rem;line-height:44px;text-align:center;cursor:pointer;transition:opacity .2s,background .2s;box-shadow:0 4px 16px rgba(0,0,0,.35)}
+.cs-nav:hover,.cs-nav:focus-visible{background:var(--teal)}.cs-nav:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.cs-prev{left:-14px}.cs-next{right:-14px}.cs-nav[disabled]{opacity:0;pointer-events:none}
+@media (max-width:520px){.cs-nav{width:38px;height:38px;margin-top:-19px;line-height:38px}.cs-prev{left:-6px}.cs-next{right:-6px}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
@@ -548,14 +556,9 @@ main.inner section.block:has(> .bh){padding-top:0}
           <div><dt>Role</dt><dd>In-house producer</dd></div>
           <div><dt>Year</dt><dd>2019</dd></div>
           <div><dt>Format</dt><dd>Customer stories, about 2 min each</dd></div>
-          <div><dt>Clients</dt><dd>Syngenta, Ogilvy, Roche, Arc’teryx and more</dd></div>
+          <div><dt>Clients</dt><dd>Syngenta, Ogilvy, Roche, Arc’teryx, and more</dd></div>
         </dl>
-        <div class="cs-grid">
-          <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/ScsPtO8khus?autoplay=1&amp;rel=0" aria-label="Play Planning events for educators nationwide"><img src="https://i.ytimg.com/vi/ScsPtO8khus/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">McGraw Hill · 2019</p>
-            <h3>Planning events for educators nationwide</h3>
-          </article>
+        <div class="cs-strip" tabindex="0" role="region" aria-label="More Smartsheet customer stories, scrolls sideways">
           <article class="work">
             <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/bGa6PPCwTAA?autoplay=1&amp;rel=0" aria-label="Play Delivering world-class events"><img src="https://i.ytimg.com/vi/bGa6PPCwTAA/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
             <p class="meta">Populous · 2019</p>
@@ -572,14 +575,19 @@ main.inner section.block:has(> .bh){padding-top:0}
             <h3>Improved visibility fuels global expansion</h3>
           </article>
           <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/p9wZ5wBg44I?autoplay=1&amp;rel=0" aria-label="Play Transforming the client experience"><img src="https://i.ytimg.com/vi/p9wZ5wBg44I/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Ogilvy · 2019</p>
-            <h3>Transforming the client experience</h3>
-          </article>
-          <article class="work">
             <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/kolmD2iUNBk?autoplay=1&amp;rel=0" aria-label="Play Improving program productivity"><img src="https://i.ytimg.com/vi/kolmD2iUNBk/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
             <p class="meta">Roche Diagnostics · 2019</p>
             <h3>Improving program productivity</h3>
+          </article>
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/ScsPtO8khus?autoplay=1&amp;rel=0" aria-label="Play Planning events for educators nationwide"><img src="https://i.ytimg.com/vi/ScsPtO8khus/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">McGraw Hill · 2019</p>
+            <h3>Planning events for educators nationwide</h3>
+          </article>
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/p9wZ5wBg44I?autoplay=1&amp;rel=0" aria-label="Play Transforming the client experience"><img src="https://i.ytimg.com/vi/p9wZ5wBg44I/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Ogilvy · 2019</p>
+            <h3>Transforming the client experience</h3>
           </article>
           <article class="work">
             <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/q0Rd2hznXBU?autoplay=1&amp;rel=0" aria-label="Play Improving efficiency"><img src="https://i.ytimg.com/vi/q0Rd2hznXBU/mqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
@@ -594,16 +602,22 @@ main.inner section.block:has(> .bh){padding-top:0}
         </div>
         <div class="links cs-more"><a href="https://www.smartsheet.com/customers" target="_blank" rel="noopener">More Smartsheet customer stories ↗</a></div>
       </article>
-      <div class="bgrid">
-        <article class="work">
-          <div class="photo edge"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-          <h3>Lumafield x Intrepid</h3>
-        </article>
-        <article class="work">
-          <div class="photo crop"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
-          <h3>Lumafield x Trek</h3>
-        </article>
-      </div>
+      <article class="cs" id="lumafield-stories" aria-labelledby="lumafield-stories-h">
+        <p class="cs-eb">Case study · Lumafield customer stories</p>
+        <h3 class="cs-h" id="lumafield-stories-h">What engineers find when they can see inside.</h3>
+        <p class="cs-lede">Short films about how engineering teams use Lumafield’s industrial CT scanners, from carbon bike frames at Trek to 3D-printed production parts at Intrepid Automation.</p>
+        <div class="cs-pair">
+          <div class="cs-hero">
+            <div class="photo crop"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="cs-cap"><p class="meta">Trek Bicycle · 2023</p><h4>Engineering better bikes with CT</h4></div>
+          </div>
+          <div class="cs-hero">
+            <div class="photo edge"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="cs-cap"><p class="meta">Intrepid Automation · 2023</p><h4>Inspecting 3D-printed parts at production scale</h4></div>
+          </div>
+        </div>
+        <div class="links cs-more"><a href="https://www.lumafield.com/case-studies" target="_blank" rel="noopener">More Lumafield customer stories ↗</a></div>
+      </article>
       <p class="sub">Launch packages</p>
       <div class="bgrid">
         <article class="work">
@@ -649,55 +663,17 @@ main.inner section.block:has(> .bh){padding-top:0}
         </article>
       </div>
       <p class="sub">How-to videos</p>
-      <article class="cs" id="lumafield-ct101" aria-labelledby="lumafield-ct101-h">
-        <p class="cs-eb">How-to series · Lumafield CT 101</p>
-        <h3 class="cs-h" id="lumafield-ct101-h">Teaching engineers to see inside anything.</h3>
-        <p class="cs-lede">CT 101 is Lumafield’s five-part video course on industrial CT scanning: how it works, how to run the Neptune scanner, how to inspect parts in Voyager, and how Triton automates it on the production line. I produced, directed, shot and edited every episode in-house.</p>
-        <div class="cs-hero">
-          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play CT 101: Introduction to Industrial CT"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-          <div class="cs-cap"><p class="meta">Lumafield</p><h4>CT 101: Introduction to Industrial CT</h4></div>
-        </div>
-        <dl class="cs-facts">
-          <div><dt>Role</dt><dd>In-house producer, director, DP and editor</dd></div>
-          <div><dt>Year</dt><dd>2024–2025</dd></div>
-          <div><dt>Format</dt><dd>5-part tutorial series, 4–7 min each</dd></div>
-          <div><dt>Reach</dt><dd>30K views on the intro alone</dd></div>
-        </dl>
-        <div class="cs-grid">
-          <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/980903955?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Neptune"><img src="https://i.vimeocdn.com/video/1900644319-3b73ae3aa43d27285dcf7df8f9887bc9ae91cb1c5a24c1a2fcfb4d37a00546e7-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Neptune</p>
-            <h3>Introduction to Neptune</h3>
-          </article>
-          <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981517602?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Voyager"><img src="https://i.vimeocdn.com/video/1900645155-bb30e40850ca9c1fc06275438e75b3643ae054e119ddf0e60d129509378fcfb7-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Voyager</p>
-            <h3>Introduction to Voyager</h3>
-          </article>
-          <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981521980?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Voyager Inspection Workflows"><img src="https://i.vimeocdn.com/video/1900646379-d286202c1f7297aafbe8e56461c6f4ccc1ae5847a44fa3a110b42302b3d82532-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Voyager</p>
-            <h3>Voyager Inspection Workflows</h3>
-          </article>
-          <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/1144991533?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Triton"><img src="https://i.vimeocdn.com/video/2093779964-664dc95dd98172be008b4adf46001de4044a930c8b523cfe0dc806b25af3e64c-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Triton</p>
-            <h3>Introduction to Triton</h3>
-          </article>
-        </div>
-        <div class="links cs-more"><a href="https://www.lumafield.com/ct101" target="_blank" rel="noopener">The full CT 101 series ↗</a></div>
-      </article>
       <article class="cs" id="smartsheet-howto" aria-labelledby="smartsheet-howto-h">
         <p class="cs-eb">How-to series · Smartsheet</p>
         <h3 class="cs-h" id="smartsheet-howto-h">The tutorials 1.7 million people learned Smartsheet from.</h3>
-        <p class="cs-lede">A library of short, animated tutorials that walk new users through Smartsheet one feature at a time, from setting up a first sheet to sharing, reports and automation. I designed the animation template every tutorial is built on, and produced, directed, animated and edited the series in-house.</p>
+        <p class="cs-lede">A library of short, animated tutorials that walk new users through Smartsheet one feature at a time, from setting up a first sheet to sharing, reports, and automation. I produced, directed, animated, and edited the original series, and designed the animation template that newer tutorials are built on.</p>
         <div class="cs-hero">
           <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AgvtNUSVrQM?autoplay=1&amp;rel=0" aria-label="Play How to Set Up a Sheet"><img src="https://i.ytimg.com/vi/AgvtNUSVrQM/maxresdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
           <div class="cs-cap"><p class="meta">Smartsheet</p><h4>How to Set Up a Sheet</h4></div>
         </div>
         <dl class="cs-facts">
-          <div><dt>Role</dt><dd>In-house producer, director, animator and editor</dd></div>
-          <div><dt>Year</dt><dd>2021</dd></div>
+          <div><dt>Role</dt><dd>Producer, director, animator, and editor of the original series</dd></div>
+          <div><dt>Year</dt><dd>2019 &amp; 2020</dd></div>
           <div><dt>Format</dt><dd>16 tutorials, 1–4 min each</dd></div>
           <div><dt>Reach</dt><dd>1.7M views on YouTube</dd></div>
         </dl>
@@ -780,7 +756,45 @@ main.inner section.block:has(> .bh){padding-top:0}
         </div>
         <div class="links cs-more"><a href="https://www.youtube.com/@smartsheet" target="_blank" rel="noopener">More on Smartsheet’s YouTube ↗</a></div>
       </article>
-      <p class="sub">Other narratives</p>
+      <article class="cs" id="lumafield-ct101" aria-labelledby="lumafield-ct101-h">
+        <p class="cs-eb">How-to series · Lumafield CT 101</p>
+        <h3 class="cs-h" id="lumafield-ct101-h">Teaching engineers to see inside anything.</h3>
+        <p class="cs-lede">CT 101 is Lumafield’s five-part video course on industrial CT scanning: how it works, how to run the Neptune scanner, how to inspect parts in Voyager, and how Triton automates it on the production line. I produced, directed, shot and edited every episode in-house.</p>
+        <div class="cs-hero">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play CT 101: Introduction to Industrial CT"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+          <div class="cs-cap"><p class="meta">Lumafield</p><h4>CT 101: Introduction to Industrial CT</h4></div>
+        </div>
+        <dl class="cs-facts">
+          <div><dt>Role</dt><dd>In-house producer, director, DP, and editor</dd></div>
+          <div><dt>Year</dt><dd>2024–2025</dd></div>
+          <div><dt>Format</dt><dd>5-part tutorial series, 4–7 min each</dd></div>
+          <div><dt>Reach</dt><dd>30K views on the intro alone</dd></div>
+        </dl>
+        <div class="cs-grid">
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/980903955?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Neptune"><img src="https://i.vimeocdn.com/video/1900644319-3b73ae3aa43d27285dcf7df8f9887bc9ae91cb1c5a24c1a2fcfb4d37a00546e7-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Neptune</p>
+            <h3>Introduction to Neptune</h3>
+          </article>
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981517602?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Voyager"><img src="https://i.vimeocdn.com/video/1900645155-bb30e40850ca9c1fc06275438e75b3643ae054e119ddf0e60d129509378fcfb7-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Voyager</p>
+            <h3>Introduction to Voyager</h3>
+          </article>
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981521980?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Voyager Inspection Workflows"><img src="https://i.vimeocdn.com/video/1900646379-d286202c1f7297aafbe8e56461c6f4ccc1ae5847a44fa3a110b42302b3d82532-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Voyager</p>
+            <h3>Voyager Inspection Workflows</h3>
+          </article>
+          <article class="work">
+            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/1144991533?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Triton"><img src="https://i.vimeocdn.com/video/2093779964-664dc95dd98172be008b4adf46001de4044a930c8b523cfe0dc806b25af3e64c-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Triton</p>
+            <h3>Introduction to Triton</h3>
+          </article>
+        </div>
+        <div class="links cs-more"><a href="https://www.lumafield.com/ct101" target="_blank" rel="noopener">The full CT 101 series ↗</a></div>
+      </article>
+            <p class="sub">Other narratives</p>
       <div class="bgrid">
         <article class="work">
           <div class="photo"><img src="img/b-treeroot.jpg" alt="A smiling child hugs a giant zucchini" loading="lazy" width="960" height="540"></div>
@@ -820,6 +834,19 @@ document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click'
 (function(){var d=document.getElementById('sp-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
 document.querySelectorAll('.ph[data-embed]').forEach(function(b){b.addEventListener('click',function(){fr.innerHTML='<iframe src="'+b.dataset.embed+'" title="'+b.getAttribute('aria-label').replace(/^Play /,'')+'" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';d.showModal();});});
 d.addEventListener('close',function(){fr.innerHTML='';});d.querySelector('.rp-x').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});})();
+document.querySelectorAll('.cs-strip').forEach(function(st){
+  var w=document.createElement('div');w.className='cs-sw';st.parentNode.insertBefore(w,st);w.appendChild(st);
+  function mk(c,l,t,d){var b=document.createElement('button');b.type='button';b.className='cs-nav '+c;b.setAttribute('aria-label',l);b.textContent=t;b.addEventListener('click',function(){st.scrollBy({left:d*Math.max(200,st.clientWidth*0.8),behavior:'smooth'})});w.appendChild(b);return b}
+  var pv=mk('cs-prev','Scroll back','←',-1),nx=mk('cs-next','Scroll forward','→',1);
+  function upd(){var m=st.scrollWidth-st.clientWidth;pv.disabled=st.scrollLeft<4;nx.disabled=st.scrollLeft>m-4;var im=st.querySelector('.photo');if(im)w.style.setProperty('--cs-thumb',im.offsetHeight+'px')}
+  st.addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();setTimeout(upd,500);
+  var down=false,x0=0,s0=0,moved=false;
+  st.addEventListener('pointerdown',function(ev){if(ev.pointerType!=='mouse'||ev.button!==0)return;down=true;moved=false;x0=ev.clientX;s0=st.scrollLeft});
+  addEventListener('pointermove',function(ev){if(!down)return;var dx=ev.clientX-x0;if(!moved&&Math.abs(dx)>6){moved=true;st.classList.add('drag')}if(moved){st.scrollLeft=s0-dx;ev.preventDefault()}});
+  addEventListener('pointerup',function(){if(!down)return;down=false;if(moved){var sl=st.scrollLeft;st.classList.remove('drag');st.scrollLeft=sl}});
+  st.addEventListener('click',function(ev){if(moved){ev.preventDefault();ev.stopPropagation();moved=false}},true);
+  st.addEventListener('dragstart',function(ev){ev.preventDefault()});
+});
 </script>
 <script>
 (function(){
