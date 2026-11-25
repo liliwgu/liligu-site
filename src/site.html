@@ -116,6 +116,8 @@ h1.name .ttl.live .sp{visibility:hidden}
 .lit .reel-embed figcaption,.lit .reel-embed figcaption button:hover{color:rgba(235,246,250,.82)}
 header.site{transition:opacity .3s}
 html.spotlit header.site{opacity:calc(1 - var(--spot,0) * .8)}
+.spot-all{position:fixed;inset:0;background:rgb(3,9,13);opacity:0;pointer-events:none;z-index:7;transition:opacity .35s}
+.spot-on{position:relative;z-index:8}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
@@ -1197,7 +1199,22 @@ function go(e){e.preventDefault();e.stopPropagation();if(window.lgVimeo)lgVimeo(
 m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e)})});
 </script>
 <script>
-document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){if(window.lgPop&&!b.closest('.feature,.cs-hero')&&b.getBoundingClientRect().width<innerWidth*.62){lgPop(b.dataset.src,b.getAttribute('aria-label').replace(/^Play /,''));return}var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
+document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){if(window.lgPop&&!b.closest('.feature,.cs-hero')&&b.getBoundingClientRect().width<innerWidth*.62){lgPop(b.dataset.src,b.getAttribute('aria-label').replace(/^Play /,''));return}var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);if(window.lgSpot)lgSpot(f);});});
+// spotlight: while a video you started is playing and mostly in view, the rest of the page dims
+(function(){var R=document.documentElement,ov=null,list=[],tick=false;
+function vis(el){var r=el.getBoundingClientRect(),hd=document.querySelector('header.site'),t=hd?hd.getBoundingClientRect().bottom:0;return (Math.min(r.bottom,innerHeight)-Math.max(r.top,t))/r.height}
+function paint(){tick=false;var best=0,who=null;list.forEach(function(v){var k=v.on?(vis(v.f)-.7)/.28:0;k=k<0?0:k>1?1:k;if(k>best){best=k;who=v}});
+list.forEach(function(v){v.box.classList.toggle('spot-on',v===who)});ov.style.opacity=(best*.84).toFixed(3);R.style.setProperty('--spot',best.toFixed(3));R.classList.toggle('spotlit',best>0)}
+function q(){if(!tick){tick=true;requestAnimationFrame(paint)}}
+addEventListener('message',function(e){var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}if(!d)return;
+list.forEach(function(v){if(v.f.contentWindow!==e.source)return;
+if(d.event==='play')v.on=true;else if(d.event==='pause'||d.event==='finish'||d.event==='ended')v.on=false;
+else if(d.event==='infoDelivery'&&d.info&&typeof d.info.playerState==='number')v.on=d.info.playerState===1||d.info.playerState===3;else return;q()})});
+window.lgSpot=function(f){if(!ov){ov=document.createElement('div');ov.className='spot-all';ov.setAttribute('aria-hidden','true');document.body.appendChild(ov);addEventListener('scroll',q,{passive:true});addEventListener('resize',q)}
+var yt=/youtube/.test(f.src),v={f:f,box:f.parentNode,on:true};
+if(yt&&!/enablejsapi/.test(f.src))f.src=f.src+(f.src.indexOf('?')<0?'?':'&')+'enablejsapi=1';
+f.addEventListener('load',function(){try{if(yt){f.contentWindow.postMessage(JSON.stringify({event:'listening',id:1,channel:'widget'}),'*')}else{['play','pause','finish'].forEach(function(n){f.contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:n}),'https://player.vimeo.com')})}}catch(x){}});
+list.push(v);q()};})();
 (function(){var d=document.getElementById('sp-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
 document.querySelectorAll('.ph[data-embed]').forEach(function(b){b.addEventListener('click',function(){fr.innerHTML='<iframe src="'+b.dataset.embed+'" title="'+b.getAttribute('aria-label').replace(/^Play /,'')+'" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';d.showModal();});});
 d.addEventListener('close',function(){fr.innerHTML='';});d.querySelector('.rp-x').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});})();

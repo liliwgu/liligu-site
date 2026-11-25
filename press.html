@@ -116,6 +116,8 @@ h1.name .ttl.live .sp{visibility:hidden}
 .lit .reel-embed figcaption,.lit .reel-embed figcaption button:hover{color:rgba(235,246,250,.82)}
 header.site{transition:opacity .3s}
 html.spotlit header.site{opacity:calc(1 - var(--spot,0) * .8)}
+.spot-all{position:fixed;inset:0;background:rgb(3,9,13);opacity:0;pointer-events:none;z-index:7;transition:opacity .35s}
+.spot-on{position:relative;z-index:8}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
