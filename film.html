@@ -643,7 +643,7 @@ function pop(src,title){fr.innerHTML='';var f=document.createElement('iframe');f
 window.lgPop=pop;window.lgVimeo=function(id,t){pop('https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1'+(t?'#t='+t+'s':''));};
 function open(e){e.preventDefault();lgVimeo(this.getAttribute('data-reel')||'158287395');}
 function close(){d.close();}
-d.addEventListener('close',function(){fr.innerHTML='';});
+d.addEventListener('close',function(){if(!d.open)fr.innerHTML='';});
 d.querySelector('.rp-x').addEventListener('click',close);
 d.addEventListener('click',function(e){if(e.target===d)close();});
 document.querySelectorAll('[data-reel]').forEach(function(a){a.addEventListener('click',open);});})();
