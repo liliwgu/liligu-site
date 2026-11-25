@@ -11,6 +11,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Press & readings · Lili Gu</title>
 <meta name="description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
+<link rel="preconnect" href="https://player.vimeo.com"><link rel="preconnect" href="https://i.vimeocdn.com"><link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -134,6 +135,7 @@ main.inner section.block:not(:has(> .bh)){padding-top:clamp(2.5rem,5vw,4rem)}
 .dvh.sm{margin-bottom:1.1rem}
 .dvh.sm .dv{height:clamp(9px,1.2vw,16px);translate:0 0}
 .about-dv{margin-bottom:clamp(2rem,5vw,3.5rem)}
+#about .sec-head{margin-bottom:clamp(1.8rem,4vw,2.8rem)}
 footer .dv{margin-bottom:1.5rem}
 .sec-head:not(.dvh){display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:2.2rem}
 h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.03em;line-height:1;margin:0;text-wrap:balance}
@@ -307,6 +309,8 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
+#brand .wrap > .dvh.sm{margin-top:3.5rem}#brand .logos + .dvh.sm,#brand .cs + .dvh.sm,#brand .feature + .dvh.sm{margin-top:0}
+.collab h3{font-size:clamp(1.5rem,3vw,2.2rem)}
 .photo.crop iframe{transform:scale(1.1)}
 .bgrid .photo.edge iframe{inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px)}
 .social .tt{aspect-ratio:9/16;max-width:326px;background:#000}.social .tt iframe{width:100%;height:100%;border:0;display:block}
@@ -353,6 +357,11 @@ main.inner section.block:has(> .bh){padding-top:0}
 @keyframes wash{from{transform:translate3d(-4%,-3%,0) rotate(0deg) scale(1)}to{transform:translate3d(5%,4%,0) rotate(14deg) scale(1.12)}}
 .bh .mv{filter:grayscale(.3) brightness(.7)}
 .bh .mv.wash{filter:none}
+.bh .mv iframe{transform:translate(-50%,-50%) scale(1.03)}
+/* small clips pop out bigger on click */
+.mv.pop{cursor:pointer}
+.mv.pop::after{content:"";position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(6,20,28,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23fff'/%3E%3C/svg%3E") center/30px no-repeat;backdrop-filter:blur(4px);opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
+.mv.pop:hover::after,.mv.pop:focus-visible::after{opacity:1;transform:none}
 .bh::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,17,.5),transparent 50%);pointer-events:none}
 .bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
 .bh-l{position:absolute;z-index:1;top:clamp(1.2rem,4vw,2.4rem);margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.65;color:#e9f3f5}
@@ -399,7 +408,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .ix ul.laurels{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
 .ix ul.laurels li::before{content:"";position:absolute;left:0;top:.45em;width:.5rem;height:.5rem;border-radius:50%;background:linear-gradient(135deg,var(--wash1),var(--wash2))}
-@media (max-width:760px),(hover:none){.ix{padding-right:0}.ix-pv{display:none}.ixr{grid-template-columns:3rem minmax(0,1fr);row-gap:.35rem;padding:.8rem 0}.ixr .tags{grid-column:2;justify-content:flex-start;flex-wrap:wrap}.ixr .t{color:var(--ink)}.ixr .tags{opacity:1;transform:none}.ixr .det{position:static;width:auto;height:auto;clip:auto;grid-column:2}}
+@media (max-width:760px),(hover:none){.ix{padding-right:0}.ix-pv{display:none}.ixr{grid-template-columns:3rem minmax(0,1fr);row-gap:.35rem;padding:.8rem 0}.ixr .tags{grid-column:2;justify-content:flex-start;flex-wrap:wrap}.ixr .t{color:var(--ink)}.ixr .tags{opacity:1;transform:none}.ixr .det{position:static;width:auto;height:auto;clip:auto;grid-column:2}.ix .note{display:none}}
 
 /* social feed: phone-shaped cards, staggered; tap opens the real post */
 .feed{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.8rem,2vw,1.6rem);padding-bottom:5rem}
@@ -503,7 +512,10 @@ var t=document.querySelector('h1.name'),tick=false;
 var divs=[].slice.call(document.querySelectorAll('section.block, footer'));
 var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');dio.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});divs.forEach(function(el){dio.observe(el)});
 function paint(){var vh=innerHeight;divs.forEach(function(el){var t=el.getBoundingClientRect().top;var c=(t-vh/2)/vh;c=c<-1?-1:c>1?1:c;el.style.setProperty('--x',(c*-10).toFixed(1)+'px')})}
-function grad(){var max=document.documentElement.scrollHeight-innerHeight;var g=max>40?Math.min(1,scrollY/max):Math.min(1,scrollY/300);root.style.setProperty('--g1',Math.min(1,g*1.3).toFixed(3));root.style.setProperty('--g2',Math.max(0,(g-.25)/.75).toFixed(3))}
+var waves=!!document.getElementById('brand');
+function grad(){var max=document.documentElement.scrollHeight-innerHeight;var g=max>40?Math.min(1,scrollY/max):Math.min(1,scrollY/300);
+if(waves&&max>innerHeight*3){var n=Math.max(2,Math.min(5,Math.round(max/(innerHeight*3)))),w=g>=(n-.5)/n?1:.12+.88*(1-Math.cos(2*Math.PI*n*g))/2;root.style.setProperty('--g1',w.toFixed(3));root.style.setProperty('--g2',(w*.85).toFixed(3));return}
+root.style.setProperty('--g1',Math.min(1,g*1.3).toFixed(3));root.style.setProperty('--g2',Math.max(0,(g-.25)/.75).toFixed(3))}
 var lt=document.querySelector('h1.name .lt');
 // LILI GU breathes in and out as you scroll: one breath every 420px
 function f(){tick=false;paint();grad();var y=Math.min(scrollY,900);if(t)t.style.transform='translate3d(0,'+(y*0.18).toFixed(1)+'px,0) scale('+(1-y*0.00008).toFixed(4)+')';if(lt){var b=(1-Math.cos(scrollY/420*2*Math.PI))/2;lt.style.transform='scale('+(1+b*.035).toFixed(4)+')';lt.style.filter='saturate('+(1+b*.2).toFixed(3)+')'}}
@@ -517,19 +529,32 @@ document.querySelectorAll('.cb').forEach(function(c){cio.observe(c)});
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;
 function send(f,m){try{f.contentWindow.postMessage(JSON.stringify({method:m}),'https://player.vimeo.com')}catch(e){}}
+function post(f,o){try{f.contentWindow.postMessage(JSON.stringify(o),'https://player.vimeo.com')}catch(e){}}
+// load a clip; it fades in as soon as Vimeo reports it is playing (fallback after 5s)
+function load(m){var f=document.createElement('iframe');f.src='https://player.vimeo.com/video/'+m.dataset.v+'?background=1&dnt=1#t='+(m.dataset.t||0)+'s';f.title='';f.tabIndex=-1;f.setAttribute('aria-hidden','true');f.allow='autoplay';
+f.addEventListener('load',function(){post(f,{method:'addEventListener',value:'timeupdate'});post(f,{method:'addEventListener',value:'play'});setTimeout(function(){m.classList.add('on')},5000)});m.appendChild(f);return f}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var m=e.target,f=m.querySelector('iframe');
-if(e.isIntersecting){if(!f){f=document.createElement('iframe');f.src='https://player.vimeo.com/video/'+m.dataset.v+'?background=1&dnt=1#t='+(m.dataset.t||0)+'s';f.title='';f.tabIndex=-1;f.setAttribute('aria-hidden','true');f.allow='autoplay';f.addEventListener('load',function(){if(m.dataset.e)f.contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:'timeupdate'}),'https://player.vimeo.com');setTimeout(function(){m.classList.add('on')},1600)});m.appendChild(f)}else send(f,'play')}
+if(e.isIntersecting){if(!f)load(m);else send(f,'play')}
 else if(f)send(f,'pause')})},{rootMargin:'150px 0px'});
-document.querySelectorAll('.mv[data-v]').forEach(function(m){io.observe(m)});
+// header clips start loading right away; the rest wait until they are near the screen
+document.querySelectorAll('.bh .mv[data-v]').forEach(function(m){load(m);io.observe(m)});
+document.querySelectorAll('.mv[data-v]').forEach(function(m){if(!m.closest('.bh'))io.observe(m)});
 // clips with data-e loop only between data-t and data-e seconds
 window.addEventListener('message',function(e){if(e.origin!=='https://player.vimeo.com')return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
-if(!d||d.event!=='timeupdate'||!d.data)return;document.querySelectorAll('.mv[data-e] iframe').forEach(function(f){if(f.contentWindow!==e.source)return;var m=f.parentNode;if(d.data.seconds>=+m.dataset.e||d.data.seconds<(+m.dataset.t||0)-0.5)f.contentWindow.postMessage(JSON.stringify({method:'setCurrentTime',value:+m.dataset.t||0}),'https://player.vimeo.com')})});
+if(!d||(d.event!=='timeupdate'&&d.event!=='play'))return;document.querySelectorAll('.mv[data-v] iframe').forEach(function(f){if(f.contentWindow!==e.source)return;var m=f.parentNode;if(d.event==='timeupdate'&&d.data&&d.data.seconds>(+m.dataset.t||0)+.05)m.classList.add('on');if(d.event!=='timeupdate'||!m.dataset.e||!d.data)return;if(d.data.seconds>=+m.dataset.e||d.data.seconds<(+m.dataset.t||0)-0.5)f.contentWindow.postMessage(JSON.stringify({method:'setCurrentTime',value:+m.dataset.t||0}),'https://player.vimeo.com')})});
 })();
+// small clips: click (or Enter) opens the full video, bigger and with sound
+document.querySelectorAll('.mv[data-v]').forEach(function(m){if(m.closest('.bh')||m.classList.contains('lw-scan'))return;
+m.classList.add('pop');m.tabIndex=0;m.setAttribute('role','button');m.setAttribute('aria-label','Play the video bigger');
+function go(e){e.preventDefault();e.stopPropagation();if(window.lgVimeo)lgVimeo(m.dataset.v)}
+m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e)})});
 </script>
-<dialog class="reel-pop" id="reel-pop" aria-label="Film reel"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close reel">×</button><div class="rp-frame"></div></div></dialog>
+<dialog class="reel-pop" id="reel-pop" aria-label="Video"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close video">×</button><div class="rp-frame"></div></div></dialog>
 <script>
 (function(){var d=document.getElementById('reel-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
-function open(e){e.preventDefault();var id=this.getAttribute('data-reel')||'158287395';fr.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';d.showModal();}
+function pop(src,title){fr.innerHTML='';var f=document.createElement('iframe');f.src=src;f.title=title||'Video';f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;fr.appendChild(f);d.showModal();}
+window.lgPop=pop;window.lgVimeo=function(id,t){pop('https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1'+(t?'#t='+t+'s':''));};
+function open(e){e.preventDefault();lgVimeo(this.getAttribute('data-reel')||'158287395');}
 function close(){d.close();}
 d.addEventListener('close',function(){fr.innerHTML='';});
 d.querySelector('.rp-x').addEventListener('click',close);

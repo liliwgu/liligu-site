@@ -11,6 +11,7 @@
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Lili Gu</title>
 <meta name="description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
+<link rel="preconnect" href="https://player.vimeo.com"><link rel="preconnect" href="https://i.vimeocdn.com"><link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -134,6 +135,7 @@ main.inner section.block:not(:has(> .bh)){padding-top:clamp(2.5rem,5vw,4rem)}
 .dvh.sm{margin-bottom:1.1rem}
 .dvh.sm .dv{height:clamp(9px,1.2vw,16px);translate:0 0}
 .about-dv{margin-bottom:clamp(2rem,5vw,3.5rem)}
+#about .sec-head{margin-bottom:clamp(1.8rem,4vw,2.8rem)}
 footer .dv{margin-bottom:1.5rem}
 .sec-head:not(.dvh){display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:2.2rem}
 h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.03em;line-height:1;margin:0;text-wrap:balance}
@@ -307,6 +309,8 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub,.feed + .sub,.feed + dialog + .sub{margin-top:3.5rem}
+#brand .wrap > .dvh.sm{margin-top:3.5rem}#brand .logos + .dvh.sm,#brand .cs + .dvh.sm,#brand .feature + .dvh.sm{margin-top:0}
+.collab h3{font-size:clamp(1.5rem,3vw,2.2rem)}
 .photo.crop iframe{transform:scale(1.1)}
 .bgrid .photo.edge iframe{inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px)}
 .social .tt{aspect-ratio:9/16;max-width:326px;background:#000}.social .tt iframe{width:100%;height:100%;border:0;display:block}
@@ -353,6 +357,11 @@ main.inner section.block:has(> .bh){padding-top:0}
 @keyframes wash{from{transform:translate3d(-4%,-3%,0) rotate(0deg) scale(1)}to{transform:translate3d(5%,4%,0) rotate(14deg) scale(1.12)}}
 .bh .mv{filter:grayscale(.3) brightness(.7)}
 .bh .mv.wash{filter:none}
+.bh .mv iframe{transform:translate(-50%,-50%) scale(1.03)}
+/* small clips pop out bigger on click */
+.mv.pop{cursor:pointer}
+.mv.pop::after{content:"";position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(6,20,28,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23fff'/%3E%3C/svg%3E") center/30px no-repeat;backdrop-filter:blur(4px);opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
+.mv.pop:hover::after,.mv.pop:focus-visible::after{opacity:1;transform:none}
 .bh::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,17,.5),transparent 50%);pointer-events:none}
 .bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
 .bh-l{position:absolute;z-index:1;top:clamp(1.2rem,4vw,2.4rem);margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.65;color:#e9f3f5}
@@ -399,7 +408,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .ix ul.laurels{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
 .ix ul.laurels li::before{content:"";position:absolute;left:0;top:.45em;width:.5rem;height:.5rem;border-radius:50%;background:linear-gradient(135deg,var(--wash1),var(--wash2))}
-@media (max-width:760px),(hover:none){.ix{padding-right:0}.ix-pv{display:none}.ixr{grid-template-columns:3rem minmax(0,1fr);row-gap:.35rem;padding:.8rem 0}.ixr .tags{grid-column:2;justify-content:flex-start;flex-wrap:wrap}.ixr .t{color:var(--ink)}.ixr .tags{opacity:1;transform:none}.ixr .det{position:static;width:auto;height:auto;clip:auto;grid-column:2}}
+@media (max-width:760px),(hover:none){.ix{padding-right:0}.ix-pv{display:none}.ixr{grid-template-columns:3rem minmax(0,1fr);row-gap:.35rem;padding:.8rem 0}.ixr .tags{grid-column:2;justify-content:flex-start;flex-wrap:wrap}.ixr .t{color:var(--ink)}.ixr .tags{opacity:1;transform:none}.ixr .det{position:static;width:auto;height:auto;clip:auto;grid-column:2}.ix .note{display:none}}
 
 /* social feed: phone-shaped cards, staggered; tap opens the real post */
 .feed{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.8rem,2vw,1.6rem);padding-bottom:5rem}
@@ -494,7 +503,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 
   <section class="block" id="brand" aria-labelledby="brand-h">
     <header class="bh">
-      <div class="mv" data-v="863710506" data-t="30"></div>
+      <div class="mv" data-v="863710506" data-t="9"><img src="img/trek-bike.jpg" alt="" width="1280" height="678"></div>
       <p class="bh-l bh-l1">Brand stories<br>Launches<br>Web &amp; social</p>
       <p class="bh-l bh-l2">Commercial<br>&amp; branded</p>
       <h2 class="bh-w" id="brand-h" style="--fs:19.4vw">Commercial<span class="sr"> &amp; branded</span></h2>
@@ -504,7 +513,7 @@ main.inner section.block:has(> .bh){padding-top:0}
         <div class="dvh sm"><p class="sub">Clients &amp; partners</p><span class="dv l-c" aria-hidden="true"></span></div>
         <div class="marquee"><ul class="track"><li><img class="lg" src="img/logos/czi.png" alt="Chan Zuckerberg Initiative" width="220" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/biohub.png" alt="Biohub" width="387" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/microsoft.png" alt="Microsoft" width="562" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/smartsheet.png" alt="Smartsheet" width="748" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/adidas.png" alt="adidas" width="849" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/lumafield.png" alt="Lumafield" width="749" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/secret-service.png" alt="U.S. Secret Service" width="382" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/gottman.png" alt="The Gottman Institute" width="868" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/the-international.png" alt="The International (Dota 2)" width="424" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/five-ultimate.png" alt="Five Ultimate" width="393" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/seattle-cascades.png" alt="Seattle Cascades" width="123" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/kcen.png" alt="King County Equity Now" width="248" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/tree-root.png" alt="Connecting Tree and Root" width="105" height="120" loading="lazy"></li></ul><ul class="track" aria-hidden="true"><li><img class="lg" src="img/logos/czi.png" alt="" width="220" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/biohub.png" alt="" width="387" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/microsoft.png" alt="" width="562" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/smartsheet.png" alt="" width="748" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/adidas.png" alt="" width="849" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/lumafield.png" alt="" width="749" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/secret-service.png" alt="" width="382" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/gottman.png" alt="" width="868" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/the-international.png" alt="" width="424" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/five-ultimate.png" alt="" width="393" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/seattle-cascades.png" alt="" width="123" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/kcen.png" alt="" width="248" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/tree-root.png" alt="" width="105" height="120" loading="lazy"></li></ul></div>
       </div>
-      <p class="sub">Case studies</p>
+      <div class="dvh sm"><p class="sub">Customer &amp; partner stories</p><span class="dv l-a" aria-hidden="true"></span></div>
       <article class="cs czi" id="czi" aria-labelledby="czi-h">
         <p class="cs-eb">Biohub · Stories of Impact</p>
         <h3 class="cs-h" id="czi-h">Science stories, told through the people living them.</h3>
@@ -657,7 +666,7 @@ main.inner section.block:has(> .bh){padding-top:0}
         </div>
         <div class="links cs-more"><a href="https://www.lumafield.com/case-studies" target="_blank" rel="noopener">More Lumafield customer stories ↗</a></div>
       </article>
-      <p class="sub">Launch packages</p>
+      <div class="dvh sm"><p class="sub">Launch packages</p><span class="dv l-e" aria-hidden="true"></span></div>
       <div class="bgrid">
         <article class="work">
           <div class="photo"><img src="img/b-microsoft.jpg" alt="A woman checks her smartwatch beside a holographic calendar display" loading="lazy" width="960" height="540"></div>
@@ -686,22 +695,23 @@ main.inner section.block:has(> .bh){padding-top:0}
           <div class="links"><a href="https://www.lumafield.com/" target="_blank" rel="noopener">Website refresh ↗</a><a href="https://www.lumafield.com/industries" target="_blank" rel="noopener">Industries landing page ↗</a><a href="https://www.lumafield.com/explore/case-studies" target="_blank" rel="noopener">Case studies ↗</a></div>
         </article>
       </div>
-      <p class="sub">Social</p>
+      <div class="dvh sm"><p class="sub">Social</p><span class="dv l-b" aria-hidden="true"></span></div>
       <div class="feed">
-        <button class="ph" type="button" data-embed="https://www.instagram.com/reel/DL2RWQwMhcj/embed/" aria-label="Play Priscilla Chan, Eric Topol and Jennifer Doudna on Instagram (@biohub × @erictopol1)"><span class="ph-m"><img src="img/s-biohub.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Reel</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@biohub × @erictopol1</span><span class="cap">Priscilla Chan, Eric Topol and Jennifer Doudna</span><span class="st"><span aria-hidden="true">♥</span> 1,438</span></span></button>
+        <button class="ph" type="button" data-embed="https://www.instagram.com/reel/DL2RWQwMhcj/embed/" aria-label="Play Priscilla Chan, Eric Topol, and Jennifer Doudna on Instagram (@biohub × @erictopol1)"><span class="ph-m"><img src="img/s-biohub.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Reel</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@biohub × @erictopol1</span><span class="cap">Priscilla Chan, Eric Topol, and Jennifer Doudna</span><span class="st"><span aria-hidden="true">♥</span> 1,438</span></span></button>
         <button class="ph" type="button" data-embed="https://www.tiktok.com/player/v1/7148186094138297646?autoplay=1&amp;music_info=1&amp;description=1" aria-label="Play We CT scanned the new AirPods Pro (2nd Gen) on TikTok (@lumafield)"><span class="ph-m"><img src="img/s-tiktok.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">TikTok</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@lumafield</span><span class="cap">We CT scanned the new AirPods Pro (2nd Gen)</span><span class="st"><span aria-hidden="true">♥</span> 6,929</span></span></button>
         <button class="ph" type="button" data-embed="https://www.instagram.com/p/B22V164lB9u/embed/" aria-label="Play Smartsheet on Instagram (@smartsheetplatform)"><span class="ph-m"><img src="img/s-smartsheet.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@smartsheetplatform</span><span class="cap">Smartsheet</span><span class="st"><span aria-hidden="true">♥</span> 87</span></span></button>
         <button class="ph" type="button" data-embed="https://www.instagram.com/p/CCLdCEnAbdT/embed/" aria-label="Play AAPI &amp; Black Solidarity on Instagram (@kingcountyequitynow)"><span class="ph-m"><img src="img/s-kcen.jpg" alt="" loading="lazy"></span><span class="ph-top"><span class="pf">Instagram</span><span>Video</span></span><span class="ph-play" aria-hidden="true"></span><span class="ph-b"><span class="h">@kingcountyequitynow</span><span class="cap">AAPI &amp; Black Solidarity</span><span class="st"><span aria-hidden="true">♥</span> 145</span></span></button>
       </div>
       <dialog class="reel-pop sp-pop" id="sp-pop" aria-label="Social post"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close">×</button><div class="rp-frame"></div></div></dialog>
-      <div class="bgrid">
-        <article class="work">
-          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AD5aAd8Oy84?autoplay=1&amp;rel=0" aria-label="Play Partner collaboration with Tested"><img src="https://i.ytimg.com/vi/AD5aAd8Oy84/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+      <div class="dvh sm"><p class="sub">Partner collabs</p><span class="dv l-g" aria-hidden="true"></span></div>
+      <div class="feature collab">
+        <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AD5aAd8Oy84?autoplay=1&amp;rel=0" aria-label="Play Partner collaboration with Tested"><img src="https://i.ytimg.com/vi/AD5aAd8Oy84/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+        <div>
           <h3>Tested &amp; California Academy of Sciences</h3>
           <p>Collaborations with Adam Savage’s Tested and the California Academy of Sciences.</p>
-        </article>
+        </div>
       </div>
-      <p class="sub">How-to videos</p>
+      <div class="dvh sm"><p class="sub">How-to videos</p><span class="dv l-f" aria-hidden="true"></span></div>
       <article class="cs" id="smartsheet-howto" aria-labelledby="smartsheet-howto-h">
         <p class="cs-eb">How-to series · Smartsheet</p>
         <h3 class="cs-h" id="smartsheet-howto-h">The tutorials 1.7 million people learned Smartsheet from.</h3>
@@ -798,7 +808,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <article class="cs" id="lumafield-ct101" aria-labelledby="lumafield-ct101-h">
         <p class="cs-eb">How-to series · Lumafield CT 101</p>
         <h3 class="cs-h" id="lumafield-ct101-h">Teaching engineers to see inside anything.</h3>
-        <p class="cs-lede">CT 101 is Lumafield’s five-part video course on industrial CT scanning: how it works, how to run the Neptune scanner, how to inspect parts in Voyager, and how Triton automates it on the production line. I produced, directed, shot and edited every episode in-house.</p>
+        <p class="cs-lede">CT 101 is Lumafield’s five-part video course on industrial CT scanning: how it works, how to run the Neptune scanner, how to inspect parts in Voyager, and how Triton automates it on the production line. I produced, directed, shot, and edited every episode in-house.</p>
         <div class="cs-hero">
           <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play CT 101: Introduction to Industrial CT"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
           <div class="cs-cap"><p class="meta">Lumafield</p><h4>CT 101: Introduction to Industrial CT</h4></div>
@@ -833,7 +843,7 @@ main.inner section.block:has(> .bh){padding-top:0}
         </div>
         <div class="links cs-more"><a href="https://www.lumafield.com/ct101" target="_blank" rel="noopener">The full CT 101 series ↗</a></div>
       </article>
-            <p class="sub">Other narratives</p>
+      <div class="dvh sm"><p class="sub">Other narratives</p><span class="dv l-a" aria-hidden="true"></span></div>
       <div class="bgrid">
         <article class="work">
           <div class="photo"><img src="img/b-treeroot.jpg" alt="A smiling child hugs a giant zucchini" loading="lazy" width="960" height="540"></div>
@@ -873,19 +883,13 @@ main.inner section.block:has(> .bh){padding-top:0}
     <div class="cbs">
       <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/dontgiveup.jpg" alt="A ceramic mug glazed in coral and blue drips, stamped DON’T GIVE UP" loading="lazy" width="1000" height="1000"></div></div><div class="cb-c"><span class="pill">Clay</span><h3>Don’t Give Up</h3><p class="meta">2024</p><p class="n">Discarded clay trimmings, tears, underglaze, glaze</p></div></article>
       <article class="cb r"><div class="cb-m"><div class="mv"><img src="img/fastx.jpg" alt="Lili Gu reading poetry at a microphone under red stage light" loading="lazy" width="1000" height="1000"></div></div><div class="cb-c"><span class="pill">Poetry</span><h3>Fast X Double Feature</h3><p class="meta">2023 · Poetry reading</p><p class="meta">Photo: <a href="https://www.hotalingphoto.com/" target="_blank" rel="noopener">Sam Hotaling</a></p></div></article>
-      <article class="cb l"><div class="cb-m"><div class="mv slides"><img src="img/eggtop-1.jpg" alt="A rice paper dumpling with peas, carrots, kale, avocado and a soft-boiled egg" loading="lazy" width="600" height="600"><img src="img/eggtop-2.jpg" alt="Cilantro-cheddar scrambled egg tacos with fresh avocado" loading="lazy" width="600" height="600"><img src="img/eggtop-3.jpg" alt="A crispy latke sandwich with avocado, lettuce and a runny fried egg" loading="lazy" width="600" height="600"><img src="img/eggtop-4.jpg" alt="Fried eggs with smoked gouda and black pepper in a pan" loading="lazy" width="600" height="600"><img src="img/eggtop-5.jpg" alt="A soft-boiled yolk with hemp seeds on a red cabbage and greens salad" loading="lazy" width="600" height="600"></div></div><div class="cb-c"><span class="pill">Food</span><h3>Egg of the Day</h3><p class="meta">Instagram · featured in NPR’s The Salt, 04/2015</p><a class="go" href="https://www.npr.org/sections/thesalt/2015/04/06/396673905/does-your-food-have-a-bad-case-of-the-blahs-put-an-egg-on-it" target="_blank" rel="noopener">Featured on NPR ↗</a><a class="go" href="https://www.instagram.com/eggoftheday/" target="_blank" rel="noopener">@eggoftheday ↗</a></div></article>
+      <article class="cb l"><div class="cb-m"><div class="mv slides"><img src="img/eggtop-1.jpg" alt="A rice paper dumpling with peas, carrots, kale, avocado, and a soft-boiled egg" loading="lazy" width="600" height="600"><img src="img/eggtop-2.jpg" alt="Cilantro-cheddar scrambled egg tacos with fresh avocado" loading="lazy" width="600" height="600"><img src="img/eggtop-3.jpg" alt="A crispy latke sandwich with avocado, lettuce, and a runny fried egg" loading="lazy" width="600" height="600"><img src="img/eggtop-4.jpg" alt="Fried eggs with smoked gouda and black pepper in a pan" loading="lazy" width="600" height="600"><img src="img/eggtop-5.jpg" alt="A soft-boiled yolk with hemp seeds on a red cabbage and greens salad" loading="lazy" width="600" height="600"></div></div><div class="cb-c"><span class="pill">Food</span><h3>Egg of the Day</h3><p class="meta">Instagram · featured in NPR’s The Salt, 04/2015</p><a class="go" href="https://www.npr.org/sections/thesalt/2015/04/06/396673905/does-your-food-have-a-bad-case-of-the-blahs-put-an-egg-on-it" target="_blank" rel="noopener">Featured on NPR ↗</a><a class="go" href="https://www.instagram.com/eggoftheday/" target="_blank" rel="noopener">@eggoftheday ↗</a></div></article>
     </div>
   </section>
 
   <section class="block" id="about" aria-labelledby="about-h">
-    <header class="bh">
-      <div class="mv"><img src="img/screening-stage.jpg" alt="" width="1200" height="800"></div>
-      <p class="bh-l bh-l1">Filmmaker<br>Poet<br>Mixed media artist</p>
-      <p class="bh-l bh-l2">About Lili</p>
-      <h2 class="bh-w" id="about-h" style="--fs:37vw">About<span class="sr"> Lili</span></h2>
-    </header>
-    <div class="wrap">
-      <span class="dv l-e about-dv" aria-hidden="true"></span>
+        <div class="wrap">
+      <div class="sec-head dvh"><h2 id="about-h">About Lili</h2><span class="dv l-e" aria-hidden="true"></span></div>
       <div class="about">
         <div class="bio">
           <p>Lili Gu (she/her) is a West Coast-based filmmaker, poet, and aspiring mixed media artist. She is passionate about exploring justice, liberation, and the human condition through storytelling.</p>
@@ -903,9 +907,9 @@ main.inner section.block:has(> .bh){padding-top:0}
             </details>
           </div>
         </div>
-        <aside class="honors" aria-label="Awards, fellowships and roles">
+        <aside class="honors" aria-label="Awards, fellowships, and roles">
           <figure class="portrait"><img src="img/portrait.jpg" alt="Portrait of Lili Gu laughing, in a black top against a dark background" width="900" height="1125" loading="lazy"></figure>
-          <h3>Awards, fellowships &amp; roles</h3>
+          <h3>Awards, fellowships, &amp; roles</h3>
           <ul>
             <li>Mary Pickford Award</li>
             <li>Adobe Production Premium Award</li>
@@ -1005,10 +1009,11 @@ function show(li){
     if(!fr){fr=document.createElement("iframe");fr.src="https://player.vimeo.com/video/"+f.v+"?background=1&dnt=1#t="+(f.vt||0)+"s";fr.title="";fr.tabIndex=-1;fr.allow="autoplay";
       fr.addEventListener("load",()=>setTimeout(()=>{fr.dataset.ok=1;if(cur&&FILMS[+cur.dataset.i].v===f.v)fr.classList.add("show")},1600));pvm.appendChild(fr);frames[f.v]=fr;}
     else{send(fr,"play");if(fr.dataset.ok)fr.classList.add("show")}}
+  pvm.classList.toggle("pop",!!f.v);
   pcap.innerHTML=li.querySelector(".det").innerHTML;
   place();
 }
-function place(){if(!cur)return;const y=cur.offsetTop+cur.offsetHeight/2-pv.offsetHeight/2;const max=Math.max(0,list.offsetHeight-pv.offsetHeight);pv.style.transform="translateY("+Math.max(0,Math.min(max,y))+"px)";}
+function place(){if(!cur)return;pv.parentNode.style.minHeight=(pv.offsetHeight+16)+"px";const y=cur.offsetTop+cur.offsetHeight/2-pv.offsetHeight/2;const max=Math.max(0,list.offsetHeight-pv.offsetHeight);pv.style.transform="translateY("+Math.max(0,Math.min(max,y))+"px)";}
 function render(filter){
   const rows=FILMS.map((f,i)=>[f,i]).filter(([f])=>filter==="all"||f.f===filter);
   list.innerHTML=rows.map(([f,i])=>`<li class="ixr" data-i="${i}">
@@ -1020,6 +1025,11 @@ function render(filter){
 }
 list.addEventListener("mouseover",e=>{const li=e.target.closest(".ixr");if(li)show(li)});
 list.addEventListener("focusin",e=>{const li=e.target.closest(".ixr");if(li)show(li)});
+const ix=list.parentNode;let px=-1,py=-1;addEventListener("mousemove",e=>{px=e.clientX;py=e.clientY},{passive:true});
+function atPointer(){if(py<0)return;const b=ix.getBoundingClientRect();if(px<b.left||px>b.right||py<b.top||py>b.bottom)return;for(const li of list.children){const r=li.getBoundingClientRect();if(py>=r.top&&py<r.bottom){show(li);return}}}
+let sq=false;addEventListener("scroll",()=>{if(!sq){sq=true;requestAnimationFrame(()=>{sq=false;atPointer()})}},{passive:true});
+pv.addEventListener("mousemove",atPointer);
+pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.v&&window.lgVimeo)lgVimeo(f.v)});
 addEventListener("resize",place);
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
@@ -1060,7 +1070,10 @@ var t=document.querySelector('h1.name'),tick=false;
 var divs=[].slice.call(document.querySelectorAll('section.block, footer'));
 var dio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('seen');dio.unobserve(e.target)}})},{rootMargin:'0px 0px -12% 0px'});divs.forEach(function(el){dio.observe(el)});
 function paint(){var vh=innerHeight;divs.forEach(function(el){var t=el.getBoundingClientRect().top;var c=(t-vh/2)/vh;c=c<-1?-1:c>1?1:c;el.style.setProperty('--x',(c*-10).toFixed(1)+'px')})}
-function grad(){var max=document.documentElement.scrollHeight-innerHeight;var g=max>40?Math.min(1,scrollY/max):Math.min(1,scrollY/300);root.style.setProperty('--g1',Math.min(1,g*1.3).toFixed(3));root.style.setProperty('--g2',Math.max(0,(g-.25)/.75).toFixed(3))}
+var waves=!!document.getElementById('brand');
+function grad(){var max=document.documentElement.scrollHeight-innerHeight;var g=max>40?Math.min(1,scrollY/max):Math.min(1,scrollY/300);
+if(waves&&max>innerHeight*3){var n=Math.max(2,Math.min(5,Math.round(max/(innerHeight*3)))),w=g>=(n-.5)/n?1:.12+.88*(1-Math.cos(2*Math.PI*n*g))/2;root.style.setProperty('--g1',w.toFixed(3));root.style.setProperty('--g2',(w*.85).toFixed(3));return}
+root.style.setProperty('--g1',Math.min(1,g*1.3).toFixed(3));root.style.setProperty('--g2',Math.max(0,(g-.25)/.75).toFixed(3))}
 var lt=document.querySelector('h1.name .lt');
 // LILI GU breathes in and out as you scroll: one breath every 420px
 function f(){tick=false;paint();grad();var y=Math.min(scrollY,900);if(t)t.style.transform='translate3d(0,'+(y*0.18).toFixed(1)+'px,0) scale('+(1-y*0.00008).toFixed(4)+')';if(lt){var b=(1-Math.cos(scrollY/420*2*Math.PI))/2;lt.style.transform='scale('+(1+b*.035).toFixed(4)+')';lt.style.filter='saturate('+(1+b*.2).toFixed(3)+')'}}
@@ -1074,17 +1087,28 @@ document.querySelectorAll('.cb').forEach(function(c){cio.observe(c)});
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData))return;
 function send(f,m){try{f.contentWindow.postMessage(JSON.stringify({method:m}),'https://player.vimeo.com')}catch(e){}}
+function post(f,o){try{f.contentWindow.postMessage(JSON.stringify(o),'https://player.vimeo.com')}catch(e){}}
+// load a clip; it fades in as soon as Vimeo reports it is playing (fallback after 5s)
+function load(m){var f=document.createElement('iframe');f.src='https://player.vimeo.com/video/'+m.dataset.v+'?background=1&dnt=1#t='+(m.dataset.t||0)+'s';f.title='';f.tabIndex=-1;f.setAttribute('aria-hidden','true');f.allow='autoplay';
+f.addEventListener('load',function(){post(f,{method:'addEventListener',value:'timeupdate'});post(f,{method:'addEventListener',value:'play'});setTimeout(function(){m.classList.add('on')},5000)});m.appendChild(f);return f}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var m=e.target,f=m.querySelector('iframe');
-if(e.isIntersecting){if(!f){f=document.createElement('iframe');f.src='https://player.vimeo.com/video/'+m.dataset.v+'?background=1&dnt=1#t='+(m.dataset.t||0)+'s';f.title='';f.tabIndex=-1;f.setAttribute('aria-hidden','true');f.allow='autoplay';f.addEventListener('load',function(){if(m.dataset.e)f.contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:'timeupdate'}),'https://player.vimeo.com');setTimeout(function(){m.classList.add('on')},1600)});m.appendChild(f)}else send(f,'play')}
+if(e.isIntersecting){if(!f)load(m);else send(f,'play')}
 else if(f)send(f,'pause')})},{rootMargin:'150px 0px'});
-document.querySelectorAll('.mv[data-v]').forEach(function(m){io.observe(m)});
+// header clips start loading right away; the rest wait until they are near the screen
+document.querySelectorAll('.bh .mv[data-v]').forEach(function(m){load(m);io.observe(m)});
+document.querySelectorAll('.mv[data-v]').forEach(function(m){if(!m.closest('.bh'))io.observe(m)});
 // clips with data-e loop only between data-t and data-e seconds
 window.addEventListener('message',function(e){if(e.origin!=='https://player.vimeo.com')return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
-if(!d||d.event!=='timeupdate'||!d.data)return;document.querySelectorAll('.mv[data-e] iframe').forEach(function(f){if(f.contentWindow!==e.source)return;var m=f.parentNode;if(d.data.seconds>=+m.dataset.e||d.data.seconds<(+m.dataset.t||0)-0.5)f.contentWindow.postMessage(JSON.stringify({method:'setCurrentTime',value:+m.dataset.t||0}),'https://player.vimeo.com')})});
+if(!d||(d.event!=='timeupdate'&&d.event!=='play'))return;document.querySelectorAll('.mv[data-v] iframe').forEach(function(f){if(f.contentWindow!==e.source)return;var m=f.parentNode;if(d.event==='timeupdate'&&d.data&&d.data.seconds>(+m.dataset.t||0)+.05)m.classList.add('on');if(d.event!=='timeupdate'||!m.dataset.e||!d.data)return;if(d.data.seconds>=+m.dataset.e||d.data.seconds<(+m.dataset.t||0)-0.5)f.contentWindow.postMessage(JSON.stringify({method:'setCurrentTime',value:+m.dataset.t||0}),'https://player.vimeo.com')})});
 })();
+// small clips: click (or Enter) opens the full video, bigger and with sound
+document.querySelectorAll('.mv[data-v]').forEach(function(m){if(m.closest('.bh')||m.classList.contains('lw-scan'))return;
+m.classList.add('pop');m.tabIndex=0;m.setAttribute('role','button');m.setAttribute('aria-label','Play the video bigger');
+function go(e){e.preventDefault();e.stopPropagation();if(window.lgVimeo)lgVimeo(m.dataset.v)}
+m.addEventListener('click',go);m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')go(e)})});
 </script>
 <script>
-document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
+document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){if(window.lgPop&&!b.closest('.feature,.cs-hero')&&b.getBoundingClientRect().width<innerWidth*.62){lgPop(b.dataset.src,b.getAttribute('aria-label').replace(/^Play /,''));return}var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
 (function(){var d=document.getElementById('sp-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
 document.querySelectorAll('.ph[data-embed]').forEach(function(b){b.addEventListener('click',function(){fr.innerHTML='<iframe src="'+b.dataset.embed+'" title="'+b.getAttribute('aria-label').replace(/^Play /,'')+'" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';d.showModal();});});
 d.addEventListener('close',function(){fr.innerHTML='';});d.querySelector('.rp-x').addEventListener('click',function(){d.close();});d.addEventListener('click',function(e){if(e.target===d)d.close();});})();

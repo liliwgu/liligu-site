@@ -50,10 +50,12 @@ def page_head(title, path):
     h = h.replace('href="https://www.liligu.com/"', f'href="https://www.liligu.com/{path}"')
     return h
 
-REEL_POP = '''<dialog class="reel-pop" id="reel-pop" aria-label="Film reel"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close reel">×</button><div class="rp-frame"></div></div></dialog>
+REEL_POP = '''<dialog class="reel-pop" id="reel-pop" aria-label="Video"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close video">×</button><div class="rp-frame"></div></div></dialog>
 <script>
 (function(){var d=document.getElementById('reel-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
-function open(e){e.preventDefault();var id=this.getAttribute('data-reel')||'158287395';fr.innerHTML='<iframe src="https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="Video" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';d.showModal();}
+function pop(src,title){fr.innerHTML='';var f=document.createElement('iframe');f.src=src;f.title=title||'Video';f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;fr.appendChild(f);d.showModal();}
+window.lgPop=pop;window.lgVimeo=function(id,t){pop('https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1'+(t?'#t='+t+'s':''));};
+function open(e){e.preventDefault();lgVimeo(this.getAttribute('data-reel')||'158287395');}
 function close(){d.close();}
 d.addEventListener('close',function(){fr.innerHTML='';});
 d.querySelector('.rp-x').addEventListener('click',close);
