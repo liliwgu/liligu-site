@@ -68,7 +68,9 @@ h1.name{margin:0;line-height:0}
 h1.name img{width:100%;height:auto;display:block}
 h1.name .ttl{position:relative;display:block}
 h1.name .ttl .sp{position:absolute;inset:0}
-h1.name .ttl .lt{position:relative;z-index:1}
+h1.name .ttl .lt{position:relative;z-index:1;animation:breathe 5.5s ease-in-out infinite}
+/* the whole name swells a little and settles, like a slow breath */
+@keyframes breathe{0%,100%{transform:scale(1);filter:saturate(1)}50%{transform:scale(1.035);filter:saturate(1.2) brightness(1.04)}}
 h1.name .ttl .stars{position:absolute;inset:0;z-index:2;pointer-events:none}
 h1.name .ttl.live .sp{visibility:hidden}
 /* each splat is its own sprite cut from one sheet, and twinkles like a star on its own clock */
