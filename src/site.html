@@ -56,6 +56,7 @@ header.site .wrap{display:flex;align-items:center;justify-content:flex-end;gap:1
 .mark{font-family:var(--display);font-weight:800;letter-spacing:.32em;font-size:.86rem;text-decoration:none;white-space:nowrap}
 nav ul{display:flex;gap:clamp(.8rem,2.4vw,1.8rem);list-style:none;margin:0;padding:0;flex-wrap:wrap}
 nav a{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+@media (max-width:480px){nav ul{gap:.35rem .9rem}nav a{letter-spacing:.08em;font-size:.72rem}}
 nav a:hover{color:var(--ink)}
 
 /* hero */
@@ -105,7 +106,7 @@ nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decor
 /* sections */
 section.block{padding-block:clamp(1rem,2vw,1.5rem) clamp(3rem,7vw,5.5rem)}
 section.block > .wrap::before{content:"";display:block;grid-column:1 / -1;height:clamp(10px,1.9vw,30px);background:var(--line-img) center / 100% 100% no-repeat;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
-#film{--line-img:url(img/line-a.png)} #other{--line-img:url(img/line-c.png)} #about{--line-img:url(img/line-e.png)} #press{--line-img:url(img/line-b.png)} #contact{--line-img:url(img/line-f.png)}
+#film{--line-img:url(img/line-a.png)} #other{--line-img:url(img/line-c.png)} #about{--line-img:url(img/line-e.png)} #brand{--line-img:url(img/line-c.png)} #press{--line-img:url(img/line-b.png)} #contact{--line-img:url(img/line-f.png)}
 footer{--line-img:url(img/line-g.png)}
 footer > .wrap::before{content:"";display:block;width:100%;height:clamp(10px,1.9vw,30px);background:var(--line-img) center / 100% 100% no-repeat;margin-bottom:1.5rem}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:2.2rem}
@@ -231,6 +232,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   .feature{grid-template-columns:minmax(0,1fr)}
   .press a{grid-template-columns:4.6rem minmax(0,1fr) auto}
 }
+/* commercial & branded */
+.clients{margin:0 0 3rem;max-width:70ch;font-size:1.05rem;line-height:1.6}
+.clients .sub{display:block;margin-bottom:.5rem}
+.bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
+.bgrid + .sub{margin-top:3.5rem}
+.bgrid .work{grid-column:auto}
+.bgrid .photo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.work.text{justify-content:flex-start;padding:1.4rem;border:1px solid var(--line);border-radius:4px;background:var(--card)}
+.bul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem}
+.bul li{font-size:.98rem}
+.vid{all:unset;cursor:pointer;position:absolute;inset:0;display:block}
+.vid img{width:100%;height:100%;object-fit:cover;display:block}
+.vid .play{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(7,16,22,.55);transition:background .2s,transform .2s}
+.vid .play::after{content:"";position:absolute;left:26px;top:20px;border-style:solid;border-width:12px 0 12px 19px;border-color:transparent transparent transparent #fff}
+.vid:hover .play,.vid:focus-visible .play{background:rgba(10,143,156,.85);transform:scale(1.06)}
+.vid:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (max-width:700px){.bgrid{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 </head>
@@ -301,6 +319,115 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
         <img src="img/screening-stage.jpg" alt="Lili Gu speaking on stage with a microphone beside the orchestra" width="1200" height="800" loading="lazy">
         <figcaption>Experiment, screened with a live orchestra · April 2016</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <section class="block" id="brand" aria-labelledby="brand-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="brand-h">Commercial &amp; branded</h2>
+        <p class="sec-note">Brand stories · launches · web &amp; social</p>
+      </div>
+      <p class="clients"><span class="sub">Clients &amp; partners</span> Microsoft · Deloitte · Smartsheet · adidas · Lumafield · U.S. Secret Service · The Gottman Institute · The International (Dota 2) · Five Ultimate · Seattle Cascades · King County Equity Now</p>
+      <p class="sub">Longer-form stories</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/7XMOFvV59do?autoplay=1&amp;rel=0" aria-label="Play Chan Zuckerberg Initiative x Laser Phase Plate"><img src="https://i.ytimg.com/vi/7XMOFvV59do/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>Chan Zuckerberg Initiative x Laser Phase Plate</h3>
+        </article>
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/rbbXH__iZuY?autoplay=1&amp;rel=0" aria-label="Play Smartsheet x Syngenta"><img src="https://i.ytimg.com/vi/rbbXH__iZuY/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>Smartsheet x Syngenta</h3>
+        </article>
+        <article class="work">
+          <div class="photo"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+          <h3>Lumafield x Intrepid</h3>
+        </article>
+        <article class="work">
+          <div class="photo"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+          <h3>Lumafield x Trek</h3>
+        </article>
+      </div>
+      <p class="sub">Partner collabs</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AD5aAd8Oy84?autoplay=1&amp;rel=0" aria-label="Play Partner collaboration with Tested"><img src="https://i.ytimg.com/vi/AD5aAd8Oy84/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>Tested &amp; California Academy of Sciences</h3>
+          <p>Collaborations with Adam Savage’s Tested and the California Academy of Sciences.</p>
+        </article>
+      </div>
+      <p class="sub">Launch packages</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><img src="img/b-microsoft.jpg" alt="A woman checks her smartwatch beside a holographic calendar display" loading="lazy" width="960" height="540"></div>
+          <h3>Microsoft Future Visions</h3>
+          <p>Storytelling series about applications for upcoming technology.</p>
+        </article>
+        <article class="work text">
+          <h3>Lumafield product launches</h3>
+          <p>Partnerships with Product Marketing, Growth Marketing, Sales, and Social to deliver highly polished omni-channel product launch assets.</p>
+          <ul class="bul">
+            <li><b>Atlas:</b> launch videos, marketing and UX graphic animation, advertisements, web page, social content, how-to video</li>
+            <li><b>Triton:</b> product logo and graphics, web page, videos and animated assets for sales partnerships; delivered in 1 week</li>
+          </ul>
+          <div class="links"><a href="https://www.lumafield.com/products/atlas-ai-for-engineers" target="_blank" rel="noopener">Atlas web page ↗</a><a href="https://www.lumafield.com/products/triton-production-ready-automated-ct-inspection" target="_blank" rel="noopener">Triton web page ↗</a></div>
+        </article>
+      </div>
+      <p class="sub">Web &amp; social</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><img src="img/b-lumafield-web.jpg" alt="Lumafield homepage with a glowing CT scan of an earbud" loading="lazy" width="960" height="540"></div>
+          <h3>Lumafield web</h3>
+          <ul class="bul">
+            <li><b>Website refresh:</b> brand identity work, style guide, graphics, animations</li>
+            <li><b>Industries landing page:</b> application stories</li>
+            <li><b>Case studies page:</b> webinars and customer stories</li>
+          </ul>
+          <div class="links"><a href="https://www.lumafield.com/" target="_blank" rel="noopener">Website refresh ↗</a><a href="https://www.lumafield.com/industries" target="_blank" rel="noopener">Industries landing page ↗</a><a href="https://www.lumafield.com/explore/case-studies" target="_blank" rel="noopener">Case studies ↗</a></div>
+        </article>
+        <article class="work text">
+          <h3>Social</h3>
+          <div class="links"><a href="https://www.instagram.com/reel/DL2RWQwMhcj/" target="_blank" rel="noopener">Chan Zuckerberg Initiative ↗</a><a href="https://www.instagram.com/p/BMCWpoIgdJ7/" target="_blank" rel="noopener">Deloitte ↗</a><a href="https://www.instagram.com/p/B22V164lB9u/" target="_blank" rel="noopener">Smartsheet ↗</a><a href="https://www.tiktok.com/@lumafield/video/7148186094138297646" target="_blank" rel="noopener">Lumafield ↗</a><a href="https://www.instagram.com/p/CCLdCEnAbdT/" target="_blank" rel="noopener">King County Equity Now ↗</a></div>
+        </article>
+      </div>
+      <p class="sub">How-to videos</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play How-to video 1"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>How-to video</h3>
+        </article>
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AgvtNUSVrQM?autoplay=1&amp;rel=0" aria-label="Play How-to video 2"><img src="https://i.ytimg.com/vi/AgvtNUSVrQM/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>How-to video</h3>
+        </article>
+      </div>
+      <p class="sub">Other narratives</p>
+      <div class="bgrid">
+        <article class="work">
+          <div class="photo"><img src="img/b-treeroot.jpg" alt="A smiling child hugs a giant zucchini" loading="lazy" width="960" height="540"></div>
+          <h3>Connecting Tree and Root</h3>
+          <p>Promo about center for indigenous agroecology education, career development, and youth entrepreneurship.</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/b-gottman.jpg" alt="A couple sits together in front of a bookshelf" loading="lazy" width="960" height="540"></div>
+          <h3>Our Story: The Gottman Method</h3>
+          <p>Documentary shorts about couples working to improve their relationships.</p>
+        </article>
+        <article class="work">
+          <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/egwdPspo_aU?autoplay=1&amp;rel=0" aria-label="Play TI6 Player Profiles"><img src="https://i.ytimg.com/vi/egwdPspo_aU/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="play" aria-hidden="true"></span></button></div>
+          <h3>TI6 Player Profiles</h3>
+          <p>Backstories for competitors at a major annual eSports competition.</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/b-cascades.jpg" alt="A player does a backflip on a foggy sports field" loading="lazy" width="960" height="540"></div>
+          <h3>Seattle Cascades Player Profiles</h3>
+          <p>Storytelling series introducing newly signed players.</p>
+        </article>
+        <article class="work text">
+          <h3>This is Five Ultimate</h3>
+          <p>Commercial series shown on ESPN and in direct response campaigns.</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -464,7 +591,7 @@ b.addEventListener('click',function(){b.classList.add('gone');try{f.contentWindo
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
-var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
+var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.clients','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
 var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,5)*0.07)+'s');els.push(el)})});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
 els.forEach(function(el){io.observe(el)});
@@ -478,6 +605,9 @@ addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f
 // re-tag film rows when filters re-render the list
 var list=document.getElementById('film-list');if(list)new MutationObserver(function(){list.querySelectorAll(':scope > li:not(.rv)').forEach(function(el){el.classList.add('rv','in')})}).observe(list,{childList:true});
 })();
+</script>
+<script>
+document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
 </script>
 </body>
 </html>
