@@ -98,7 +98,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);l
 .also a{color:inherit}
 .also + .sub{margin-top:3.5rem}
 .now .work{grid-column:auto}
-.other{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem}
+.other{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
 .other .swatch,.other .photo{aspect-ratio:1/1}
 .other .work{grid-column:auto}
 .photo{aspect-ratio:16/9;max-width:100%;border-radius:4px;overflow:hidden;background:var(--line);position:relative}
@@ -280,12 +280,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <p class="meta">Photo: <a href="https://www.hotalingphoto.com/" target="_blank" rel="noopener">Sam Hotaling</a></p>
         </article>
         <article class="work">
-          <div class="swatch" style="--g:radial-gradient(circle at 70% 35%,#5b8ff0 0 18%,transparent 48%),radial-gradient(circle at 25% 70%,#30e0c4 0 18%,transparent 50%),linear-gradient(130deg,#1d6fd6,#27b6e8)"><span class="tag">Poetry</span><span>Hugo Fellows Reading</span></div>
-          <h3>Hugo Fellows Reading</h3>
-          <p class="meta">02/2023 &amp; 05/2023 · Hugo House</p>
-          <div class="links"><a href="https://hugohouse.org/event/hugo-fellows-mid-year-reading_2023-02-02/" target="_blank" rel="noopener">Mid-year reading ↗</a> <a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener">Final reading ↗</a></div>
-        </article>
-        <article class="work">
           <div class="swatch" style="--g:radial-gradient(circle at 45% 45%,#f3c64a 0 14%,transparent 40%),radial-gradient(circle at 80% 75%,#0a8f9c 0 22%,transparent 55%),linear-gradient(150deg,#3cc6f0,#1d6fd6)"><span class="tag">Photography</span><span>NPR · The Salt</span></div>
           <h3>Photography for NPR</h3>
           <p class="meta">04/2015 · The Salt</p>
@@ -328,10 +322,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
   <section class="block" id="press" aria-labelledby="press-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="press-h">Press &amp; readings</h2></div>
+      <div class="sec-head"><h2 id="press-h">Press</h2></div>
       <ul class="press">
-        <li><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener"><span class="d">05/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows final reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
-        <li><a href="https://hugohouse.org/event/hugo-fellows-mid-year-reading_2023-02-02/" target="_blank" rel="noopener"><span class="d">02/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows mid-year reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://ultiworld.com/2020/07/31/sin-the-fields-bipoc-highlight-reel-the-first-ever-wildwood/" target="_blank" rel="noopener"><span class="d">07/2020</span><span class="o">Ultiworld · Sin The Fields<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://www.discnw.org/p/the-greatest-lili-gu" target="_blank" rel="noopener"><span class="d">11/2019</span><span class="o">DiscNW · The Greatest<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://open.spotify.com/episode/4XFbiYmBljoLFXr6coxrvX" target="_blank" rel="noopener"><span class="d">01/2019</span><span class="o">The Ultimate Podcast<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
@@ -404,7 +396,6 @@ function render(filter){
     <span class="trt">TRT ${f.trt}</span></li>`).join("");
   const total=rows.reduce((a,f)=>a+secs(f.trt),0);
   document.getElementById("film-count").textContent=rows.length+(rows.length===1?" film":" films")+", "+rows.at(-1).y+"–"+rows[0].y;
-  document.getElementById("film-trt").textContent="Combined running time "+fmt(total);
 }
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
