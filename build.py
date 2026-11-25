@@ -29,7 +29,7 @@ def nav(current):
     items = "\n".join(
         f'        <li><a href="/{slug}"{" aria-current=\"page\"" if slug == current else ""}>{label}</a></li>'
         for slug, _, label, *_ in PAGES)
-    mark = '' if current == "home" else '    <a class="mark" href="/" aria-label="Lili Gu, home"><img class="t-light" src="/img/mark.webp" alt="" width="167" height="180"><img class="t-dark" src="/img/mark-bright.webp" alt="" width="167" height="180"></a>\n'
+    mark = '' if current == "home" else '    <a class="mark" href="/" aria-label="Lili Gu, home"><img class="t-light" src="/img/mark.webp" alt="" width="526" height="120"><img class="t-dark" src="/img/mark-bright.webp" alt="" width="526" height="120"></a>\n'
     return f'''<header class="site{' home' if current == 'home' else ''}">
   <div class="wrap">
 {mark}    <nav aria-label="Main">
