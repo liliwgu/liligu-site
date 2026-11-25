@@ -322,6 +322,8 @@ main.inner section.block:has(> .bh){padding-top:0}
 .ixr.on .tags{opacity:1;transform:none}
 .ixr .tags span{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .ixr .tags .vm{color:var(--teal)}
+.ixr .tags .hold{color:#c0573f}
+.ix .note{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#c0573f;margin-bottom:.2rem}
 .ixr .det{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .ix-pv{position:absolute;top:0;right:0;width:32%;transition:transform .7s cubic-bezier(.2,.75,.2,1);will-change:transform}
 .pv-m{position:relative;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:#0b151d}
@@ -374,8 +376,6 @@ main.inner section.block:has(> .bh){padding-top:0}
       <article class="cb l"><div class="cb-m"><div class="mv" data-v="445467655" data-t="150"><img src="img/bipoc.jpg" alt="Ultimate players mid-play on a grass field" loading="lazy" width="1280" height="720"></div></div><div class="cb-c"><h3>BIPOC Excellence in Ultimate</h3><p class="meta">Highlight reel · 4:25 · 2020</p><p class="n">Producer, Editor</p><a class="go" href="https://vimeo.com/445467655" target="_blank" rel="noopener">Watch on Vimeo ↗</a></div></article>
     </div>
     <div class="wrap">
-      <p class="also">Also in development: <i>The Sky Is Red</i>, documentary (on hold) · <a href="https://vimeo.com/305896047" target="_blank" rel="noopener">Teaser ↗</a></p>
-
       <h3 class="sub" id="films">Filmography</h3>
       <div class="filters" role="group" aria-label="Filter films by form">
         <button class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
@@ -402,6 +402,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 <script>
 const FILMS=[
+  {y:"—",t:"The Sky Is Red",img:"skyisred",f:"Documentary",hold:1,r:"Producer, Writer, Director",u:"https://vimeo.com/305896047",v:"305896047",vt:10},
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
   {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655",v:"445467655",vt:150},
   {y:2016,t:"Experiment",img:"experiment",f:"Experimental",trt:"3:30",r:"Producer, Writer, Director, Editor",u:"https://vimeo.com/246539799",v:"246539799",vt:15,l:[
@@ -455,9 +456,9 @@ function render(filter){
   list.innerHTML=rows.map(([f,i])=>`<li class="ixr" data-i="${i}">
     <span class="yr">${f.y}</span>
     <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr"> (opens Vimeo)</span></a>`:esc(f.t)}</span>
-    <span class="tags"><span>${f.f}</span><span>TRT ${f.trt}</span>${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
-    <span class="det"><span class="role">${esc(f.r)}</span>${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
-  document.getElementById("film-count").textContent=rows.length+(rows.length===1?" film":" films")+", "+rows.at(-1)[0].y+"–"+rows[0][0].y;
+    <span class="tags"><span>${f.f}</span>${f.hold?'<span class="hold">On hold</span>':`<span>TRT ${f.trt}</span>`}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
+    <span class="det">${f.hold?'<span class="note">On hold</span>':""}<span class="role">${esc(f.r)}</span>${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
+  document.getElementById("film-count").textContent=rows.length+(rows.length===1?" film":" films")+", "+(ys=>Math.min(...ys)+"–"+Math.max(...ys))(rows.map(r=>r[0].y).filter(y=>typeof y==="number"));
   cur=null;show(list.firstElementChild);
 }
 list.addEventListener("mouseover",e=>{const li=e.target.closest(".ixr");if(li)show(li)});
