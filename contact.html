@@ -246,7 +246,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @keyframes logos{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
-.bgrid + .sub{margin-top:3.5rem}
+.bgrid + .sub,.social + .sub{margin-top:3.5rem}
+.photo.crop iframe{transform:scale(1.045)}
+.social{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;align-items:start}
+.social blockquote{margin:0!important;min-width:0!important;max-width:100%!important;width:100%!important}
+.social > *{border-radius:6px;overflow:hidden}
 .bgrid .work{grid-column:auto}
 .bgrid .photo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .work.text{justify-content:flex-start;padding:1.4rem;border:1px solid var(--line);border-radius:4px;background:var(--card)}

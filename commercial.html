@@ -246,7 +246,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @keyframes logos{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
-.bgrid + .sub{margin-top:3.5rem}
+.bgrid + .sub,.social + .sub{margin-top:3.5rem}
+.photo.crop iframe{transform:scale(1.045)}
+.social{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;align-items:start}
+.social blockquote{margin:0!important;min-width:0!important;max-width:100%!important;width:100%!important}
+.social > *{border-radius:6px;overflow:hidden}
 .bgrid .work{grid-column:auto}
 .bgrid .photo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .work.text{justify-content:flex-start;padding:1.4rem;border:1px solid var(--line);border-radius:4px;background:var(--card)}
@@ -306,7 +310,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <h3>Lumafield x Intrepid</h3>
         </article>
         <article class="work">
-          <div class="photo"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="photo crop"><iframe src="https://player.vimeo.com/video/863710506?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lumafield x Trek" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
           <h3>Lumafield x Trek</h3>
         </article>
       </div>
@@ -325,14 +329,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <h3>Microsoft Future Visions</h3>
           <p>Storytelling series about applications for upcoming technology.</p>
         </article>
-        <article class="work text">
-          <h3>Lumafield product launches</h3>
-          <p>Partnerships with Product Marketing, Growth Marketing, Sales, and Social to deliver highly polished omni-channel product launch assets.</p>
-          <ul class="bul">
-            <li><b>Atlas:</b> launch videos, marketing and UX graphic animation, advertisements, web page, social content, how-to video</li>
-            <li><b>Triton:</b> product logo and graphics, web page, videos and animated assets for sales partnerships; delivered in 1 week</li>
-          </ul>
-          <div class="links"><a href="https://www.lumafield.com/products/atlas-ai-for-engineers" target="_blank" rel="noopener">Atlas web page ↗</a><a href="https://www.lumafield.com/products/triton-production-ready-automated-ct-inspection" target="_blank" rel="noopener">Triton web page ↗</a></div>
+        <article class="work">
+          <div class="photo"><img src="img/b-atlas-ui.jpg" alt="Animated Atlas prompt asking whether a die-cast aluminum part is any good" loading="lazy" width="960" height="540"><span class="tag">Atlas</span></div>
+          <h3>Lumafield Atlas launch</h3>
+          <p class="meta">Launch videos · UX graphic animation · ads · web · social</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/b-atlas-launch.jpg" alt="Gradient Launch Atlas button graphic" loading="lazy" width="960" height="540"><span class="tag">Atlas</span></div>
+          <h3>Atlas launch graphics</h3>
+          <p class="meta">Marketing animation</p>
+        </article>
+        <article class="work">
+          <div class="photo"><a href="https://www.lumafield.com/products/triton-production-ready-automated-ct-inspection" target="_blank" rel="noopener"><img src="img/b-triton-web.jpg" alt="Triton Performance product web page" loading="lazy" width="960" height="540"></a><span class="tag">Triton</span></div>
+          <h3>Lumafield Triton launch</h3>
+          <p class="meta">Logo · graphics · web page · videos · delivered in 1 week</p>
         </article>
       </div>
       <p class="sub">Web &amp; social</p>
@@ -347,10 +357,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           </ul>
           <div class="links"><a href="https://www.lumafield.com/" target="_blank" rel="noopener">Website refresh ↗</a><a href="https://www.lumafield.com/industries" target="_blank" rel="noopener">Industries landing page ↗</a><a href="https://www.lumafield.com/explore/case-studies" target="_blank" rel="noopener">Case studies ↗</a></div>
         </article>
-        <article class="work text">
-          <h3>Social</h3>
-          <div class="links"><a href="https://www.instagram.com/reel/DL2RWQwMhcj/" target="_blank" rel="noopener">Chan Zuckerberg Initiative ↗</a><a href="https://www.instagram.com/p/B22V164lB9u/" target="_blank" rel="noopener">Smartsheet ↗</a><a href="https://www.tiktok.com/@lumafield/video/7148186094138297646" target="_blank" rel="noopener">Lumafield ↗</a><a href="https://www.instagram.com/p/CCLdCEnAbdT/" target="_blank" rel="noopener">King County Equity Now ↗</a></div>
-        </article>
+
+      </div>
+      <p class="sub">Social</p>
+      <div class="social">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL2RWQwMhcj/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DL2RWQwMhcj/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lumafield/video/7148186094138297646" data-video-id="7148186094138297646"><section><a href="https://www.tiktok.com/@lumafield/video/7148186094138297646" target="_blank" rel="noopener">View on TikTok</a></section></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/B22V164lB9u/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/B22V164lB9u/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/CCLdCEnAbdT/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/CCLdCEnAbdT/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
       </div>
       <p class="sub">How-to videos</p>
       <div class="bgrid">
@@ -400,6 +414,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 <script>
 document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
+if(document.querySelector('.social')){['https://www.instagram.com/embed.js','https://www.tiktok.com/embed.js'].forEach(function(u){var e=document.createElement('script');e.async=true;e.src=u;document.body.appendChild(e);});}
 </script>
 <script>
 (function(){
