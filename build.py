@@ -35,6 +35,7 @@ def nav(current):
 {mark}    <nav aria-label="Main">
       <ul>
 {items}
+        <li class="reel-li"><a class="reel-btn" href="https://vimeo.com/158287395" data-reel aria-haspopup="dialog"><span class="pl" aria-hidden="true"></span>Reel</a></li>
       </ul>
     </nav>
   </div>
@@ -49,7 +50,20 @@ def page_head(title, path):
     h = h.replace('href="https://www.liligu.com/"', f'href="https://www.liligu.com/{path}"')
     return h
 
+REEL_POP = '''<dialog class="reel-pop" id="reel-pop" aria-label="Film reel"><div class="rp-in"><button class="rp-x" type="button" aria-label="Close reel">×</button><div class="rp-frame"></div></div></dialog>
+<script>
+(function(){var d=document.getElementById('reel-pop');if(!d||!d.showModal)return;var fr=d.querySelector('.rp-frame');
+function open(e){e.preventDefault();fr.innerHTML='<iframe src="https://player.vimeo.com/video/158287395?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';d.showModal();}
+function close(){d.close();}
+d.addEventListener('close',function(){fr.innerHTML='';});
+d.querySelector('.rp-x').addEventListener('click',close);
+d.addEventListener('click',function(e){if(e.target===d)close();});
+document.querySelectorAll('[data-reel]').forEach(function(a){a.addEventListener('click',open);});})();
+</script>
+'''
+
 def page(title, path, current, body, js):
+    js = list(js) + [REEL_POP]
     return (page_head(title, path) + "<body>\n<a class=\"skip\" href=\"#main\">Skip to content</a>\n" + nav(current)
             + f'\n<main id="main" class="{"home" if current == "home" else "inner"}">\n' + body + "</main>\n\n" + footer + "\n" + "".join(js) + "</body>\n</html>\n")
 
