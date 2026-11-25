@@ -382,7 +382,6 @@ main.inner section.block:has(> .bh){padding-top:0}
         <button class="chip" id="f-oth" data-f="Highlight Reel" aria-pressed="false">Highlight reel</button>
       </div>
       <div class="ix"><ol class="ixl" id="film-list" reversed></ol><div class="ix-pv" id="ix-pv" aria-hidden="true"><div class="pv-m"><div class="mv"><img alt="" width="1280" height="720"></div></div><div class="pv-c"></div></div></div>
-      <div class="film-total"><span id="film-count"></span><span id="film-trt">TRT = total running time</span></div>
       <figure class="screening">
         <img src="img/screening-credit.jpg" alt="The credit 'written &amp; directed by Lili Gu' projected above an orchestra on stage" width="1200" height="800" loading="lazy">
         <img src="img/screening-monkey.jpg" alt="A still of a knitted monkey from Experiment projected while the orchestra plays" width="1200" height="800" loading="lazy">
@@ -455,7 +454,6 @@ function render(filter){
     <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr"> (opens Vimeo)</span></a>`:esc(f.t)}</span>
     <span class="tags"><span>${f.f}</span>${f.hold?'<span class="hold">On hold</span>':`<span>TRT ${f.trt}</span>`}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
     <span class="det">${f.hold?'<span class="note">On hold</span>':""}<span class="role">${esc(f.r)}</span>${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
-  document.getElementById("film-count").textContent=rows.length+(rows.length===1?" film":" films")+", "+(ys=>Math.min(...ys)+"–"+Math.max(...ys))(rows.map(r=>r[0].y).filter(y=>typeof y==="number"));
   cur=null;show(list.firstElementChild);
 }
 list.addEventListener("mouseover",e=>{const li=e.target.closest(".ixr");if(li)show(li)});
