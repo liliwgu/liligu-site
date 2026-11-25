@@ -93,7 +93,10 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);l
 
 .sub{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 1.1rem}
 .now + .sub{margin-top:3.5rem}
-.now{grid-template-columns:repeat(3,minmax(0,1fr))}
+.now{grid-template-columns:repeat(2,minmax(0,1fr))}
+.also{font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;color:var(--muted);margin:1.4rem 0 0}
+.also a{color:inherit}
+.also + .sub{margin-top:3.5rem}
 .now .work{grid-column:auto}
 .other{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem}
 .other .swatch,.other .photo{aspect-ratio:1/1}
@@ -223,15 +226,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
         <h2 id="film-h">Film &amp; video</h2>
         <p class="sec-note">Documentary · narrative · experimental · installation</p>
       </div>
-      <article class="feature">
-        <div class="photo"><img src="img/wdjmid.jpg" alt="Close-up of a man looking into the camera, from We Don't Just Matter In Death" width="1280" height="720"></div>
-        <div>
-          <p class="eyebrow">Latest film · 2022</p>
-          <h3>We Don’t Just Matter In Death</h3>
-          <p class="meta">Documentary · TRT 9:22</p>
-          <p class="meta">Producer, Writer, Director, Editor</p>
-        </div>
-      </article>
       <h3 class="sub">In progress</h3>
       <div class="now">
         <article class="work">
@@ -244,16 +238,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <h3>LOVE DOC</h3>
           <p class="meta">Documentary / installation · Ongoing</p>
         </article>
-        <article class="work">
-          <div class="photo"><img src="img/skyisred.jpg" alt="Two men embrace in a park, one holding a green flying disc, from The Sky Is Red" width="1280" height="720" loading="lazy"><span class="tag">On hold</span></div>
-          <h3>The Sky Is Red</h3>
-          <p class="meta">Documentary · On hold · Producer, Writer, Director</p>
-          <div class="links">
-            <a href="https://vimeo.com/305896047" target="_blank" rel="noopener">Teaser trailer ↗</a>
-            <a href="https://www.wmm.com/sponsored-project/the-sky-is-red/" target="_blank" rel="noopener">Women Make Movies ↗</a>
-          </div>
-        </article>
       </div>
+      <p class="also">Also in development: <i>The Sky Is Red</i>, documentary (on hold) · <a href="https://vimeo.com/305896047" target="_blank" rel="noopener">Teaser ↗</a></p>
 
       <h3 class="sub" id="films">Filmography</h3>
       <div class="filters" role="group" aria-label="Filter films by form">
@@ -352,7 +338,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
         <li><a href="https://www.iheart.com/podcast/256-the-upline-cut-43048183/episode/the-upline-cut-episode-10-guests-48013724/" target="_blank" rel="noopener"><span class="d">11/2017</span><span class="o">The Upline Cut<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://skydmagazine.com/2017/11/moments-movement-momentum/" target="_blank" rel="noopener"><span class="d">11/2017</span><span class="o">Skyd Magazine<span class="k">Essay</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://www.npr.org/sections/thesalt/2015/04/06/396673905/does-your-food-have-a-bad-case-of-the-blahs-put-an-egg-on-it" target="_blank" rel="noopener"><span class="d">04/2015</span><span class="o">NPR · The Salt<span class="k">Photography</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
-        <li><a href="https://www.wmm.com/sponsored-project/the-sky-is-red/" target="_blank" rel="noopener"><span class="d">—</span><span class="o">Women Make Movies<span class="k">The Sky Is Red, sponsored project</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
       </ul>
     </div>
   </section>
