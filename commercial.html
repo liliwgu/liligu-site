@@ -266,6 +266,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .bgrid .photo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .bgrid .photo .mv iframe{inset:auto;top:50%;left:50%;width:max(100%,177.78cqh);height:max(100%,56.25cqw)}
 .bgrid .photo .mv.fit{background:#000}.bgrid .photo .mv.fit iframe{width:100cqh;height:100cqh}
+.bgrid .photo .mv.lw-scan{inset:auto;left:50%;top:9%;height:54%;aspect-ratio:1;transform:translateX(-50%);background:transparent;-webkit-mask-image:radial-gradient(closest-side,#000 82%,transparent);mask-image:radial-gradient(closest-side,#000 82%,transparent)}
 .work.text{justify-content:flex-start;padding:1.4rem;border:1px solid var(--line);border-radius:4px;background:var(--card)}
 .bul{margin:0;padding-left:1.1rem;display:grid;gap:.4rem}
 .bul li{font-size:.98rem}
@@ -447,12 +448,12 @@ main.inner section.block:has(> .bh){padding-top:0}
           <div class="links"><a href="https://player.vimeo.com/video/864260626" data-reel="864260626" aria-haspopup="dialog" target="_blank" rel="noopener">Watch the launch video ↗</a></div>
         </article>
         <article class="work">
-          <div class="photo"><a href="https://www.lumafield.com/products/triton-production-ready-automated-ct-inspection" target="_blank" rel="noopener"><img src="img/b-triton-web.jpg" alt="Triton Performance product web page" loading="lazy" width="960" height="540"></a><span class="tag">Triton</span></div>
+          <div class="photo"><a href="https://www.lumafield.com/products/triton-production-ready-automated-ct-inspection" target="_blank" rel="noopener"><div class="mv" data-v="1082396970" data-t="0"><img src="img/b-triton-web.jpg" alt="A drinks can turning inside the Triton CT inspection system, from the Triton Performance web page" loading="lazy" width="960" height="540"></div></a><span class="tag">Triton</span></div>
           <h3>Lumafield Triton launch</h3>
           <p class="meta">Logo · graphics · web page · videos · delivered in 1 week</p>
         </article>
         <article class="work">
-          <div class="photo"><div class="mv fit" data-v="1185700939" data-t="0"><img src="img/b-lumafield-cap.jpg" alt="A glowing blue CT scan of a plastic bottle cap turning slowly, from Lumafield’s website" loading="lazy" width="960" height="540"></div></div>
+          <div class="photo"><img src="img/b-lumafield-web.jpg" alt="Lumafield homepage with a glowing CT scan turning above the line “Design, build, and ship products at the speed of light”" loading="lazy" width="960" height="540"><div class="mv fit lw-scan" data-v="1185700939" data-t="0"></div></div>
           <h3>Lumafield web</h3>
           <ul class="bul">
             <li><b>Website refresh:</b> brand identity work, style guide, graphics, animations</li>
