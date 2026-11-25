@@ -233,8 +233,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   .press a{grid-template-columns:4.6rem minmax(0,1fr) auto}
 }
 /* commercial & branded */
-.clients{margin:0 0 3rem;max-width:70ch;font-size:1.05rem;line-height:1.6}
-.clients .sub{display:block;margin-bottom:.5rem}
+.logos{margin:0 0 3.5rem}
+.marquee{display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;align-items:center;gap:clamp(2.5rem,5vw,4.5rem);list-style:none;margin:0;padding:.6rem clamp(1.25rem,2.5vw,2.25rem);flex:none;animation:logos 45s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track li{flex:none;display:flex}
+.lg{height:30px;width:auto;opacity:.72;display:block}
+.lg.sq{height:48px}
+.lg.wide{height:23px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lg{filter:invert(1);opacity:.8}}
+:root[data-theme="dark"] .lg{filter:invert(1);opacity:.8}
+@keyframes logos{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub{margin-top:3.5rem}
 .bgrid .work{grid-column:auto}
@@ -277,7 +287,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
         <h2 id="brand-h">Commercial &amp; branded</h2>
         <p class="sec-note">Brand stories · launches · web &amp; social</p>
       </div>
-      <p class="clients"><span class="sub">Clients &amp; partners</span> Microsoft · Smartsheet · adidas · Lumafield · U.S. Secret Service · The Gottman Institute · The International (Dota 2) · Five Ultimate · Seattle Cascades · King County Equity Now</p>
+      <div class="logos" aria-label="Clients and partners">
+        <p class="sub">Clients &amp; partners</p>
+        <div class="marquee"><ul class="track"><li><img class="lg" src="img/logos/czi.png" alt="Chan Zuckerberg Initiative" width="220" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/biohub.png" alt="Biohub" width="387" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/microsoft.png" alt="Microsoft" width="562" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/smartsheet.png" alt="Smartsheet" width="748" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/adidas.png" alt="adidas" width="849" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/lumafield.png" alt="Lumafield" width="749" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/secret-service.png" alt="U.S. Secret Service" width="382" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/gottman.png" alt="The Gottman Institute" width="868" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/the-international.png" alt="The International (Dota 2)" width="424" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/five-ultimate.png" alt="Five Ultimate" width="393" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/seattle-cascades.png" alt="Seattle Cascades" width="123" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/kcen.png" alt="King County Equity Now" width="248" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/tree-root.png" alt="Connecting Tree and Root" width="105" height="120" loading="lazy"></li></ul><ul class="track" aria-hidden="true"><li><img class="lg" src="img/logos/czi.png" alt="" width="220" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/biohub.png" alt="" width="387" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/microsoft.png" alt="" width="562" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/smartsheet.png" alt="" width="748" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/adidas.png" alt="" width="849" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/lumafield.png" alt="" width="749" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/secret-service.png" alt="" width="382" height="120" loading="lazy"></li><li><img class="lg wide" src="img/logos/gottman.png" alt="" width="868" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/the-international.png" alt="" width="424" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/five-ultimate.png" alt="" width="393" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/seattle-cascades.png" alt="" width="123" height="120" loading="lazy"></li><li><img class="lg" src="img/logos/kcen.png" alt="" width="248" height="120" loading="lazy"></li><li><img class="lg sq" src="img/logos/tree-root.png" alt="" width="105" height="120" loading="lazy"></li></ul></div>
+      </div>
       <p class="sub">Longer-form stories</p>
       <div class="bgrid">
         <article class="work">
@@ -392,7 +405,7 @@ document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click'
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
-var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.clients','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
+var sel=['.sec-head','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.logos','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
 var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,5)*0.07)+'s');els.push(el)})});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
 els.forEach(function(el){io.observe(el)});
