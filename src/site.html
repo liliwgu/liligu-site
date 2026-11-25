@@ -247,8 +247,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 @media (prefers-reduced-motion: reduce){.track{animation:none;flex-wrap:wrap;justify-content:center}.track[aria-hidden]{display:none}.marquee{-webkit-mask-image:none;mask-image:none}}
 .bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1.25rem}
 .bgrid + .sub,.social + .sub{margin-top:3.5rem}
-.photo.crop iframe{transform:scale(1.045)}
-.social{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;align-items:start}
+.photo.crop iframe{transform:scale(1.1)}
+.bgrid .photo.edge iframe{inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px)}
+.social .tt{aspect-ratio:9/16;max-width:326px;background:#000}.social .tt iframe{width:100%;height:100%;border:0;display:block}
+.social{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;align-items:start;justify-items:center}
 .social blockquote{margin:0!important;min-width:0!important;max-width:100%!important;width:100%!important}
 .social > *{border-radius:6px;overflow:hidden}
 .bgrid .work{grid-column:auto}
@@ -357,7 +359,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
           <h3>Smartsheet x Syngenta</h3>
         </article>
         <article class="work">
-          <div class="photo"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+          <div class="photo edge"><iframe src="https://fast.wistia.net/embed/iframe/feskvfyfgf" title="Lumafield x Intrepid" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
           <h3>Lumafield x Intrepid</h3>
         </article>
         <article class="work">
@@ -413,7 +415,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
       <p class="sub">Social</p>
       <div class="social">
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DL2RWQwMhcj/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DL2RWQwMhcj/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@lumafield/video/7148186094138297646" data-video-id="7148186094138297646"><section><a href="https://www.tiktok.com/@lumafield/video/7148186094138297646" target="_blank" rel="noopener">View on TikTok</a></section></blockquote>
+        <div class="tt"><iframe src="https://www.tiktok.com/player/v1/7148186094138297646?music_info=1&amp;description=1" title="Lumafield on TikTok: inside AirPods Pro" loading="lazy" allow="fullscreen" allowfullscreen></iframe></div>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/B22V164lB9u/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/B22V164lB9u/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/CCLdCEnAbdT/?utm_source=ig_embed" data-instgrm-version="14"><a href="https://www.instagram.com/p/CCLdCEnAbdT/" target="_blank" rel="noopener">View on Instagram</a></blockquote>
       </div>
@@ -635,7 +637,7 @@ var list=document.getElementById('film-list');if(list)new MutationObserver(funct
 </script>
 <script>
 document.querySelectorAll('.vid').forEach(function(b){b.addEventListener('click',function(){var f=document.createElement('iframe');f.src=b.dataset.src;f.title=b.getAttribute('aria-label').replace(/^Play /,'');f.allow='autoplay; fullscreen; picture-in-picture';f.allowFullscreen=true;b.replaceWith(f);});});
-if(document.querySelector('.social')){['https://www.instagram.com/embed.js','https://www.tiktok.com/embed.js'].forEach(function(u){var e=document.createElement('script');e.async=true;e.src=u;document.body.appendChild(e);});}
+if(document.querySelector('.social')){['https://www.instagram.com/embed.js'].forEach(function(u){var e=document.createElement('script');e.async=true;e.src=u;document.body.appendChild(e);});}
 </script>
 </body>
 </html>
