@@ -88,7 +88,7 @@ h1.name .ttl.live .sp{visibility:hidden}
 .reel-embed .dim.gone{opacity:0;pointer-events:none}
 .reel-embed figcaption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:.8rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .reel-embed figcaption a{color:inherit}
-/* home stage: the LILI GU title card fades away and the reel takes over the same frame, playing silently */
+/* home stage: LILI GU holds the first screen; the reel rises up from below as you scroll, playing silently */
 .stage{width:min(calc(100% - 32px),1600px,calc((100svh - 210px) * 16 / 9));min-width:min(calc(100% - 32px),1128px);margin-inline:auto}
 .screen{position:relative}
 .rl-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.4rem}
@@ -97,16 +97,13 @@ h1.name .ttl.live .sp{visibility:hidden}
 .rl-snd .pl{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
 .roll .reel-embed .dim{display:none}
 .stage:not(.roll) .reel-embed{margin-top:clamp(1.5rem,3vw,2.5rem)}
-.roll .screen h1.name{position:absolute;left:0;right:0;top:0;aspect-ratio:16 / 9;display:flex;align-items:center;z-index:2;pointer-events:none}
-.roll .screen h1.name .ttl{width:100%}
-.roll .reel-embed .frame{opacity:0;transform:scale(.965)}
-.roll .reel-embed figcaption{opacity:0}
-.rolled .screen h1.name{opacity:0;transition:opacity 1.6s ease}
-.rolled .screen h1.name .ttl{filter:blur(14px);transform:scale(1.08);transition:filter 1.8s ease,transform 2.2s cubic-bezier(.2,.7,.2,1)}
-.rolled .reel-embed .frame{opacity:1;transform:none;transition:opacity 1.8s ease .5s,transform 2.6s cubic-bezier(.2,.7,.2,1) .4s}
-.rolled .reel-embed figcaption{opacity:1;transition:opacity 1s ease 1.6s}
 .roll .reel-embed .frame iframe{pointer-events:none}
 .roll.sound .reel-embed .frame iframe{pointer-events:auto}
+.roll .screen h1.name{display:flex;align-items:center;min-height:max(0px,calc(100svh - 420px))}
+@media (max-width:700px){.roll .screen h1.name{min-height:calc(100svh - 520px)}}
+.roll .screen h1.name .ttl{width:100%}
+.roll .reel-embed{margin-top:clamp(1rem,2vw,1.5rem);--p:0;transform:translate3d(0,calc((1 - var(--p)) * 110px),0) scale(calc(.8 + var(--p) * .2));transform-origin:50% 100%;opacity:calc(.25 + var(--p) * .75);will-change:transform,opacity}
+.roll .reel-embed figcaption{opacity:calc((var(--p) - .7) * 3.4)}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
