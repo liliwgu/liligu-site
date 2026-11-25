@@ -144,10 +144,10 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);l
 .feature .photo{aspect-ratio:16/9}
 .feature h3{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;letter-spacing:-.025em;margin:.4rem 0 .8rem;text-wrap:balance}
 .feature p{margin:0 0 .4rem}
-.screening{margin:3rem 0 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:.75rem}
+.screening{margin:3rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 .screening img{width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;aspect-ratio:3/2;max-width:100%}
 .screening figcaption{grid-column:1 / -1;font-family:var(--mono);font-size:.76rem;color:var(--muted);letter-spacing:.04em}
-@media (max-width:640px){.screening{grid-template-columns:1fr 1fr}.screening img:first-child{grid-column:1 / -1}}
+
 /* filmography */
 .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
 .chip{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--muted);padding:.45rem .8rem;border-radius:999px;cursor:pointer}
@@ -393,7 +393,6 @@ main.inner section.block:has(> .bh){padding-top:0}
       </div>
       <div class="ix"><ol class="ixl" id="film-list" reversed></ol><div class="ix-pv" id="ix-pv" aria-hidden="true"><div class="pv-m"><div class="mv"><img alt="" width="1280" height="720"></div></div><div class="pv-c"></div></div></div>
       <figure class="screening">
-        <img src="img/screening-credit.jpg" alt="The credit 'written &amp; directed by Lili Gu' projected above an orchestra on stage" width="1200" height="800" loading="lazy">
         <img src="img/screening-monkey.jpg" alt="A still of a knitted monkey from Experiment projected while the orchestra plays" width="1200" height="800" loading="lazy">
         <img src="img/screening-stage.jpg" alt="Lili Gu speaking on stage with a microphone beside the orchestra" width="1200" height="800" loading="lazy">
         <figcaption>Experiment, screened with a live orchestra · April 2016</figcaption>
