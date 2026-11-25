@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="Lili Gu">
+<meta property="og:description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
+<meta property="og:image" content="img/wdjmid.jpg">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Lili Gu</title>
+<meta name="description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single scrolling "program" — watercolor title card, now-showing works, a filmography set like end credits with real runtimes, then about / press / contact. */
+:root{
+  --paper:#f2f6f7; --ink:#10202b; --muted:#566874; --line:#d3dee2;
+  --teal:#0a8f9c; --cyan:#27b6e8; --wash1:#3cc6f0; --wash2:#30e0c4; --wash3:#1d6fd6;
+  --card:#ffffff;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --measure:64ch;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0b151d; --ink:#e4eef1; --muted:#93a8b3; --line:#22343f;
+  --teal:#3fd0d6; --cyan:#5cc8f2; --wash1:#3cc6f0; --wash2:#30e0c4; --wash3:#5b8ff0; --card:#111f29; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0b151d; --ink:#e4eef1; --muted:#93a8b3; --line:#22343f;
+  --teal:#3fd0d6; --cyan:#5cc8f2; --wash1:#3cc6f0; --wash2:#30e0c4; --wash3:#5b8ff0; --card:#111f29; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.125rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
+a:hover{color:var(--teal)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--paper);padding:.5rem .8rem;z-index:50}
+.skip:focus{left:16px}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--paper)}
+header.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:9;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:60px;flex-wrap:wrap}
+.mark{font-family:var(--display);font-weight:800;letter-spacing:.32em;font-size:.86rem;text-decoration:none;white-space:nowrap}
+nav ul{display:flex;gap:clamp(.8rem,2.4vw,1.8rem);list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(2.5rem,6vw,5rem) clamp(1.5rem,3vw,2.5rem)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(2rem,5vw,4rem);row-gap:clamp(1.5rem,3vw,2.5rem);align-items:end}
+.hero-grid > div:first-child{grid-column:1 / -1}
+.hero-grid > div:nth-child(2){display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem}
+.eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 1.2rem}
+h1.name{margin:0;line-height:0}
+h1.name img{width:100%;height:auto;display:block}
+.t-dark{display:none!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-dark{display:block!important}:root:not([data-theme="light"]) .t-light{display:none!important}}
+:root[data-theme="dark"] .t-dark{display:block!important}:root[data-theme="dark"] .t-light{display:none!important}
+.hero .lede{font-size:clamp(1.25rem,2.2vw,1.55rem);line-height:1.45;margin:0;max-width:44ch;text-wrap:balance}
+.hero .lede em{color:var(--teal);font-style:italic}
+.reel{display:flex;align-items:center;gap:1rem;text-decoration:none;border:1px solid var(--ink);border-radius:999px;padding:.55rem 1.3rem .55rem .55rem;width:max-content;max-width:100%;transition:background .2s,color .2s}
+.reel:hover{background:var(--ink);color:var(--paper)}
+.reel .play{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--wash1),var(--wash2));color:#062a33}
+.reel .play svg{width:16px;height:16px;margin-left:3px}
+.reel b{font-family:var(--display);font-weight:600;font-size:1.05rem;display:block;line-height:1.1}
+.reel small{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:inherit;opacity:.7}
+
+/* sections */
+section.block{padding-block:clamp(1rem,2vw,1.5rem) clamp(3rem,7vw,5.5rem)}
+section.block > .wrap::before{content:"";display:block;grid-column:1 / -1;height:clamp(10px,1.9vw,30px);background:var(--line-img) center / 100% 100% no-repeat;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
+#film{--line-img:url(img/line-a.png)} #other{--line-img:url(img/line-c.png)} #about{--line-img:url(img/line-e.png)} #press{--line-img:url(img/line-b.png)} #contact{--line-img:url(img/line-f.png)}
+footer{--line-img:url(img/line-g.png)}
+footer > .wrap::before{content:"";display:block;width:100%;height:clamp(10px,1.9vw,30px);background:var(--line-img) center / 100% 100% no-repeat;margin-bottom:1.5rem}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:2.2rem}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.03em;line-height:1;margin:0;text-wrap:balance}
+.sec-note{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--muted);margin:0}
+
+/* now: works in progress */
+.now{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.25rem}
+.work{grid-column:span 2;display:flex;flex-direction:column;gap:.85rem;min-width:0}
+.work.wide{grid-column:span 3}
+.swatch{aspect-ratio:4/3;max-width:100%;border-radius:4px;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.swatch::before{content:"";position:absolute;inset:-20%;filter:blur(18px);opacity:.9;background:var(--g)}
+.swatch span{position:absolute;left:1rem;bottom:.8rem;right:1rem;font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,3vw,2.1rem);line-height:.95;letter-spacing:-.02em;color:#fff;text-shadow:0 1px 18px rgba(0,30,40,.35)}
+.swatch .tag{position:absolute;top:.8rem;left:1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(6,30,40,.35);padding:.2rem .5rem;border-radius:2px;right:auto;bottom:auto;text-shadow:none}
+.work h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin:0;line-height:1.2}
+.meta{font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;color:var(--muted);margin:0}
+.work p{margin:0;font-size:1rem}
+.work .links{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.76rem;letter-spacing:.04em}
+
+.sub{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 1.1rem}
+.now + .sub{margin-top:3.5rem}
+.now{grid-template-columns:repeat(3,minmax(0,1fr))}
+.now .work{grid-column:auto}
+.other{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem}
+.other .swatch,.other .photo{aspect-ratio:1/1}
+.other .work{grid-column:auto}
+.photo{aspect-ratio:16/9;max-width:100%;border-radius:4px;overflow:hidden;background:var(--line);position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .tag{position:absolute;top:.8rem;left:1rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(6,30,40,.55);padding:.2rem .5rem;border-radius:2px}
+.now .photo{aspect-ratio:4/3}
+.feature{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3rem);align-items:end;margin-bottom:3.5rem}
+.feature .photo{aspect-ratio:16/9}
+.feature h3{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1;letter-spacing:-.025em;margin:.4rem 0 .8rem;text-wrap:balance}
+.feature p{margin:0 0 .4rem}
+.screening{margin:3rem 0 0;display:grid;grid-template-columns:2fr 1fr 1fr;gap:.75rem}
+.screening img{width:100%;height:100%;object-fit:cover;display:block;border-radius:4px;aspect-ratio:3/2;max-width:100%}
+.screening figcaption{grid-column:1 / -1;font-family:var(--mono);font-size:.76rem;color:var(--muted);letter-spacing:.04em}
+@media (max-width:640px){.screening{grid-template-columns:1fr 1fr}.screening img:first-child{grid-column:1 / -1}}
+/* filmography */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.4rem}
+.chip{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--muted);padding:.45rem .8rem;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip[aria-pressed="true"]:hover{color:var(--paper)}
+.film-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.film{display:grid;grid-template-columns:4.5rem 8.5rem minmax(0,1fr) 9rem 6.5rem;gap:1rem;align-items:baseline;padding:1.05rem 0;border-bottom:1px solid var(--line)}
+.film .yr,.film .form,.film .trt{font-family:var(--mono);font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.film .trt{text-align:right}
+.film .th{width:100%;aspect-ratio:16/9;border-radius:3px;overflow:hidden;background:var(--line);align-self:start}
+.film .th img{width:100%;height:100%;object-fit:cover;display:block}
+.film .t{font-family:var(--display);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.2;letter-spacing:-.01em}
+.film .t a{text-decoration:none;border-bottom:1px solid var(--teal)}
+.film .role{display:block;font-family:var(--body);font-style:italic;font-size:.95rem;color:var(--muted);margin-top:.15rem}
+.film ul.laurels{list-style:none;margin:.55rem 0 0;padding:0;display:flex;flex-direction:column;gap:.2rem}
+.film ul.laurels li{font-family:var(--body);font-size:.95rem;padding-left:1.1rem;position:relative}
+.film ul.laurels li::before{content:"";position:absolute;left:0;top:.62em;width:.5rem;height:.5rem;border-radius:50%;background:linear-gradient(135deg,var(--wash1),var(--wash2))}
+.film-total{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--muted);padding-top:1rem;font-variant-numeric:tabular-nums}
+
+/* about */
+.portrait{margin:0 0 2rem;border-radius:4px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--line)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(2rem,5vw,4.5rem)}
+.about .bio p{margin:0 0 1.2rem;max-width:var(--measure)}
+.about .bio p:first-child{font-size:clamp(1.3rem,2.3vw,1.6rem);line-height:1.45}
+.about .bio p:first-child::first-line{font-weight:500}
+.honors h3{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 .8rem}
+.honors ul{list-style:none;margin:0 0 2rem;padding:0;border-top:1px solid var(--line)}
+.honors li{padding:.7rem 0;border-bottom:1px solid var(--line);font-size:1rem;line-height:1.35}
+
+/* press */
+.press{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.5rem}
+.press li{border-top:1px solid var(--line)}
+.press a{display:grid;grid-template-columns:5.5rem minmax(0,1fr) auto;gap:1rem;align-items:baseline;padding:1.05rem 0;text-decoration:none}
+.press .d{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.press .o{font-family:var(--display);font-weight:600;font-size:1.1rem;line-height:1.25}
+.press .k{display:block;font-family:var(--body);font-weight:400;font-style:italic;font-size:.95rem;color:var(--muted)}
+.press .arr{font-family:var(--mono);color:var(--teal);transition:transform .2s}
+.press a:hover .arr{transform:translate(3px,-3px)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2.5rem;align-items:end}
+.contact .big{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,7vw,5rem);line-height:.95;letter-spacing:-.035em;margin:0}
+.contact .big a{text-decoration:none;background:linear-gradient(115deg,var(--wash1),var(--wash2),var(--wash3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.contact .big a:hover{opacity:.85}
+.socials{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.socials a{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line);text-decoration:none}
+.socials .s{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+footer{padding-block:2.5rem;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero-grid,.about,.contact{grid-template-columns:minmax(0,1fr)}
+  .now{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .work,.work.wide{grid-column:span 1}
+  .press{grid-template-columns:minmax(0,1fr)}
+  .other{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  nav{width:100%}
+  header.site .wrap{padding-block:.6rem}
+  .now,.other{grid-template-columns:minmax(0,1fr)}
+  .film{grid-template-columns:5.5rem minmax(0,1fr);column-gap:.9rem;row-gap:.15rem}
+  .film .th{grid-column:1;grid-row:1 / span 3}
+  .film .yr{grid-column:2;grid-row:1}
+  .film > div{grid-column:2;grid-row:2}
+  .film .form{display:none}
+  .film .trt{grid-column:2;grid-row:3;text-align:left}
+  .feature{grid-template-columns:minmax(0,1fr)}
+  .press a{grid-template-columns:4.6rem minmax(0,1fr) auto}
+}
+</style>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="mark" href="#top">LILI·GU</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#film">Film</a></li>
+        <li><a href="#other">Other work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#press">Press</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Filmmaker · Poet · Mixed media · West Coast</p>
+        <h1 class="name"><img class="t-light" src="img/title-splat.webp" alt="Lili Gu" width="1400" height="399"><img class="t-dark" src="img/title-splat-bright.webp" alt="Lili Gu" width="1400" height="399"></h1>
+      </div>
+      <div>
+        <p class="lede">Exploring justice, liberation, and the human condition through storytelling, <em>as an act of love</em>.</p>
+        <a class="reel" href="https://vimeo.com/158287395" target="_blank" rel="noopener">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M2 1l13 7-13 7z" fill="currentColor"/></svg></span>
+          <span><b>Watch the film reel</b><small>2:30 · on Vimeo</small></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="film" aria-labelledby="film-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="film-h">Film &amp; video</h2>
+        <p class="sec-note">Documentary · narrative · experimental · installation</p>
+      </div>
+      <article class="feature">
+        <div class="photo"><img src="img/wdjmid.jpg" alt="Close-up of a man looking into the camera, from We Don't Just Matter In Death" width="1280" height="720"></div>
+        <div>
+          <p class="eyebrow">Latest film · 2022</p>
+          <h3>We Don’t Just Matter In Death</h3>
+          <p class="meta">Documentary · TRT 9:22</p>
+          <p class="meta">Producer, Writer, Director, Editor</p>
+        </div>
+      </article>
+      <h3 class="sub">In progress</h3>
+      <div class="now">
+        <article class="work">
+          <div class="photo"><img src="img/haircut.jpg" alt="An older man in glasses peers through a green gate behind leaves" loading="lazy" width="1000" height="750"><span class="tag">Ongoing</span></div>
+          <h3>HAIRCUT</h3>
+          <p class="meta">Documentary / installation · Ongoing</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/lovedoc.jpg" alt="An older woman with gray hair resting her head on a pillow" loading="lazy" width="1000" height="750"><span class="tag">Ongoing</span></div>
+          <h3>LOVE DOC</h3>
+          <p class="meta">Documentary / installation · Ongoing</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/skyisred.jpg" alt="Two men embrace in a park, one holding a green flying disc, from The Sky Is Red" width="1280" height="720" loading="lazy"><span class="tag">On hold</span></div>
+          <h3>The Sky Is Red</h3>
+          <p class="meta">Documentary · On hold · Producer, Writer, Director</p>
+          <div class="links">
+            <a href="https://vimeo.com/305896047" target="_blank" rel="noopener">Teaser trailer ↗</a>
+            <a href="https://www.wmm.com/sponsored-project/the-sky-is-red/" target="_blank" rel="noopener">Women Make Movies ↗</a>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="sub" id="films">Filmography</h3>
+      <div class="filters" role="group" aria-label="Filter films by form">
+        <button class="chip" id="f-all" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" id="f-doc" data-f="Documentary" aria-pressed="false">Documentary</button>
+        <button class="chip" id="f-nar" data-f="Narrative" aria-pressed="false">Narrative</button>
+        <button class="chip" id="f-exp" data-f="Experimental" aria-pressed="false">Experimental</button>
+        <button class="chip" id="f-oth" data-f="Highlight Reel" aria-pressed="false">Highlight reel</button>
+      </div>
+      <ol class="film-list" id="film-list" reversed></ol>
+      <div class="film-total"><span id="film-count"></span><span id="film-trt">TRT = total running time</span></div>
+      <figure class="screening">
+        <img src="img/screening-credit.jpg" alt="The credit 'written &amp; directed by Lili Gu' projected above an orchestra on stage" width="1200" height="800" loading="lazy">
+        <img src="img/screening-monkey.jpg" alt="A still of a knitted monkey from Experiment projected while the orchestra plays" width="1200" height="800" loading="lazy">
+        <img src="img/screening-stage.jpg" alt="Lili Gu speaking on stage with a microphone beside the orchestra" width="1200" height="800" loading="lazy">
+        <figcaption>Experiment, screened with a live orchestra · April 2016</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="other" aria-labelledby="other-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="other-h">Other work</h2>
+        <p class="sec-note">Clay · poetry · photography</p>
+      </div>
+      <div class="other">
+        <article class="work">
+          <div class="photo"><img src="img/dontgiveup.jpg" alt="A ceramic mug glazed in coral and blue drips, stamped DON’T GIVE UP" loading="lazy" width="1000" height="1000"><span class="tag">Clay</span></div>
+          <h3>Don’t Give Up</h3>
+          <p class="meta">2024</p>
+          <p>Discarded clay trimmings, tears, underglaze, glaze</p>
+        </article>
+        <article class="work">
+          <div class="photo"><img src="img/fastx.jpg" alt="Lili Gu reading poetry at a microphone under red stage light" loading="lazy" width="1000" height="1000"><span class="tag">Poetry</span></div>
+          <h3>Fast X Double Feature</h3>
+          <p class="meta">2023 · Poetry reading</p>
+          <p class="meta">Photo: <a href="https://www.hotalingphoto.com/" target="_blank" rel="noopener">Sam Hotaling</a></p>
+        </article>
+        <article class="work">
+          <div class="swatch" style="--g:radial-gradient(circle at 70% 35%,#5b8ff0 0 18%,transparent 48%),radial-gradient(circle at 25% 70%,#30e0c4 0 18%,transparent 50%),linear-gradient(130deg,#1d6fd6,#27b6e8)"><span class="tag">Poetry</span><span>Hugo Fellows Reading</span></div>
+          <h3>Hugo Fellows Reading</h3>
+          <p class="meta">05/2023 · Hugo House</p>
+          <div class="links"><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener">Event page ↗</a></div>
+        </article>
+        <article class="work">
+          <div class="swatch" style="--g:radial-gradient(circle at 45% 45%,#f3c64a 0 14%,transparent 40%),radial-gradient(circle at 80% 75%,#0a8f9c 0 22%,transparent 55%),linear-gradient(150deg,#3cc6f0,#1d6fd6)"><span class="tag">Photography</span><span>NPR · The Salt</span></div>
+          <h3>Photography for NPR</h3>
+          <p class="meta">04/2015 · The Salt</p>
+          <div class="links"><a href="https://www.npr.org/sections/thesalt/2015/04/06/396673905/does-your-food-have-a-bad-case-of-the-blahs-put-an-egg-on-it" target="_blank" rel="noopener">Read the story ↗</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="about-h">About Lili</h2></div>
+      <div class="about">
+        <div class="bio">
+          <p>Lili Gu (she/her) is a West Coast-based filmmaker, poet, and aspiring mixed media artist. She is passionate about exploring justice, liberation, and the human condition through storytelling.</p>
+          <p>Her projects work to uncover language away from the white gaze, speaking truth to power on themes of Chinese American assimilation, queerness, and intergenerational strength. She makes art as an act of love—toward visions of an imagined future in which all humans can not just survive, but thrive.</p>
+          <p>Lili trained under the mentorship of pioneering vérité documentarian Marina Goldovskaya. Her films have received numerous festival accolades, screening internationally and on television networks such as PBS.</p>
+        </div>
+        <aside class="honors" aria-label="Awards and fellowships">
+          <figure class="portrait"><img src="img/portrait.jpg" alt="Portrait of Lili Gu laughing, in a black top against a dark background" width="900" height="1125" loading="lazy"></figure>
+          <h3>Awards &amp; fellowships</h3>
+          <ul>
+            <li>Mary Pickford Award</li>
+            <li>Adobe Production Premium Award</li>
+            <li>Hollywood Post Alliance Scholarship</li>
+            <li>Edie and Lew Wasserman Film Production Fellowship</li>
+            <li>Edna and Yu-Shan Han Endowed Award</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="press" aria-labelledby="press-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="press-h">Press &amp; readings</h2></div>
+      <ul class="press">
+        <li><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener"><span class="d">05/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://ultiworld.com/2020/07/31/sin-the-fields-bipoc-highlight-reel-the-first-ever-wildwood/" target="_blank" rel="noopener"><span class="d">07/2020</span><span class="o">Ultiworld · Sin The Fields<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.discnw.org/p/the-greatest-lili-gu" target="_blank" rel="noopener"><span class="d">11/2019</span><span class="o">DiscNW · The Greatest<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://open.spotify.com/episode/4XFbiYmBljoLFXr6coxrvX" target="_blank" rel="noopener"><span class="d">01/2019</span><span class="o">The Ultimate Podcast<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.iheart.com/podcast/256-the-upline-cut-43048183/episode/the-upline-cut-episode-10-guests-48013724/" target="_blank" rel="noopener"><span class="d">11/2017</span><span class="o">The Upline Cut<span class="k">Interview</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://skydmagazine.com/2017/11/moments-movement-momentum/" target="_blank" rel="noopener"><span class="d">11/2017</span><span class="o">Skyd Magazine<span class="k">Essay</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.npr.org/sections/thesalt/2015/04/06/396673905/does-your-food-have-a-bad-case-of-the-blahs-put-an-egg-on-it" target="_blank" rel="noopener"><span class="d">04/2015</span><span class="o">NPR · The Salt<span class="k">Photography</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.wmm.com/sponsored-project/the-sky-is-red/" target="_blank" rel="noopener"><span class="d">—</span><span class="o">Women Make Movies<span class="k">The Sky Is Red, sponsored project</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow" id="contact-h">Contact</p>
+        <p class="big"><a href="https://docs.google.com/forms/d/1Esq8xVeSLvehmhYD0ZyWSmUAGAoQ42hlUgdk-D_0mFQ/viewform" target="_blank" rel="noopener">Send Lili a note ↗</a></p>
+      </div>
+      <ul class="socials">
+        <li><a href="https://www.instagram.com/wiwigoo/" target="_blank" rel="noopener"><span>@wiwigoo</span><span class="s">Instagram ↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/lili-gu/" target="_blank" rel="noopener"><span>lili-gu</span><span class="s">LinkedIn ↗</span></a></li>
+        <li><a href="https://twitter.com/wiwigoo" target="_blank" rel="noopener"><span>@wiwigoo</span><span class="s">Twitter ↗</span></a></li>
+        <li><a href="https://vimeo.com/158287395" target="_blank" rel="noopener"><span>Film reel</span><span class="s">Vimeo ↗</span></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© Lili Gu</span><span>liligu.com</span></div>
+</footer>
+
+<script>
+const FILMS=[
+  {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
+  {y:2020,t:"BIPOC Excellence in Ultimate",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655"},
+  {y:2016,t:"Experiment",img:"experiment",f:"Experimental",trt:"3:30",r:"Producer, Writer, Director, Editor",u:"https://vimeo.com/246539799",l:[
+    "Finalist, Sight of Sound International Film Competition (2016)",
+    "Featured on the Dallas-area PBS television show Frame of Mind (2016)",
+    "Official Selection, First Friday Film Festival (2016)",
+    "Official Selection, Festival Internacional de Cortometrajes Independientes (2017)",
+    "Official Selection, NXMW Micro-Budget Film Festival (2017)",
+    "Official Selection, Silk Road International Film Festival (2017)",
+    "Official Selection, Cine City (2017)",
+    "Official Selection, International Peace and Film Festival (2017)"]},
+  {y:2016,t:"All-Star Ultimate Tour: The Documentary",img:"allstar",f:"Documentary",trt:"1:38:16",r:"Associate Producer"},
+  {y:2015,t:"Not Yet, But Soon",img:"notyet",f:"Documentary",trt:"45:18",r:"Producer, Writer, Director, Editor"},
+  {y:2014,t:"Fly on the Wall",img:"flyonthewall",f:"Documentary",trt:"30:22",r:"Producer, Writer, Director, Editor"},
+  {y:2013,t:"What Do You Actually Feel?",img:"wdyaf",f:"Experimental",trt:"1:41",r:"Producer, Writer, Director, Editor"},
+  {y:2012,t:"Stopstart",f:"Narrative",trt:"4:00",r:"Producer, Writer, Director, Editor",l:["Official Selection, UCLA Film Festival (2013)"]},
+  {y:2012,t:"For Andy",img:"forandy",f:"Documentary",trt:"34:31",r:"Producer, Writer, Director, Editor",l:["Best Documentary, UCLA Film Festival (2013)"]},
+  {y:2011,t:"Joel and Milo",img:"joelmilo",f:"Narrative",trt:"4:28",r:"Producer, Writer, Director, Editor"},
+  {y:2011,t:"Two Monkeys Hugging",img:"twomonkeys",f:"Narrative",trt:"4:09",r:"Producer, Writer, Director, Editor"},
+  {y:2011,t:"Brother",img:"brother",f:"Documentary",trt:"13:14",r:"Producer, Writer, Director, Editor"},
+  {y:2009,t:"The End",img:"theend",f:"Narrative",trt:"4:19",r:"Producer, Writer, Director, Editor"},
+  {y:2009,t:"Falling and Filling",img:"falling",f:"Narrative",trt:"10:45",r:"Producer, Writer, Director, Editor"},
+  {y:2008,t:"Distance",img:"distance",f:"Documentary",trt:"3:14",r:"Producer, Writer, Director, Editor"}
+];
+const secs=s=>s.split(":").map(Number).reduce((a,n)=>a*60+n,0);
+const fmt=s=>{const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return (h?h+":"+String(m).padStart(2,"0"):m)+":"+String(x).padStart(2,"0")};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const list=document.getElementById("film-list");
+function render(filter){
+  const rows=FILMS.filter(f=>filter==="all"||f.f===filter);
+  list.innerHTML=rows.map(f=>`<li class="film">
+    <span class="th">${f.img?`<img src="img/${f.img}.jpg" alt="Still from ${esc(f.t)}" loading="lazy" width="1280" height="720">`:""}</span>
+    <span class="yr">${f.y}</span>
+    <div style="min-width:0"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)} ↗</a>`:esc(f.t)}</span>
+      <span class="role">${esc(f.r)}</span>
+      ${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</div>
+    <span class="form">${f.f}</span>
+    <span class="trt">TRT ${f.trt}</span></li>`).join("");
+  const total=rows.reduce((a,f)=>a+secs(f.trt),0);
+  document.getElementById("film-count").textContent=rows.length+(rows.length===1?" film":" films")+", "+rows.at(-1).y+"–"+rows[0].y;
+  document.getElementById("film-trt").textContent="Combined running time "+fmt(total);
+}
+document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
+  render(b.dataset.f);
+}));
+render("all");
+</script>
+
+</body>
+</html>
