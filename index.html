@@ -66,6 +66,15 @@ nav a:hover{color:var(--ink)}
 .eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 1.2rem}
 h1.name{margin:0;line-height:0}
 h1.name img{width:100%;height:auto;display:block}
+h1.name .ttl{position:relative;display:block}
+h1.name .ttl .sp{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform,opacity}
+h1.name .ttl .lt{position:relative;z-index:1}
+.sp0{animation:spA 11s ease-in-out infinite alternate}
+.sp1{animation:spB 14s ease-in-out -4s infinite alternate}
+.sp2{animation:spC 9s ease-in-out -2s infinite alternate}
+@keyframes spA{0%{transform:translate3d(0,0,0) scale(1);opacity:.85;filter:hue-rotate(0deg)}50%{opacity:1}100%{transform:translate3d(.5%,-1.2%,0) scale(1.015);opacity:.9;filter:hue-rotate(-10deg)}}
+@keyframes spB{0%{transform:translate3d(0,0,0) rotate(0deg);opacity:1}100%{transform:translate3d(-.6%,1%,0) rotate(-.4deg) scale(1.01);opacity:.75;filter:hue-rotate(12deg)}}
+@keyframes spC{0%{transform:scale(.995);opacity:.8}60%{opacity:1}100%{transform:translate3d(.3%,.8%,0) scale(1.02);opacity:.88;filter:saturate(1.25)}}
 .t-dark{display:none!important}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .t-dark{display:block!important}:root:not([data-theme="light"]) .t-light{display:none!important}}
 :root[data-theme="dark"] .t-dark{display:block!important}:root[data-theme="dark"] .t-light{display:none!important}
@@ -394,7 +403,7 @@ main.inner section.block:has(> .bh){padding-top:0}
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Filmmaker · Poet · Mixed media artist</p>
-        <h1 class="name"><img class="t-light" src="img/title-splat.webp" alt="Lili Gu" width="1400" height="399"><img class="t-dark" src="img/title-splat-bright.webp" alt="Lili Gu" width="1400" height="399"></h1>
+        <h1 class="name"><span class="ttl"><img class="sp sp0 t-light" src="img/splat-0.webp" alt="" width="1400" height="399"><img class="sp sp0 t-dark" src="img/splat-0-bright.webp" alt="" width="1400" height="399"><img class="sp sp1 t-light" src="img/splat-1.webp" alt="" width="1400" height="399"><img class="sp sp1 t-dark" src="img/splat-1-bright.webp" alt="" width="1400" height="399"><img class="sp sp2 t-light" src="img/splat-2.webp" alt="" width="1400" height="399"><img class="sp sp2 t-dark" src="img/splat-2-bright.webp" alt="" width="1400" height="399"><img class="lt" src="img/title-letters.webp" alt="Lili Gu" width="1400" height="399"></span></h1>
       </div>
       <figure class="reel-embed">
         <div class="frame"><iframe src="https://player.vimeo.com/video/158287395?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><button class="dim" type="button" aria-label="Play the film reel"></button></div>
