@@ -60,7 +60,7 @@ nav a{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transfo
 nav a:hover{color:var(--ink)}
 
 /* hero */
-.hero{padding-block:clamp(2.5rem,6vw,5rem) clamp(1.5rem,3vw,2.5rem)}
+.hero{padding-block:clamp(1.5rem,4vw,3rem) clamp(1.5rem,3vw,2.5rem)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(2rem,5vw,4rem);row-gap:clamp(1.5rem,3vw,2.5rem);align-items:end}
 .hero-grid > div:first-child{grid-column:1 / -1}
 .eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 1.2rem}
@@ -87,6 +87,25 @@ h1.name .ttl.live .sp{visibility:hidden}
 .reel-embed .dim.gone{opacity:0;pointer-events:none}
 .reel-embed figcaption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:.8rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .reel-embed figcaption a{color:inherit}
+/* home stage: the LILI GU title card fades away and the reel takes over the same frame, playing silently */
+.stage{width:min(calc(100% - 32px),1600px,calc((100svh - 210px) * 16 / 9));min-width:min(calc(100% - 32px),1128px);margin-inline:auto}
+.screen{position:relative}
+.rl-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.4rem}
+.rl-ctl button{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem}
+.rl-ctl button:hover{color:var(--ink)}
+.rl-snd .pl{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
+.roll .reel-embed .dim{display:none}
+.stage:not(.roll) .reel-embed{margin-top:clamp(1.5rem,3vw,2.5rem)}
+.roll .screen h1.name{position:absolute;left:0;right:0;top:0;aspect-ratio:16 / 9;display:flex;align-items:center;z-index:2;pointer-events:none}
+.roll .screen h1.name .ttl{width:100%}
+.roll .reel-embed .frame{opacity:0;transform:scale(.965)}
+.roll .reel-embed figcaption{opacity:0}
+.rolled .screen h1.name{opacity:0;transition:opacity 1.6s ease}
+.rolled .screen h1.name .ttl{filter:blur(14px);transform:scale(1.08);transition:filter 1.8s ease,transform 2.2s cubic-bezier(.2,.7,.2,1)}
+.rolled .reel-embed .frame{opacity:1;transform:none;transition:opacity 1.8s ease .5s,transform 2.6s cubic-bezier(.2,.7,.2,1) .4s}
+.rolled .reel-embed figcaption{opacity:1;transition:opacity 1s ease 1.6s}
+.roll .reel-embed .frame iframe{pointer-events:none}
+.roll.sound .reel-embed .frame iframe{pointer-events:auto}
 
 /* scroll gradient: the page wash deepens as you scroll */
 html.fx::before,html.fx::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;transition:opacity .25s linear}
@@ -453,15 +472,15 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 <main id="main" class="home">
   <section class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Filmmaker · Poet · Mixed media artist</p>
+    <div class="stage">
+      <p class="eyebrow">Filmmaker · Poet · Mixed media artist</p>
+      <div class="screen">
         <h1 class="name"><span class="ttl"><img class="sp t-light" src="img/splat-all.webp" alt="" width="1400" height="399"><img class="sp t-dark" src="img/splat-all-bright.webp" alt="" width="1400" height="399"><img class="lt" src="img/title-letters.webp" alt="Lili Gu" width="1400" height="399"><span class="stars" aria-hidden="true"></span></span></h1>
+        <figure class="reel-embed">
+          <div class="frame"><iframe src="https://player.vimeo.com/video/158287395?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><button class="dim" type="button" aria-label="Play the film reel"></button></div>
+          <figcaption><span>Film reel</span><span class="rl-ctl"><button class="rl-snd" type="button" hidden><span class="pl" aria-hidden="true"></span>Play with sound</button><button class="rl-pz" type="button" aria-pressed="false" hidden>Pause</button><a href="https://vimeo.com/158287395" target="_blank" rel="noopener">Watch on Vimeo ↗</a></span></figcaption>
+        </figure>
       </div>
-      <figure class="reel-embed">
-        <div class="frame"><iframe src="https://player.vimeo.com/video/158287395?title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" title="Lili Gu film reel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><button class="dim" type="button" aria-label="Play the film reel"></button></div>
-        <figcaption><span>Film reel</span><span><a href="https://vimeo.com/158287395" target="_blank" rel="noopener">Watch on Vimeo ↗</a></span></figcaption>
-      </figure>
     </div>
   </section>
 
@@ -483,8 +502,22 @@ main.inner section.block:has(> .bh){padding-top:0}
 (function(){var m={film:"/film",brand:"/commercial",portfolio:"/commercial",other:"/other-work",about:"/about",press:"/press",contact:"/contact",films:"/film"};var h=location.hash.slice(1);if(m[h])location.replace(m[h]);})();
 </script>
 <script>
-(function(){var b=document.querySelector('.reel-embed .dim');if(!b)return;var f=document.querySelector('.reel-embed iframe');
-b.addEventListener('click',function(){b.classList.add('gone');try{f.contentWindow.postMessage(JSON.stringify({method:'play'}),'https://player.vimeo.com')}catch(e){}setTimeout(function(){b.remove()},400)});})();
+// home: title card, then the reel fades in and plays silently in the same frame; without motion it stays a click-to-play player under the title
+(function(){var st=document.querySelector('.stage');if(!st)return;var b=st.querySelector('.reel-embed .dim'),f=st.querySelector('.reel-embed iframe');
+var V='https://player.vimeo.com',ID='158287395';function send(m,v){try{f.contentWindow.postMessage(JSON.stringify(v===undefined?{method:m}:{method:m,value:v}),V)}catch(e){}}
+var calm=!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches||(navigator.connection&&navigator.connection.saveData);
+if(calm){b.addEventListener('click',function(){b.classList.add('gone');send('play');setTimeout(function(){b.remove()},400)});return}
+st.classList.add('roll');f.src=V+'/video/'+ID+'?background=1&dnt=1';f.title='Lili Gu film reel, playing silently';
+var snd=st.querySelector('.rl-snd'),pz=st.querySelector('.rl-pz');snd.hidden=pz.hidden=false;
+var t0=Date.now(),at=0,ready=false,paused=false,sound=false;
+function go(){if(ready&&!st.classList.contains('rolled'))setTimeout(function(){st.classList.add('rolled')},Math.max(0,3200-(Date.now()-t0)))}
+addEventListener('message',function(e){if(e.origin!==V||e.source!==f.contentWindow||sound)return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}if(!d)return;
+if(d.event==='ready'){send('addEventListener','timeupdate')}
+else if(d.event==='timeupdate'&&d.data){at=d.data.seconds;if(at>0.15&&!ready){ready=true;go()}}});
+pz.addEventListener('click',function(){paused=!paused;send(paused?'pause':'play');pz.textContent=paused?'Play':'Pause';pz.setAttribute('aria-pressed',paused)});
+snd.addEventListener('click',function(){sound=true;st.classList.add('rolled','sound');f.src=V+'/video/'+ID+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1#t='+Math.floor(at)+'s';f.title='Lili Gu film reel';snd.remove();pz.remove()});
+new IntersectionObserver(function(es){if(sound||paused)return;send(es[0].isIntersecting?'play':'pause')}).observe(st.querySelector('.screen'));
+})();
 </script>
 <script>
 (function(){
