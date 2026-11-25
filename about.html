@@ -583,12 +583,16 @@ function rnd(i){var x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
 function col(){var cs=getComputedStyle(document.documentElement);dc=cs.getPropertyValue('--dot').trim();var h=cs.getPropertyValue('--teal').trim().replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16);tc=[n>>16&255,n>>8&255,n&255];if(GRID){draw(0);return}var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
 function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);dots=[];var i=0;
 for(var y=GAP/2;y<H+GAP;y+=GAP)for(var x=GAP/2;x<W+GAP;x+=GAP){i++;var j=GRID?0:.8,hx=x+(rnd(i)-.5)*GAP*j,hy=y+(rnd(i+9)-.5)*GAP*j;
-dots.push({hx:hx,hy:hy,x:hx,y:hy,vx:0,vy:0,s:0,k:rnd(i+7),b:SP[(rnd(i+13)*SP.length)|0],rot:rnd(i+17)*6.283})}col();draw(0)}
-function draw(dt){ctx.clearRect(0,0,W,H);var moving=0,ok=sheet.complete&&sheet.naturalWidth,SW=sheet.naturalWidth,SH=sheet.naturalHeight;mx+=(tx-mx)*.35;my+=(ty-my)*.35;
+dots.push({hx:hx,hy:hy,x:hx,y:hy,vx:0,vy:0,s:0,e:0,vr:0,ph:rnd(i+21)*6.283,k:rnd(i+7),b:SP[(rnd(i+13)*SP.length)|0],rot:rnd(i+17)*6.283})}col();draw(0)}
+function draw(dt){ctx.clearRect(0,0,W,H);var moving=0,ok=sheet.complete&&sheet.naturalWidth,SW=sheet.naturalWidth,SH=sheet.naturalHeight;var pmx=mx,pmy=my;mx+=(tx-mx)*.35;my+=(ty-my)*.35;var cvx=dt&&pmx>-1e3?(mx-pmx)/dt:0,cvy=dt&&pmy>-1e3?(my-pmy)/dt:0,T=performance.now()/1000;
 for(var i=0;i<dots.length;i++){var d=dots[i],dx=d.x-mx,dy=d.y-my,dist=Math.sqrt(dx*dx+dy*dy)||1,f=dist<R?1-dist/R:0;
-if(f){var p=f*f*900*dt/dist;d.vx+=dx*p;d.vy+=dy*p}
-d.vx+=(d.hx-d.x)*60*dt;d.vy+=(d.hy-d.y)*60*dt;d.vx*=.86;d.vy*=.86;d.x+=d.vx*dt*10;d.y+=d.vy*dt*10;d.s+=(f-d.s)*.15;
-if(d.s>.01||Math.abs(d.vx)+Math.abs(d.vy)>.05)moving++;
+if(GRID){if(f){var p=f*f*900*dt/dist;d.vx+=dx*p;d.vy+=dy*p}d.vx+=(d.hx-d.x)*60*dt;d.vy+=(d.hy-d.y)*60*dt;d.vx*=.86;d.vy*=.86}
+else{// in water: a gentle push plus the cursor's wake, a slow pull home, little drag, and a wandering drift + spin that fade over a few seconds
+if(f){var p=f*f*420*dt/dist;d.vx+=dx*p+cvx*f*.06*dt*10;d.vy+=dy*p+cvy*f*.06*dt*10;d.e=Math.min(1,d.e+f*dt*4);d.vr+=(d.k-.5)*f*dt*6}
+d.e*=Math.exp(-dt/2.8);var w=d.e*d.e;d.vx+=Math.sin(T*1.1+d.ph)*w*9*dt;d.vy+=Math.cos(T*.8+d.ph*1.7)*w*9*dt;
+d.vx+=(d.hx-d.x)*5*dt;d.vy+=(d.hy-d.y)*5*dt;var drag=Math.exp(-dt*1.6);d.vx*=drag;d.vy*=drag;d.vr*=Math.exp(-dt*1.2);d.rot+=d.vr*dt}
+d.x+=d.vx*dt*10;d.y+=d.vy*dt*10;d.s+=(f-d.s)*(GRID?.15:.06);
+if(d.s>.01||d.e>.02||Math.abs(d.vx)+Math.abs(d.vy)>.05||Math.abs(d.vr)>.02)moving++;
 if(GRID){ctx.fillStyle=d.s>.08?'rgba('+tc[0]+','+tc[1]+','+tc[2]+','+(.35+d.s*.6).toFixed(2)+')':dc;ctx.beginPath();ctx.arc(d.x,d.y,1.3+d.s*4.2,0,6.283);ctx.fill();continue}
 if(!ok)continue;var b=d.b,sw=b[2]/100*SW,sh=b[3]/100*SH,sc=(4.5/Math.max(sw,sh))*(1+d.k*.8)*(1+d.s*2.2);
 ctx.save();ctx.globalAlpha=.28+d.s*.5;ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sc,sc);ctx.drawImage(sheet,b[0]/100*SW,b[1]/100*SH,sw,sh,-sw/2,-sh/2,sw,sh);ctx.restore()}
