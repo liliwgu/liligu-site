@@ -71,8 +71,8 @@ nav a:hover{color:var(--ink)}
 .dots-bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;display:block}
 /* faint paint splotches floating over the specks on every page but Commercial, twinkling slowly like the ones around LILI GU (Lili picked A at Middle, 2026-11-26) */
 .splotch-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.splotch-bg i{position:absolute;background-image:var(--sheet);background-repeat:no-repeat;opacity:var(--o);animation:spl var(--dur) ease-in-out var(--del) infinite;will-change:transform,opacity}
-@keyframes spl{0%,100%{opacity:calc(var(--o) * .45);transform:scale(.85) rotate(0deg)}45%{opacity:var(--o);transform:scale(1.08) rotate(var(--rot))}}
+.splotch-bg i{position:absolute;transform:var(--tf);background-image:var(--sheet);background-repeat:no-repeat;opacity:var(--o);animation:spl var(--dur) ease-in-out var(--del) infinite;will-change:transform,opacity}
+@keyframes spl{0%,100%{opacity:calc(var(--o) * .45);transform:var(--tf) scale(.85) rotate(0deg)}45%{opacity:var(--o);transform:var(--tf) scale(1.08) rotate(var(--rot))}}
 @media (prefers-reduced-motion:reduce){.splotch-bg i{animation:none}}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(2rem,5vw,4rem);row-gap:clamp(1.5rem,3vw,2.5rem);align-items:end}
 .hero-grid > div:first-child{grid-column:1 / -1}
@@ -683,11 +683,13 @@ new MutationObserver(col).observe(document.documentElement,{attributes:true,attr
 size();})();
 (function(){if(document.getElementById('brand'))return;var SPL=window.__SPL||[],HERO=[46,54,15,20,34,38,0,23,41,28],EXTRA=[36,6,33],home=!!document.querySelector('.hero .ttl'),T=(home?EXTRA:EXTRA.concat(HERO)).map(function(i){return SPL[i]}).filter(Boolean);if(!T.length)return;
 var L=document.createElement('div');L.className='splotch-bg';L.setAttribute('aria-hidden','true');var cv=document.querySelector('.dots-bg');document.body.insertBefore(L,cv?cv.nextSibling:document.body.firstChild);
-var lw=0;function build(){var W=innerWidth,H=innerHeight;if(W===lw)return;lw=W;L.innerHTML='';var sd=7*97;function r(){sd=(sd*16807)%2147483647;return (sd-1)/2147483646}
+// each page gets its own seed, so its splotches differ in size, turn, flip, stretch, and placement from every other page (Lili, 2026-11-26)
+var pg=(location.pathname.split('/').pop()||'index').replace(/\.html$/,'')||'index',ps=0;for(var c=0;c<pg.length;c++)ps=(ps*31+pg.charCodeAt(c))%2147483647;
+var lw=0;function build(){var W=innerWidth,H=innerHeight;if(W===lw)return;lw=W;L.innerHTML='';var sd=ps*7919%2147483646+1;function r(){sd=(sd*16807)%2147483647;return (sd-1)/2147483646}for(var k0=0;k0<5;k0++)r();
 var P=T.slice();for(var k=P.length-1;k>0;k--){var j=Math.floor(r()*(k+1)),tm=P[k];P[k]=P[j];P[j]=tm}var n=P.length;
 for(var i=0;i<n;i++){var b=P[i],sc=.9+r()*1.1,x=b[0]/100*1400,y=b[1]/100*423,w=b[2]/100*1400,h=b[3]/100*423,el=document.createElement('i');
 el.style.cssText='width:'+(w*sc).toFixed(1)+'px;height:'+(h*sc).toFixed(1)+'px;background-size:'+(1400*sc).toFixed(1)+'px '+(423*sc).toFixed(1)+'px;background-position:'+(-x*sc).toFixed(1)+'px '+(-y*sc).toFixed(1)+'px;left:'+(r()*(W-20)).toFixed(0)+'px;top:'+(r()*(H-20)).toFixed(0)+'px';
-el.style.setProperty('--o',((.1+r()*.12)*1.8).toFixed(3));el.style.setProperty('--rot',((r()-.5)*40).toFixed(1)+'deg');el.style.setProperty('--dur',(4+r()*6).toFixed(1)+'s');el.style.setProperty('--del',(-r()*40).toFixed(1)+'s');L.appendChild(el)}}
+el.style.setProperty('--tf','rotate('+(r()*360).toFixed(0)+'deg) scale('+((r()<.5?-1:1)*(.75+r()*.5)).toFixed(3)+','+((r()<.5?-1:1)*(.75+r()*.5)).toFixed(3)+')');el.style.setProperty('--o',((.1+r()*.12)*1.8).toFixed(3));el.style.setProperty('--rot',((r()-.5)*40).toFixed(1)+'deg');el.style.setProperty('--dur',(4+r()*6).toFixed(1)+'s');el.style.setProperty('--del',(-r()*40).toFixed(1)+'s');L.appendChild(el)}}
 var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(build,200)});build()})();
 var t=document.querySelector('h1.name'),tick=false;
 var divs=[].slice.call(document.querySelectorAll('section.block, footer'));
