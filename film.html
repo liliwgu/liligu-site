@@ -506,25 +506,16 @@ main.inner section.block:has(> .bh){padding-top:0}
 .pv-m .mv iframe.show{opacity:1}
 .pv-m .none{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#93a8b3}
 .pv-c{padding-top:.8rem}
-/* Film preview: make "click to watch" obvious (options a, b, c via ?watch=) */
+/* Film preview: make "click to watch" obvious (pill in the corner; titles open the video too) */
 .pv-go{position:absolute;z-index:3;white-space:nowrap;left:.6rem;bottom:.6rem;display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .7rem .38rem .45rem;border-radius:999px;background:rgba(6,20,28,.62);backdrop-filter:blur(4px);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .25s,transform .25s}
 .pv-go i{width:18px;height:18px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%2306141c'/%3E%3C/svg%3E") center/12px no-repeat}
 .pv-m:has(.mv.pop) .pv-go{opacity:1}
 .pv-m:has(.mv.pop){cursor:pointer}
 .pv-m{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
-[data-watch="a"] .pv-m:has(.mv.pop):hover{transform:scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-[data-watch="a"] .pv-m:has(.mv.pop):hover .pv-go{background:var(--teal);color:#06141c}
-[data-watch="b"] .pv-go{display:none}
-.ixr .tags .wt{display:none}
-[data-watch="b"] .ixr .tags .wt{display:inline;cursor:pointer;color:var(--teal)}
-[data-watch="b"] .ixr:has(.wt) .t a{cursor:pointer}
-[data-watch="c"] .pv-go{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%) scale(.9);opacity:0;font-size:.72rem;padding:.6rem 1rem .6rem .6rem}
-[data-watch="c"] .pv-go i{width:26px;height:26px;background-size:16px}
-[data-watch="c"] .pv-m:has(.mv.pop) .pv-go{opacity:.85}
-[data-watch="c"] .pv-m:has(.mv.pop):hover .pv-go{opacity:1;transform:translate(-50%,-50%) scale(1)}
-[data-watch="c"] .pv-m:has(.mv.pop):hover{transform:scale(1.08)}
-[data-watch="c"] .pv-m:has(.mv.pop)::before{content:"";position:absolute;inset:0;z-index:2;background:rgba(6,20,28,0);transition:background .3s;pointer-events:none}
-[data-watch="c"] .pv-m:has(.mv.pop):hover::before{background:rgba(6,20,28,.3)}
+.pv-m:has(.mv.pop):hover{transform:scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.pv-m:has(.mv.pop):hover .pv-go{background:var(--teal);color:#06141c}
+.ixr .tags .wt{display:inline;cursor:pointer;color:var(--teal)}
+.ixr:has(.wt) .t a{cursor:pointer}
 .mv.pop::after{display:none}
 
 .pv-c .role,.ixr .role{display:block;font-family:var(--body);font-style:italic;font-size:.95rem;color:var(--muted)}
@@ -684,7 +675,7 @@ function render(filter){
   const rows=FILMS.map((f,i)=>[f,i]).filter(([f])=>filter==="all"||f.f===filter);
   list.innerHTML=rows.map(([f,i])=>`<li class="ixr" data-i="${i}">
     <span class="yr">${f.y}</span>
-    <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr"> (opens Vimeo)</span></a>`:esc(f.t)}</span>
+    <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr">${f.v?" (plays video)":" (opens Vimeo)"}</span></a>`:esc(f.t)}</span>
     <span class="tags"><span>${f.f}</span>${f.hold?'<span class="hold">On hold</span>':`<span>TRT ${f.trt}</span>`}${f.v?'<span class="vm wt">▶ Watch</span>':""}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
     <span class="det">${f.hold?'<span class="note">On hold</span>':""}<span class="role">${esc(f.r)}</span>${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
   cur=null;show(list.firstElementChild);
@@ -705,8 +696,8 @@ const ix=list.parentNode;let px=-1,py=-1;addEventListener("mousemove",e=>{px=e.c
 function atPointer(){if(py<0)return;const q=pv.getBoundingClientRect();if(px>=q.left&&px<=q.right&&py>=q.top&&py<=q.bottom)return;const b=ix.getBoundingClientRect();if(px<b.left||px>b.right||py<b.top||py>b.bottom)return;for(const li of list.children){const r=li.getBoundingClientRect();if(py>=r.top&&py<r.bottom){show(li);return}}}
 let sq=false;addEventListener("scroll",()=>{if(!sq){sq=true;requestAnimationFrame(()=>{sq=false;atPointer()})}},{passive:true});
 pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.v&&window.lgVimeo)lgVimeo(f.v)});
-const WO=(new URLSearchParams(location.search).get("watch")||"a").toLowerCase();document.documentElement.dataset.watch=WO;
-if(WO==="b")list.addEventListener("click",e=>{const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v)}});
+// clicking a film's title (or its Watch tag) opens the video full screen here; cmd/ctrl-click still opens Vimeo
+list.addEventListener("click",e=>{const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v)}});
 addEventListener("resize",place);
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
