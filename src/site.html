@@ -371,7 +371,11 @@ footer .frow{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .reel-btn .pl{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
 .reel-btn:hover{background:var(--ink);color:var(--paper)!important}
 .reel-pop{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:min(92vw,1400px,calc((100vh - 110px) * 16 / 9))}
-.reel-pop::backdrop{background:rgba(3,9,13,.9)}
+.reel-pop::backdrop{background:transparent}
+.rp-scrim{position:fixed;inset:0;background:rgba(3,9,13,.9)}
+.fx-l{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.speck{position:absolute;left:0;top:0;border-radius:50%;background:var(--cyan);will-change:transform,opacity}
+.lifted img,.lifted iframe,.lifted .play,.lifted .pl{opacity:0}
 .rp-in{position:relative;padding-top:2.8rem}
 .rp-frame{aspect-ratio:16/9;background:#000}
 .rp-frame iframe{width:100%;height:100%;border:0;display:block}
