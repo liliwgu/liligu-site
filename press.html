@@ -9,6 +9,14 @@
 <meta property="og:description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
 <meta property="og:image" content="https://www.liligu.com/img/wdjmid.jpg">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script data-theme-switch>
+// light/dark switch: a visitor's pick is remembered and applied before the page paints; with no pick the site follows the device setting (Lili picked A, 2026-11-26)
+(function(){var R=document.documentElement,K='lg-theme',M=matchMedia('(prefers-color-scheme: dark)');try{var v=localStorage.getItem(K);if(v==='light'||v==='dark')R.setAttribute('data-theme',v)}catch(e){}
+function cur(){return R.getAttribute('data-theme')||(M.matches?'dark':'light')}
+function lab(){var n=cur()==='dark'?'light':'dark';document.querySelectorAll('.th-drop').forEach(function(b){b.setAttribute('aria-label','Switch to '+n+' mode')})}
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.th-drop');if(!b)return;var n=cur()==='dark'?'light':'dark';R.setAttribute('data-theme',n);try{localStorage.setItem(K,n)}catch(x){}lab()});
+document.addEventListener('DOMContentLoaded',lab);M.addEventListener('change',lab)})();
+</script>
 <title>Press & readings · Lili Gu</title>
 <meta name="description" content="Lili Gu is a West Coast-based filmmaker, poet, and aspiring mixed media artist.">
 <link rel="preconnect" href="https://player.vimeo.com"><link rel="preconnect" href="https://i.vimeocdn.com"><link rel="preconnect" href="https://f.vimeocdn.com">
@@ -397,6 +405,14 @@ body:has(#brand) .dv::before,body:has(#brand) .dv .dots{display:none}
 .reel-btn{display:inline-flex;align-items:center;gap:.45rem;color:var(--ink)!important;border:1px solid currentColor;border-radius:999px;padding:.32rem .8rem .32rem .65rem;margin-top:-.32rem}
 .reel-btn .pl{width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
 .reel-btn:hover{background:var(--ink);color:var(--paper)!important}
+/* light/dark switch: a round watercolor drop, half painted in light mode, flooded with paint in dark mode */
+.th-drop{all:unset;box-sizing:border-box;display:block;width:28px;height:28px;border-radius:50%;border:1px solid var(--ink);position:relative;overflow:hidden;cursor:pointer}
+.th-drop::before{content:"";position:absolute;inset:-2px;background:url(img/wc-fill.webp) 30% 50%/300% 100%;clip-path:inset(0 50% 0 0);transition:clip-path .5s cubic-bezier(.3,.7,.2,1)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .th-drop::before{clip-path:inset(0)}}
+:root[data-theme="dark"] .th-drop::before{clip-path:inset(0)}
+.th-drop:hover::before{filter:saturate(1.3)}
+.th-drop:focus-visible{outline:2px solid var(--teal,#0a8f9c);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.th-drop::before{transition:none}}
 .reel-pop{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:min(92vw,1400px,calc((100vh - 110px) * 16 / 9))}
 .reel-pop::backdrop{background:transparent}
 .rp-scrim{position:fixed;inset:0;background:rgba(3,9,13,.9)}
@@ -614,6 +630,7 @@ main.inner section.block:has(> .bh){padding-top:0}
         <li><a href="/press" aria-current="page">Press</a></li>
         <li><a href="/contact">Contact</a></li>
         <li class="reel-li"><a class="reel-btn" href="https://vimeo.com/158287395" data-reel aria-haspopup="dialog"><span class="pl" aria-hidden="true"></span>Reel</a></li>
+        <li class="th-li"><button class="th-drop" type="button" aria-label="Switch to dark mode" title="Light or dark"></button></li>
       </ul>
     </nav>
   </div>

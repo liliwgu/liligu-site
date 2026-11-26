@@ -36,6 +36,7 @@ def nav(current):
       <ul>
 {items}
         <li class="reel-li"><a class="reel-btn" href="https://vimeo.com/158287395" data-reel aria-haspopup="dialog"><span class="pl" aria-hidden="true"></span>Reel</a></li>
+        <li class="th-li"><button class="th-drop" type="button" aria-label="Switch to dark mode" title="Light or dark"></button></li>
       </ul>
     </nav>
   </div>
