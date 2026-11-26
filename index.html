@@ -431,7 +431,11 @@ main.inner section.block:has(> .bh){padding-top:0}
 .bh-w.sweep,.sec-head h2.sweep{color:transparent;-webkit-background-clip:text;background-clip:text;background-repeat:no-repeat;background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;background-position:100% 0,0 0}
 .sec-head h2.sweep.filled{-webkit-text-stroke:0}
 #brand .bh-w.sweep{background-image:linear-gradient(100deg,#1d6fd6 0%,#27b6e8 16%,#30e0c4 30%,#f2f6f7 40%,#f2f6f7 100%);background-size:300% 100%}
-.sec-head h2.sweep{-webkit-text-stroke:1px var(--hstroke);padding-bottom:.08em;transition:background-position 2.2s cubic-bezier(.35,.55,.2,1) .4s}
+.sec-head h2.sweep{padding-bottom:.08em;transition:background-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,-webkit-mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s}
+/* light mode: no outline and nothing under the fill, so About Lili and Press & readings paint in as the watercolor edge crosses them (Lili picked A, 2026-11-26) */
+.sec-head h2.sweep{background-image:url(img/wc-fill.webp);background-size:100% 100%;-webkit-mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%;mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}}
+:root[data-theme="dark"] .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}
 .ix ul.laurels.blur li{opacity:0;filter:blur(6px);transition:opacity .6s ease,filter .8s ease;transition-delay:calc(var(--i,0)*50ms)}
 .ix ul.laurels.blur.in li{opacity:1;filter:none}
 .ix ul.laurels.blur.out li{opacity:0;filter:blur(6px);transition-duration:.22s;transition-delay:0s}
@@ -657,7 +661,7 @@ dv.appendChild(bar);dv.appendChild(dots);dv.classList.add('live')});
 })();
 (function(){var ws=[].slice.call(document.querySelectorAll('.bh-w')),hs=[].slice.call(document.querySelectorAll('#about-h,#press-h'));if(!ws.length&&!hs.length)return;
 var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});hs.forEach(function(h){h.classList.add('sweep')});
-function pos(w,p){w.style.backgroundPosition=(100-p*100).toFixed(2)+'% 0,0 0'}
+function pos(w,p){var x=(100-p*100).toFixed(2)+'% 0';w.style.backgroundPosition=x+',0 0';w.style.webkitMaskPosition=w.style.maskPosition=x}
 function f(){ws.forEach(function(w){var h=w.parentNode.getBoundingClientRect();pos(w,calm?1:Math.max(0,Math.min(1,-h.top/(h.height*.55))))});}
 hs.forEach(function(h){pos(h,0);void h.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(function(){pos(h,1);setTimeout(function(){h.classList.add('filled')},calm?0:2600)})})});
 var q=false;addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(function(){q=false;f()})}},{passive:true});addEventListener('resize',f);f();})();
