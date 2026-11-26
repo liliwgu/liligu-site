@@ -509,6 +509,18 @@ main.inner section.block:has(> .bh){padding-top:0}
 .pv-m .mv iframe.show{opacity:1}
 .pv-m .none{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#93a8b3}
 .pv-c{padding-top:.8rem}
+/* Film preview: make "click to watch" obvious (pill in the corner; titles open the video too) */
+.pv-go{position:absolute;z-index:3;white-space:nowrap;left:.6rem;bottom:.6rem;display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .7rem .38rem .45rem;border-radius:999px;background:rgba(6,20,28,.62);backdrop-filter:blur(4px);color:#fff;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .25s,transform .25s}
+.pv-go i{width:18px;height:18px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%2306141c'/%3E%3C/svg%3E") center/12px no-repeat}
+.pv-m:has(.mv.pop) .pv-go{opacity:1}
+.pv-m:has(.mv.pop){cursor:pointer}
+.pv-m{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.pv-m:has(.mv.pop):hover{transform:scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.pv-m:has(.mv.pop):hover .pv-go{background:var(--teal);color:#06141c}
+.ixr .tags .wt{display:inline;cursor:pointer;color:var(--teal)}
+.ixr:has(.wt) .t a{cursor:pointer}
+.mv.pop::after{display:none}
+
 .pv-c .role,.ixr .role{display:block;font-family:var(--body);font-style:italic;font-size:.95rem;color:var(--muted)}
 .ix ul.laurels{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
