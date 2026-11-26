@@ -17,7 +17,7 @@ scripts = re.findall(r'<script>.*?</script>\n', src, re.S)
 film_js, reel_js, fx_js, vid_js = scripts[0], scripts[1], scripts[2], scripts[3]
 
 PAGES = [  # slug, section id, nav label, page title, tile image, tile alt
-    ("film", "film", "Film", "Film & video", "haircut.jpg", "An older man in glasses peers through a green gate behind leaves"),
+    ("film", "film", "Film", "Film & video", "haircut.jpg", "Two people stand on a hilltop trail overlooking a wide valley and distant mountains"),
     ("commercial", "brand", "Commercial", "Commercial & branded", "b-microsoft.jpg", None),
     ("other-work", "other", "Other work", "Other work", "dontgiveup.jpg", None),
     ("about", "about", "About", "About", "portrait.jpg", None),

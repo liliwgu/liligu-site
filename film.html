@@ -522,6 +522,8 @@ main.inner section.block:has(> .bh){padding-top:0}
 .mv.pop::after{display:none}
 
 .pv-c .role,.ixr .role{display:block;font-family:var(--body);font-style:italic;font-size:.95rem;color:var(--muted)}
+.ix .spec{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted);margin-top:.15rem}
+.ix .desc{display:block;font-family:var(--body);font-size:.9rem;line-height:1.45;margin-top:.45rem}
 .ix ul.laurels{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
 .ix ul.laurels li::before{content:"";position:absolute;left:0;top:.45em;width:.5rem;height:.5rem;border-radius:50%;background:linear-gradient(135deg,var(--wash1),var(--wash2))}
@@ -615,7 +617,7 @@ main.inner section.block:has(> .bh){padding-top:0}
       <h2 class="bh-w" id="film-h" style="--fs:44vw">Film<span class="sr"> &amp; video</span></h2>
     </header>
     <div class="cbs">
-      <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/haircut.jpg" alt="An older man in glasses peers through a green gate behind leaves" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>HAIRCUT</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
+      <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/haircut.jpg" alt="Two people stand on a hilltop trail overlooking a wide valley and distant mountains" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>HAIRCUT</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
       <article class="cb r"><div class="cb-m"><div class="mv"><img src="img/lovedoc.jpg" alt="An older woman with gray hair resting her head on a pillow" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>LOVE DOC</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
     </div>
     <div class="wrap">
@@ -646,6 +648,7 @@ const FILMS=[
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
   {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655",v:"445467655",vt:150},
   {y:"—",t:"The Sky Is Red",img:"skyisred",f:"Documentary",hold:1,r:"Producer, Writer, Director",u:"https://vimeo.com/305896047",v:"305896047",vt:10},
+  {y:2017,t:"Sadness and Other Self Portraits",img:"sadness",f:"Experimental",g:"Experimental documentary",sz:"480p/1080p/4K",md:"live action digital film",d:"Still from Sadness and Other Self Portraits, an ongoing experimental documentary project. The artist films herself crying – out of joy, out of sorrow – over two decades. We experience the passage of time through the artist’s aging face and changes in camera and lens choice. This is a process piece, though I would love it to end up a sketch of an entire lifetime lived in a very short time."},
   {y:2016,t:"Experiment",img:"experiment",f:"Experimental",trt:"3:30",r:"Producer, Writer, Director, Editor",u:"https://vimeo.com/246539799",v:"246539799",vt:15,l:[
     "Finalist, Sight of Sound International Film Competition (2016)",
     "Featured on the Dallas-area PBS television show Frame of Mind (2016)",
@@ -701,8 +704,8 @@ function render(filter){
   list.innerHTML=rows.map(([f,i])=>`<li class="ixr" data-i="${i}">
     <span class="yr">${f.y}</span>
     <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr">${f.v?" (plays video)":" (opens Vimeo)"}</span></a>`:esc(f.t)}</span>
-    <span class="tags"><span>${f.f}</span>${f.hold?'<span class="hold">On hold</span>':`<span>TRT ${f.trt}</span>`}${f.v?'<span class="vm wt">▶ Watch</span>':""}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
-    <span class="det">${f.hold?'<span class="note">On hold</span>':""}<span class="role">${esc(f.r)}</span>${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
+    <span class="tags"><span>${f.g||f.f}</span>${f.hold?'<span class="hold">On hold</span>':f.trt?`<span>TRT ${f.trt}</span>`:""}${f.v?'<span class="vm wt">▶ Watch</span>':""}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
+    <span class="det">${f.hold?'<span class="note">On hold</span>':""}${f.r?`<span class="role">${esc(f.r)}</span>`:""}${f.sz||f.md?`<span class="spec">${[f.sz,f.md].filter(Boolean).map(esc).join(" · ")}</span>`:""}${f.d?`<span class="desc">${esc(f.d)}</span>`:""}${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
   cur=null;show(list.firstElementChild);
 }
 // hover intent: while the pointer is heading for the preview, rows it crosses on the way don't take over
