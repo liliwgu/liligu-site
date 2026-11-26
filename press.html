@@ -621,7 +621,7 @@ var q=false;addEventListener('scroll',function(){if(!q){q=true;requestAnimationF
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
-var sel=['.sec-head','.cb-c > *','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.logos','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
+var sel=['.sec-head','.cb-c > *','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.logos','.about .bio > *','.honors','.statement > *','.press > li','.socials > li','.tile'];
 var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,3)*0.04)+'s');els.push(el)})});
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px 8% 0px',threshold:0});
 els.forEach(function(el){io.observe(el)});
