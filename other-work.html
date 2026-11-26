@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://player.vimeo.com"><link rel="preconnect" href="https://i.vimeocdn.com"><link rel="preconnect" href="https://f.vimeocdn.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Outfit:wght@800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a single scrolling "program" — watercolor title card, now-showing works, a filmography set like end credits with real runtimes, then about / press / contact. */
 :root{
@@ -134,7 +134,9 @@ html.fx::after{background:radial-gradient(120% 70% at 50% 110%,rgba(48,224,196,.
 :root[data-theme="dark"].fx::after{background:radial-gradient(120% 70% at 50% 110%,rgba(48,224,196,.26),rgba(48,224,196,0) 70%)}
 
 /* multi-page */
-.mark{margin-right:auto;display:block;line-height:0}.mark img{height:clamp(30px,4.2vw,40px);width:auto}.mark:hover img{opacity:.8}
+.mark{margin-right:auto;display:block;line-height:0}.mark img{height:clamp(30px,4.2vw,40px);width:auto}.mark:hover img,.mark:focus-visible img{animation:markhue 3.2s ease-in-out infinite alternate}
+@keyframes markhue{0%{filter:hue-rotate(0)}50%{filter:hue-rotate(-38deg) saturate(1.2)}100%{filter:hue-rotate(34deg) saturate(1.2)}}
+@media (prefers-reduced-motion: reduce){.mark:hover img,.mark:focus-visible img{animation:none;opacity:.8}}
 main.inner{min-height:calc(100vh - 220px)}
 main.inner section.block:first-child{padding-top:clamp(2rem,5vw,3.5rem)}
 nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--teal);text-decoration-thickness:2px;text-underline-offset:6px}
@@ -414,6 +416,32 @@ main.inner section.block:has(> .bh){padding-top:0}
 @keyframes wash{from{transform:translate3d(-4%,-3%,0) rotate(0deg) scale(1)}to{transform:translate3d(5%,4%,0) rotate(14deg) scale(1.12)}}
 .bh .mv{filter:grayscale(.3) brightness(.7)}
 .bh .mv.wash{filter:none}
+
+/* 2026-11-26 picks (Lili): painted page titles, watercolor sweep in the big words, awards blur into focus, even logo spacing, IG-style video hover, Egg of the Day wall */
+.sec-head.dvh h2{background:linear-gradient(95deg,#00b9f2 0%,#00cfe0 45%,#22e3c3 100%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.08em}
+.bh-w.sweep{color:transparent;-webkit-background-clip:text;background-clip:text;background-repeat:no-repeat;background-image:linear-gradient(100deg,#1d6fd6 0%,#27b6e8 16%,#30e0c4 30%,#f2f6f7 40%,#f2f6f7 100%);background-size:300% 100%;background-position:100% 0}
+.ix ul.laurels.blur li{opacity:0;filter:blur(6px);transition:opacity .6s ease,filter .8s ease;transition-delay:calc(var(--i,0)*50ms)}
+.ix ul.laurels.blur.in li{opacity:1;filter:none}
+.ix ul.laurels.blur.out li{opacity:0;filter:blur(6px);transition-duration:.22s;transition-delay:0s}
+#brand .logos{margin-bottom:2.9rem}#brand .logos > .dvh.sm{margin-bottom:2.8rem}
+@media (hover:hover){
+  #brand .cs-strip{padding-top:.8rem;margin-top:-.8rem}
+  #brand .cs-strip .photo,#brand :is(.bgrid .work,.cs-hero,.cs-grid .work) .photo{transition:transform .5s cubic-bezier(.2,.75,.2,1),box-shadow .5s}
+  #brand .photo img{transition:transform 1.2s cubic-bezier(.2,.75,.2,1)}
+  #brand .cs-strip .work:hover .photo{transform:translateY(-.5rem) rotate(-1deg);box-shadow:0 22px 40px -18px rgba(5,20,30,.6)}
+  #brand .cs-strip .work:nth-child(even):hover .photo{transform:translateY(-.5rem) rotate(1deg)}
+  #brand .cs-strip .work:hover .photo img{transform:scale(1.06)}
+  #brand :is(.bgrid .work,.cs-grid .work) .photo:hover,#brand .cs-hero .photo:hover{transform:translateY(-6px);box-shadow:0 30px 60px -28px rgba(5,20,30,.6)}
+  #brand :is(.bgrid .work,.cs-grid .work,.cs-hero) .photo:hover img{transform:scale(1.03)}
+}
+.mv.eggs{background:#0b151d}
+.mv.eggs .ew{position:absolute;inset:-40% -10% auto;display:grid;grid-template-columns:repeat(6,1fr);transform:rotate(-8deg);animation:eggs 60s linear infinite}
+.mv.eggs .ew i{aspect-ratio:1;padding:3px;background-origin:content-box;background-clip:content-box;background-size:cover;background-position:center}
+.mv.eggs .ew i:nth-child(5n+1){background-image:url(img/eggtop-1.jpg)}.mv.eggs .ew i:nth-child(5n+2){background-image:url(img/eggtop-2.jpg)}.mv.eggs .ew i:nth-child(5n+3){background-image:url(img/eggtop-3.jpg)}.mv.eggs .ew i:nth-child(5n+4){background-image:url(img/eggtop-4.jpg)}.mv.eggs .ew i:nth-child(5n){background-image:url(img/eggtop-5.jpg)}
+.mv.eggs::after{content:"";position:absolute;inset:0;background:rgba(5,12,17,.22)}
+.bh .mv.eggs{filter:none}
+@keyframes eggs{from{transform:rotate(-8deg) translateY(0)}to{transform:rotate(-8deg) translateY(-33.3333%)}}
+@media (prefers-reduced-motion: reduce){.mv.eggs .ew{animation:none}}
 .bh .mv iframe{transform:translate(-50%,-50%) scale(1.03)}
 .mv.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 /* small clips pop out bigger on click */
@@ -421,7 +449,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .mv.pop::after{content:"";position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(6,20,28,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23fff'/%3E%3C/svg%3E") center/30px no-repeat;backdrop-filter:blur(4px);opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
 .mv.pop:hover::after,.mv.pop:focus-visible::after{opacity:1;transform:none}
 .bh::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,17,.5),transparent 50%);pointer-events:none}
-.bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:"Outfit",var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
+.bh-w{position:absolute;z-index:1;left:max(6px,.6vw);right:0;bottom:-.19em;margin:0;font-family:var(--display);font-weight:800;font-size:var(--fs,30vw);line-height:.8;letter-spacing:-.045em;white-space:nowrap;color:#f2f6f7;text-wrap:nowrap}
 .bh-l{position:absolute;z-index:1;top:clamp(1.2rem,4vw,2.4rem);margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.65;color:#e9f3f5}
 .bh-l1{left:max(16px,4vw)} .bh-l2{right:max(16px,4vw);text-align:right}
 .cbs{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4.5rem)}
@@ -528,10 +556,10 @@ main.inner section.block:has(> .bh){padding-top:0}
 <main id="main" class="inner">
   <section class="block" id="other" aria-labelledby="other-h">
     <header class="bh">
-      <div class="mv wash"></div>
+      <div class="mv eggs" aria-hidden="true"><div class="ew"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
       <p class="bh-l bh-l1">Clay<br>Poetry<br>Photography</p>
       <p class="bh-l bh-l2">A place for my<br>weird little projects</p>
-      <h2 class="bh-w" id="other-h" style="--fs:20vw">Other work</h2>
+      <h2 class="bh-w" id="other-h" style="--fs:21vw">Other work</h2>
     </header>
     <div class="cbs">
       <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/dontgiveup.jpg" alt="A ceramic mug glazed in coral and blue drips, stamped DON’T GIVE UP" loading="lazy" width="1000" height="1000"></div></div><div class="cb-c"><span class="pill">Clay</span><h3>Don’t Give Up</h3><p class="meta">2024</p><p class="n">Discarded clay trimmings, tears, underglaze, glaze</p></div></article>
@@ -579,12 +607,10 @@ s.setProperty('--dur',dur.toFixed(2)+'s');s.setProperty('--del',(-r()*dur).toFix
 s.setProperty('--r1',((r()-.5)*40*f).toFixed(0)+'deg');s.setProperty('--r2',((r()-.5)*70*f).toFixed(0)+'deg');dots.appendChild(el)});
 dv.appendChild(bar);dv.appendChild(dots);dv.classList.add('live')});
 })();
-// big opener words: Outfit with its corners rounded like the LILI GU lettering (blur + alpha threshold, radius scales with the font size)
-(function(){var ws=document.querySelectorAll('.bh-w');if(!ws.length)return;var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');
-svg.setAttribute('width','0');svg.setAttribute('height','0');svg.setAttribute('aria-hidden','true');svg.style.position='absolute';document.body.appendChild(svg);
-function go(){svg.innerHTML='';ws.forEach(function(el,i){var fs=parseFloat(getComputedStyle(el).fontSize),id='rnd'+i;
-svg.insertAdjacentHTML('beforeend','<filter id="'+id+'" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur in="SourceGraphic" stdDeviation="'+(fs*.011).toFixed(2)+'"/><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10"/></filter>');el.style.filter='url(#'+id+')'})}
-(document.fonts&&document.fonts.ready||Promise.resolve()).then(go);var t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(go,200)});})();
+(function(){var ws=[].filter.call(document.querySelectorAll('.bh-w'),function(w){return w});if(!ws.length)return;
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});
+function f(){ws.forEach(function(w){var h=w.parentNode.getBoundingClientRect(),p=calm?1:Math.max(0,Math.min(1,-h.top/(h.height*.55)));w.style.backgroundPosition=(100-p*100).toFixed(2)+'% 0'})}
+var q=false;addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(function(){q=false;f()})}},{passive:true});addEventListener('resize',f);f();})();
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
