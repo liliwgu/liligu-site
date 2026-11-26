@@ -951,7 +951,7 @@ el.style.cssText='left:'+(b[5]!=null?b[5]:x)+'%;top:'+(b[6]!=null?b[6]:y)+'%;wid
 var hero=document.querySelector('section.hero'),ttl=document.querySelector('h1.name .ttl');
 if(hero&&ttl){var lay=document.createElement('div');lay.className='hero-specks';lay.setAttribute('aria-hidden','true');hero.insertBefore(lay,hero.firstChild);
 var calm=matchMedia('(prefers-reduced-motion: reduce)').matches,items=[];
-var list=S.title.map(function(b){return {b:b,sc:1}}).concat(S.title.filter(function(b){return b[4]>8}).map(function(b){return {b:b,sc:.75}}));
+var list=S.title.map(function(b){return {b:b,sc:1}});
 function build(){lay.innerHTML='';items=[];seed=11;var W=lay.offsetWidth,H=innerHeight,tr=ttl.getBoundingClientRect(),lr=lay.getBoundingClientRect(),TW=tr.width||W*.9;
 var tx0=tr.left-lr.left,ty0=tr.top-lr.top,tx1=tx0+tr.width,ty1=ty0+tr.height;
 list.forEach(function(it){var b=it.b,big=b[4]>200,sc=1.3*it.sc*(big?1.15:.85+r()*.6),w=b[2]/100*TW*sc,h=b[3]/100*TW*423/1400*sc,x,y,n=0;
