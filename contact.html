@@ -434,8 +434,11 @@ main.inner section.block:has(> .bh){padding-top:0}
 .sec-head h2.sweep{padding-bottom:.08em;transition:background-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,-webkit-mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s}
 /* light mode: no outline and nothing under the fill, so About Lili and Press & readings paint in as the watercolor edge crosses them (Lili picked A, 2026-11-26) */
 .sec-head h2.sweep{background-image:url(img/wc-fill.webp);background-size:100% 100%;-webkit-mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%;mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}}
-:root[data-theme="dark"] .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}
+/* the title shows right away in ink (light ink in dark mode), then the watercolor sweeps over it and the ink fades out underneath (Lili picked A, 2026-11-26) */
+.sec-head .tw{display:inline-grid}
+.sec-head .tw > *{grid-area:1/1}
+.sec-head .ink-u{color:var(--ink);pointer-events:none;user-select:none;transition:opacity .5s}
+.sec-head .tw.done .ink-u{opacity:0}
 .ix ul.laurels.blur li{opacity:0;filter:blur(6px);transition:opacity .6s ease,filter .8s ease;transition-delay:calc(var(--i,0)*50ms)}
 .ix ul.laurels.blur.in li{opacity:1;filter:none}
 .ix ul.laurels.blur.out li{opacity:0;filter:blur(6px);transition-duration:.22s;transition-delay:0s}
@@ -632,10 +635,10 @@ s.setProperty('--r1',((r()-.5)*40*f).toFixed(0)+'deg');s.setProperty('--r2',((r(
 dv.appendChild(bar);dv.appendChild(dots);dv.classList.add('live')});
 })();
 (function(){var ws=[].slice.call(document.querySelectorAll('.bh-w')),hs=[].slice.call(document.querySelectorAll('#about-h,#press-h'));if(!ws.length&&!hs.length)return;
-var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});hs.forEach(function(h){h.classList.add('sweep')});
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});hs.forEach(function(h){h.classList.add('sweep');var w=document.createElement('span'),k=document.createElement('span'),c=getComputedStyle(h);w.className='tw';k.className='ink-u';k.setAttribute('aria-hidden','true');k.textContent=h.textContent;['font','letterSpacing','lineHeight','paddingBottom','margin','textTransform'].forEach(function(p){k.style[p]=c[p]});h.parentNode.insertBefore(w,h);w.appendChild(k);w.appendChild(h)});
 function pos(w,p){var x=(100-p*100).toFixed(2)+'% 0';w.style.backgroundPosition=x+',0 0';w.style.webkitMaskPosition=w.style.maskPosition=x}
 function f(){ws.forEach(function(w){var h=w.parentNode.getBoundingClientRect();pos(w,calm?1:Math.max(0,Math.min(1,-h.top/(h.height*.55))))});}
-hs.forEach(function(h){pos(h,0);void h.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(function(){pos(h,1);setTimeout(function(){h.classList.add('filled')},calm?0:2600)})})});
+hs.forEach(function(h){pos(h,0);void h.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(function(){pos(h,1);setTimeout(function(){h.classList.add('filled');h.parentNode.classList.add('done')},calm?0:2600)})})});
 var q=false;addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(function(){q=false;f()})}},{passive:true});addEventListener('resize',f);f();})();
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
