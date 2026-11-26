@@ -436,6 +436,10 @@ main.inner section.block:has(> .bh){padding-top:0}
 .sec-head h2.sweep{background-image:url(img/wc-fill.webp);background-size:100% 100%;-webkit-mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%;mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%}
 /* the title shows right away in ink (light ink in dark mode), then the watercolor sweeps over it and the ink fades out underneath (Lili picked A, 2026-11-26) */
 .sec-head .tw{display:inline-grid}
+/* small mono aside in the upper right of a plain section head, like the .bh-l2 labels on the photo headers */
+.sec-head.has-note{position:relative;padding-right:min(12rem,30vw)}
+.sec-note{position:absolute;top:0;right:0;margin:0;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;line-height:1.65;text-align:right;color:var(--muted)}
+@media (max-width:760px){.sec-note{font-size:.64rem}}
 .sec-head .tw > *{grid-area:1/1}
 .sec-head .ink-u{color:var(--ink);pointer-events:none;user-select:none;transition:opacity .5s}
 .sec-head .tw.done .ink-u{opacity:0}
@@ -618,7 +622,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 <main id="main" class="inner">
   <section class="block" id="press" aria-labelledby="press-h">
     <div class="wrap">
-      <div class="sec-head"><h2 id="press-h">Press &amp; readings</h2></div>
+      <div class="sec-head has-note"><h2 id="press-h">Press &amp; readings</h2><p class="sec-note">Honestly<br>very random</p></div>
       <ul class="press">
         <li><a href="https://hugohouse.org/event/2022-23-hugo-fellows-final-reading_2023-05-18/" target="_blank" rel="noopener"><span class="d">05/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows final reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
         <li><a href="https://hugohouse.org/event/hugo-fellows-mid-year-reading_2023-02-02/" target="_blank" rel="noopener"><span class="d">02/2023</span><span class="o">Hugo House<span class="k">Hugo Fellows mid-year reading</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
