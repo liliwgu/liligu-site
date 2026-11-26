@@ -393,6 +393,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .bh .mv{filter:grayscale(.3) brightness(.7)}
 .bh .mv.wash{filter:none}
 .bh .mv iframe{transform:translate(-50%,-50%) scale(1.03)}
+.mv.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 /* small clips pop out bigger on click */
 .mv.pop{cursor:pointer}
 .mv.pop::after{content:"";position:absolute;z-index:2;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:rgba(6,20,28,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23fff'/%3E%3C/svg%3E") center/30px no-repeat;backdrop-filter:blur(4px);opacity:0;transform:scale(.85);transition:opacity .25s,transform .25s}
@@ -499,7 +500,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 <main id="main" class="inner">
   <section class="block" id="brand" aria-labelledby="brand-h">
     <header class="bh">
-      <div class="mv" data-v="863710506" data-t="9"><img src="img/trek-bike.jpg" alt="" width="1280" height="678"></div>
+      <div class="mv hv"><video autoplay muted loop playsinline preload="auto" poster="img/hdr-commercial.jpg" aria-hidden="true"><source src="media/hdr-commercial.webm" type="video/webm"><source src="media/hdr-commercial.mp4" type="video/mp4"></video></div>
       <p class="bh-l bh-l1">Brand stories<br>Launches<br>Web &amp; social</p>
       <p class="bh-l bh-l2">Commercial<br>&amp; branded</p>
       <h2 class="bh-w" id="brand-h" style="--fs:18.9vw">Commercial<span class="sr"> &amp; branded</span></h2>
@@ -1013,6 +1014,8 @@ document.querySelectorAll('.mv[data-v]').forEach(function(m){if(!m.closest('.bh'
 window.addEventListener('message',function(e){if(e.origin!=='https://player.vimeo.com')return;var d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
 if(!d||(d.event!=='timeupdate'&&d.event!=='play'))return;document.querySelectorAll('.mv[data-v] iframe').forEach(function(f){if(f.contentWindow!==e.source)return;var m=f.parentNode;if(d.event==='timeupdate'&&d.data&&d.data.seconds>(+m.dataset.t||0)+.05)m.classList.add('on');if(d.event!=='timeupdate'||!m.dataset.e||!d.data)return;if(d.data.seconds>=+m.dataset.e||d.data.seconds<(+m.dataset.t||0)-0.5)f.contentWindow.postMessage(JSON.stringify({method:'setCurrentTime',value:+m.dataset.t||0}),'https://player.vimeo.com')})});
 })();
+// self-hosted header loops: hold still when motion is reduced
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('.mv.hv video').forEach(function(v){v.removeAttribute('autoplay');v.pause()});
 // small clips: click (or Enter) opens the full video, bigger and with sound
 document.querySelectorAll('.mv[data-v]').forEach(function(m){if(m.closest('.bh')||m.classList.contains('lw-scan'))return;
 m.classList.add('pop');m.tabIndex=0;m.setAttribute('role','button');m.setAttribute('aria-label','Play the video bigger');
