@@ -36,7 +36,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 /* scroll reveal (only when JS runs and motion is allowed) */
-.fx .rv{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.fx .rv{opacity:0;transform:translateY(12px);transition:opacity .35s ease-out,transform .45s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
 .fx .rv.in{opacity:1;transform:none}
 .fx .dv{opacity:0;filter:blur(10px);transform:scaleY(.3);transition:opacity 1.2s ease,filter 1.5s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .fx .seen .dv{opacity:1;filter:blur(0);transform:none}
@@ -63,6 +63,10 @@ nav a:hover{color:var(--ink)}
 /* hero */
 .hero{padding-block:clamp(1.5rem,4vw,3rem) clamp(1.5rem,3vw,2.5rem);position:relative}
 .hero > .wrap,.hero > .stage{position:relative;z-index:1}
+/* home: Tim's paint specks float free across the first screen, away from LILI GU, and linger as you scroll */
+.hero-specks{position:absolute;left:0;right:0;top:0;height:100svh;z-index:0;pointer-events:none;overflow:visible}
+.hero-specks .hs{position:absolute;display:block;will-change:translate,opacity}
+.hero-specks .hs .st{position:absolute;inset:0}
 /* ink-speck backdrop behind every page: specks near the cursor grow, turn, and spring out of the way */
 .dots-bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;display:block}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);column-gap:clamp(2rem,5vw,4rem);row-gap:clamp(1.5rem,3vw,2.5rem);align-items:end}
@@ -74,7 +78,7 @@ h1.name .ttl{position:relative;display:block}
 h1.name .ttl .sp{position:absolute;top:0;left:0;width:100%;height:auto}
 h1.name .ttl .lt{position:relative;z-index:1;transition:transform .35s ease-out,filter .35s ease-out}
 h1.name .ttl .stars{position:absolute;inset:0;z-index:2;pointer-events:none}
-h1.name .ttl.live .sp{visibility:hidden}
+h1.name .ttl .sp,h1.name .ttl .stars{display:none}
 /* each splat is its own sprite cut from one sheet, and twinkles like a star on its own clock */
 .st,.dt{position:absolute;display:block;background-repeat:no-repeat;transform-origin:50% 50%}
 .st{background-image:var(--sheet);animation:tw var(--dur) ease-in-out var(--del) infinite}
@@ -102,8 +106,10 @@ h1.name .ttl.live .sp{visibility:hidden}
 .stage:not(.roll) .reel-embed{margin-top:clamp(1.5rem,3vw,2.5rem)}
 .roll .reel-embed .frame iframe{pointer-events:none}
 .roll.sound .reel-embed .frame iframe{pointer-events:auto}
-.roll .screen h1.name{display:flex;align-items:center;min-height:max(0px,calc(100svh - 420px))}
-@media (max-width:700px){.roll .screen h1.name{min-height:calc(100svh - 520px)}}
+.roll .screen h1.name{display:flex;align-items:center;min-height:max(0px,calc(100svh - 190px))}
+/* breathing room: LILI GU alone on the first screen, then the reel, then the way into the rest of the site */
+.roll .reel-embed{margin-top:clamp(3rem,9vh,7rem)!important}
+.home .hero{padding-bottom:clamp(4rem,14vh,10rem)}
 .roll .screen h1.name .ttl{width:100%}
 .roll .reel-embed{margin-top:clamp(1rem,2vw,1.5rem);--p:0;transform:translate3d(0,calc((1 - var(--p)) * 110px),0) scale(calc(.8 + var(--p) * .2));transform-origin:50% 100%;opacity:calc(.25 + var(--p) * .75);will-change:transform,opacity}
 .roll .reel-embed figcaption{opacity:calc((var(--p) - .7) * 3.4)}
@@ -872,15 +878,15 @@ main.inner section.block:has(> .bh){padding-top:0}
       <article class="cs" id="lumafield-ct101" aria-labelledby="lumafield-ct101-h">
         <p class="cs-eb">How-to series · Lumafield CT 101</p>
         <h3 class="cs-h" id="lumafield-ct101-h">Teaching engineers to see inside anything.</h3>
-        <p class="cs-lede">CT 101 is Lumafield’s five-part video course on industrial CT scanning: how it works, how to run the Neptune scanner, how to inspect parts in Voyager, and how Triton automates it on the production line. I produced, directed, shot, and edited every episode in-house.</p>
+        <p class="cs-lede">CT 101 is Lumafield’s video course on industrial CT scanning: how it works, how to set up a scan on the Neptune scanner, and how to visualize and inspect parts in Voyager. I produced, directed, shot, and edited these episodes in-house.</p>
         <div class="cs-hero">
           <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/-eesZBRW4u0?autoplay=1&amp;rel=0" aria-label="Play CT 101: Introduction to Industrial CT"><img src="https://i.ytimg.com/vi/-eesZBRW4u0/hqdefault.jpg" alt="" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
           <div class="cs-cap"><p class="meta">Lumafield</p><h4>CT 101: Introduction to Industrial CT</h4></div>
         </div>
         <dl class="cs-facts">
           <div><dt>Role</dt><dd>In-house producer, director, DP, and editor</dd></div>
-          <div><dt>Year</dt><dd>2024</dd></div>
-          <div><dt>Format</dt><dd>5-part tutorial series, 4–7 min each</dd></div>
+          <div><dt>Year</dt><dd>2023–2024</dd></div>
+          <div><dt>Format</dt><dd>How-to series, 4–13 min each</dd></div>
           <div><dt>Reach</dt><dd>30K views on the intro alone</dd></div>
         </dl>
         <div class="cs-grid">
@@ -890,19 +896,19 @@ main.inner section.block:has(> .bh){padding-top:0}
             <h3>Introduction to Neptune</h3>
           </article>
           <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981517602?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Voyager"><img src="https://i.vimeocdn.com/video/1900645155-bb30e40850ca9c1fc06275438e75b3643ae054e119ddf0e60d129509378fcfb7-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Voyager</p>
-            <h3>Introduction to Voyager</h3>
+            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/AygGBKPGcm4?autoplay=1&amp;rel=0" aria-label="Play Setting up a CT scan"><img src="https://i.ytimg.com/vi/AygGBKPGcm4/hqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Neptune</p>
+            <h3>Setting up a CT scan</h3>
           </article>
           <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/981521980?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Voyager Inspection Workflows"><img src="https://i.vimeocdn.com/video/1900646379-d286202c1f7297aafbe8e56461c6f4ccc1ae5847a44fa3a110b42302b3d82532-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/4qXpDgWwUb4?autoplay=1&amp;rel=0" aria-label="Play Visualizing CT data with Voyager"><img src="https://i.ytimg.com/vi/4qXpDgWwUb4/hqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
             <p class="meta">Voyager</p>
-            <h3>Voyager Inspection Workflows</h3>
+            <h3>Visualizing CT data with Voyager</h3>
           </article>
           <article class="work">
-            <div class="photo"><button class="vid" type="button" data-src="https://player.vimeo.com/video/1144991533?autoplay=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;dnt=1" aria-label="Play Introduction to Triton"><img src="https://i.vimeocdn.com/video/2093779964-664dc95dd98172be008b4adf46001de4044a930c8b523cfe0dc806b25af3e64c-d_1280" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
-            <p class="meta">Triton</p>
-            <h3>Introduction to Triton</h3>
+            <div class="photo"><button class="vid" type="button" data-src="https://www.youtube-nocookie.com/embed/yacn3g8bQ7s?autoplay=1&amp;rel=0" aria-label="Play Voyager 101"><img src="https://i.ytimg.com/vi/yacn3g8bQ7s/hqdefault.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play" aria-hidden="true"></span></button></div>
+            <p class="meta">Voyager</p>
+            <h3>Voyager 101</h3>
           </article>
         </div>
         <div class="links cs-more"><a href="https://www.lumafield.com/ct101" target="_blank" rel="noopener">The full CT 101 series ↗</a></div>
@@ -928,10 +934,6 @@ main.inner section.block:has(> .bh){padding-top:0}
           <div class="photo"><img src="img/b-cascades.jpg" alt="A player does a backflip on a foggy sports field" loading="lazy" width="960" height="540"></div>
           <h3>Seattle Cascades Player Profiles</h3>
           <p>Storytelling series introducing newly signed players.</p>
-        </article>
-        <article class="work text">
-          <h3>This is Five Ultimate</h3>
-          <p>Commercial series shown on ESPN and in direct response campaigns.</p>
         </article>
       </div>
     </div>
@@ -1135,11 +1137,25 @@ window.__SPL=S.title;
 var seed=7;function r(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
 function sprite(cls,b){var x=b[0],y=b[1],w=b[2],h=b[3],el=document.createElement('i');el.className=cls;
 el.style.cssText='left:'+(b[5]!=null?b[5]:x)+'%;top:'+(b[6]!=null?b[6]:y)+'%;width:'+w+'%;height:'+h+'%;background-size:'+(1e4/w).toFixed(2)+'% '+(1e4/h).toFixed(2)+'%;background-position:'+(x/(100-w)*100).toFixed(3)+'% '+(y/(100-h)*100).toFixed(3)+'%';return el}
-var stars=document.querySelector('.ttl .stars');
-if(stars){S.title.forEach(function(b){var el=sprite('st',b),k=423/399;el.style.top=((b[6]!=null?b[6]:b[1])*k)+'%';el.style.height=(b[3]*k)+'%';var sz=b[4],big=sz>200,mid=sz>40,s=el.style;
-s.setProperty('--dur',(big?7+r()*4:2.6+r()*4.2).toFixed(2)+'s');s.setProperty('--del',(-r()*10).toFixed(2)+'s');
-s.setProperty('--lo',big?.55:mid?.18:.04);s.setProperty('--rot',((r()-.5)*(big?8:30)).toFixed(1)+'deg');stars.appendChild(el)});
-stars.parentNode.classList.add('live')}
+// home: the title's paint specks are set free across the first screen, spread away from LILI GU (plus a second, smaller scatter),
+// and drift down with the window as you scroll so they linger after the lettering has moved on
+var hero=document.querySelector('section.hero'),ttl=document.querySelector('h1.name .ttl');
+if(hero&&ttl){var lay=document.createElement('div');lay.className='hero-specks';lay.setAttribute('aria-hidden','true');hero.insertBefore(lay,hero.firstChild);
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches,items=[];
+var list=S.title.map(function(b){return {b:b,sc:1}});
+function build(){lay.innerHTML='';items=[];seed=11;var W=lay.offsetWidth,H=innerHeight,tr=ttl.getBoundingClientRect(),lr=lay.getBoundingClientRect(),TW=tr.width||W*.9;
+var tx0=tr.left-lr.left,ty0=tr.top-lr.top,tx1=tx0+tr.width,ty1=ty0+tr.height;
+list.forEach(function(it){var b=it.b,big=b[4]>200,sc=1.3*it.sc*(big?1.15:.85+r()*.6),w=b[2]/100*TW*sc,h=b[3]/100*TW*423/1400*sc,x,y,n=0;
+do{x=W*(.02+r()*.94);y=H*(.06+r()*.9);n++}while(n<12&&x>tx0+tr.width*.04&&x<tx1-tr.width*.04&&y>ty0&&y<ty1&&r()<.85);
+var hs=document.createElement('span');hs.className='hs';hs.style.cssText='left:'+(x-w/2).toFixed(1)+'px;top:'+(y-h/2).toFixed(1)+'px;width:'+w.toFixed(1)+'px;height:'+h.toFixed(1)+'px';
+var el=sprite('st',b),st=el.style;st.left=st.top='0';st.width=st.height='100%';var sz=b[4],mid=sz>40;
+st.setProperty('--dur',(big?7+r()*4:2.6+r()*4.2).toFixed(2)+'s');st.setProperty('--del',(-r()*10).toFixed(2)+'s');st.setProperty('--lo',big?.55:mid?.22:.08);st.setProperty('--rot',((r()-.5)*(big?10:40)).toFixed(1)+'deg');
+hs.appendChild(el);lay.appendChild(hs);items.push({el:hs,k:.5+r()*.38})});move()}
+var fr=document.querySelector('.reel-embed .frame');
+function move(){if(calm)return;var y=scrollY,H=innerHeight,ft=fr?fr.getBoundingClientRect().top:H*2,o=(ft-H*.5)/(H*.35);o=o<0?0:o>1?1:o;items.forEach(function(it){it.el.style.translate='0 '+(y*it.k).toFixed(1)+'px';it.el.style.opacity=o.toFixed(3)})}
+var mt=false;addEventListener('scroll',function(){if(!mt){mt=true;requestAnimationFrame(function(){mt=false;move()})}},{passive:true});
+var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(build,200)});
+if(ttl.querySelector('.lt').complete)build();else ttl.querySelector('.lt').addEventListener('load',build);}
 document.querySelectorAll('.dv').forEach(function(dv,k){var L=(dv.className.match(/l-(\w)/)||[])[1];if(!S['line-'+L])return;
 var bar=document.createElement('i'),dots=document.createElement('span');bar.className='bar';dots.className='dots';dv.style.setProperty('--gd',(1.6+k*2.3)+'s');
 S['line-'+L].forEach(function(b){var el=sprite('dt',b),s=el.style,f=b[4]>30?.45:b[4]>8?.75:1,dur=7+r()*6,up=r()<.5?-1:1;
@@ -1158,8 +1174,8 @@ svg.insertAdjacentHTML('beforeend','<filter id="'+id+'" x="-5%" y="-10%" width="
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 var root=document.documentElement;root.classList.add('fx');
 var sel=['.sec-head','.cb-c > *','.now > .work','.also','.filters','#film-list > li','.film-total','.screening','.other > .work','.bgrid > .work','.logos','.about .bio > *','.honors','.statement > *','.press > li','.contact > div','.socials > li','.tile'];
-var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,5)*0.07)+'s');els.push(el)})});
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+var els=[];sel.forEach(function(q){document.querySelectorAll(q).forEach(function(el,i){el.classList.add('rv');el.style.setProperty('--d',(Math.min(i%6,3)*0.04)+'s');els.push(el)})});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add(e.target.matches('section,footer')?'seen':'in');io.unobserve(e.target)}})},{rootMargin:'0px 0px 8% 0px',threshold:0});
 els.forEach(function(el){io.observe(el)});
 // ink-speck backdrop behind every page, fixed to the window: tiny paint specks cut from Tim's splatter sheet, loosely scattered; near the cursor they grow, turn, and spring aside (after Carter Ogunsola's spring-grid "Polka Dots")
 (function(){var SP=(window.__SPL||[]).filter(function(b){return b[4]>25});if(!SP.length)return;
