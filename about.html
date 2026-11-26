@@ -434,8 +434,11 @@ main.inner section.block:has(> .bh){padding-top:0}
 .sec-head h2.sweep{padding-bottom:.08em;transition:background-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,-webkit-mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s,mask-position 2.2s cubic-bezier(.35,.55,.2,1) .05s}
 /* light mode: no outline and nothing under the fill, so About Lili and Press & readings paint in as the watercolor edge crosses them (Lili picked A, 2026-11-26) */
 .sec-head h2.sweep{background-image:url(img/wc-fill.webp);background-size:100% 100%;-webkit-mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%;mask:url(img/wc-mask.webp) no-repeat 100% 0 / 300% 100%}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}}
-:root[data-theme="dark"] .sec-head h2.sweep{background-image:url(img/wc-edge.webp),url(img/wc-fill.webp);background-size:300% 100%,100% 100%;-webkit-mask:none;mask:none}
+/* the title shows right away in ink (light ink in dark mode), then the watercolor sweeps over it and the ink fades out underneath (Lili picked A, 2026-11-26) */
+.sec-head .tw{display:inline-grid}
+.sec-head .tw > *{grid-area:1/1}
+.sec-head .ink-u{color:var(--ink);pointer-events:none;user-select:none;transition:opacity .5s}
+.sec-head .tw.done .ink-u{opacity:0}
 .ix ul.laurels.blur li{opacity:0;filter:blur(6px);transition:opacity .6s ease,filter .8s ease;transition-delay:calc(var(--i,0)*50ms)}
 .ix ul.laurels.blur.in li{opacity:1;filter:none}
 .ix ul.laurels.blur.out li{opacity:0;filter:blur(6px);transition-duration:.22s;transition-delay:0s}
@@ -649,10 +652,10 @@ s.setProperty('--r1',((r()-.5)*40*f).toFixed(0)+'deg');s.setProperty('--r2',((r(
 dv.appendChild(bar);dv.appendChild(dots);dv.classList.add('live')});
 })();
 (function(){var ws=[].slice.call(document.querySelectorAll('.bh-w')),hs=[].slice.call(document.querySelectorAll('#about-h,#press-h'));if(!ws.length&&!hs.length)return;
-var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});hs.forEach(function(h){h.classList.add('sweep')});
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;ws.forEach(function(w){w.classList.add('sweep')});hs.forEach(function(h){h.classList.add('sweep');var w=document.createElement('span'),k=document.createElement('span'),c=getComputedStyle(h);w.className='tw';k.className='ink-u';k.setAttribute('aria-hidden','true');k.textContent=h.textContent;['font','letterSpacing','lineHeight','paddingBottom','margin','textTransform'].forEach(function(p){k.style[p]=c[p]});h.parentNode.insertBefore(w,h);w.appendChild(k);w.appendChild(h)});
 function pos(w,p){var x=(100-p*100).toFixed(2)+'% 0';w.style.backgroundPosition=x+',0 0';w.style.webkitMaskPosition=w.style.maskPosition=x}
 function f(){ws.forEach(function(w){var h=w.parentNode.getBoundingClientRect();pos(w,calm?1:Math.max(0,Math.min(1,-h.top/(h.height*.55))))});}
-hs.forEach(function(h){pos(h,0);void h.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(function(){pos(h,1);setTimeout(function(){h.classList.add('filled')},calm?0:2600)})})});
+hs.forEach(function(h){pos(h,0);void h.offsetWidth;requestAnimationFrame(function(){requestAnimationFrame(function(){pos(h,1);setTimeout(function(){h.classList.add('filled');h.parentNode.classList.add('done')},calm?0:2600)})})});
 var q=false;addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(function(){q=false;f()})}},{passive:true});addEventListener('resize',f);f();})();
 (function(){
 if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -770,7 +773,7 @@ function blob(rr,ox,oy,wob){g.beginPath();for(var q=0;q<=n;q++){var a0=q/n*6.283
 for(var q=0;q<3;q++){g.filter='blur('+(2+q*1.6)+'px)';g.fillStyle=rg(q%2?B:A,.7);blob(r0*(1.25-q*.18),(Math.random()-.5)*r0*.5,(Math.random()-.5)*r0*.5,.4);g.fill()}
 g.filter='none';g.fillStyle=rg(M,.95);for(var k2=0;k2<14;k2++){var t=Math.random()*6.283,rd=Math.sqrt(Math.random())*r0*.85;g.beginPath();g.arc(Math.cos(t)*rd,Math.sin(t)*rd,r0*(.04+Math.random()*.07),0,6.283);g.fill()}
 BL.push('url('+c.toDataURL()+')')}return BL}
-function specks(L,x,y,n,o){if(plain)return Promise.resolve();var ps=[],bl=blooms();for(var i=0;i<n;i++){var s=document.createElement('span');s.className='speck';var z=rnd(o.min||3,o.max||11)*2.2;s.style.width=z+'px';s.style.height=(z*rnd(.85,1.15))+'px';s.style.backgroundImage=bl[(Math.random()*bl.length)|0];L.appendChild(s);
+function specks(L,x,y,n,o){if(plain&&!o.paint)return Promise.resolve();var ps=[],bl=blooms();for(var i=0;i<n;i++){var s=document.createElement('span');s.className='speck';var z=rnd(o.min||3,o.max||11)*2.2;s.style.width=z+'px';s.style.height=(z*rnd(.85,1.15))+'px';s.style.backgroundImage=bl[(Math.random()*bl.length)|0];L.appendChild(s);
 var a=o.dir!=null?o.dir+rnd(-o.spread,o.spread):rnd(0,6.283),d=rnd(o.near,o.far),sx=x+rnd(-o.jx,o.jx),sy=y+rnd(-(o.jy||0),o.jy||0);
 var an=s.animate([{transform:'translate('+(sx-z/2)+'px,'+(sy-z/2)+'px) scale(.3)',opacity:0},{opacity:1,offset:.15},{transform:'translate('+(sx+Math.cos(a)*d-z/2)+'px,'+(sy+Math.sin(a)*d+rnd(0,30)-z/2)+'px) scale(1)',opacity:.9,offset:.7},{transform:'translate('+(sx+Math.cos(a)*d*1.05-z/2)+'px,'+(sy+Math.sin(a)*d+rnd(10,40)-z/2)+'px) scale(.9)',opacity:0}],{duration:o.dur,delay:rnd(0,120),easing:'cubic-bezier(.15,.75,.3,1)',fill:'both'});
 (function(s,an){ps.push(an.finished.then(function(){s.remove()},function(){s.remove()}))})(s,an)}return Promise.all(ps)}
@@ -782,15 +785,16 @@ var e=document.createElement('span');e.className='corner';e.style.setProperty('b
 ps.push(S(e,[{opacity:0,transform:'translate('+(k[0]+k[2]*out)+'px,'+(k[1]+k[3]*out)+'px)'},{opacity:1,transform:'translate('+k[0]+'px,'+k[1]+'px)',offset:.3},{opacity:1,transform:'translate('+k[0]+'px,'+k[1]+'px)',offset:.75},{opacity:0,transform:'translate('+k[0]+'px,'+k[1]+'px)'}],{duration:1200,delay:delay,easing:'cubic-bezier(.2,.8,.2,1)'}))});return Promise.all(ps)}
 function rec(L,r){var e=document.createElement('span');e.className='rec';e.textContent='REC';L.appendChild(e);var tr='translate('+(r.left+14)+'px,'+(r.top+12)+'px)';
 S(e,[{opacity:0,transform:tr,easing:'steps(1,end)'},{opacity:1,offset:.25,easing:'steps(1,end)'},{opacity:.2,offset:.45,easing:'steps(1,end)'},{opacity:1,offset:.6,easing:'steps(1,end)'},{opacity:1,offset:.8,easing:'steps(1,end)'},{opacity:0,transform:tr}],{duration:1300,delay:600})}
-function tileOf(t){return t&&t.isConnected&&t.querySelector('img')&&t.getBoundingClientRect().width>40?t:null}
-document.querySelectorAll('dialog.reel-pop').forEach(function(d){var pl=d.querySelector('.rp-frame'),x=d.querySelector('.rp-x'),sc=document.createElement('div'),L=document.createElement('div'),tile=null,busy=false;
+// the Reel button counts as a tile too, so the reel lifts out of it with watercolor blooms like the videos, on every page (Lili, 2026-11-26)
+function tileOf(t){return t&&t.isConnected&&(t.matches('[data-reel]')&&t.getBoundingClientRect().width>0||t.querySelector('img')&&t.getBoundingClientRect().width>40)?t:null}
+document.querySelectorAll('dialog.reel-pop').forEach(function(d){var pl=d.querySelector('.rp-frame'),x=d.querySelector('.rp-x'),sc=document.createElement('div'),L=document.createElement('div'),tile=null,busy=false,rl=false;
 sc.className='rp-scrim';L.className='fx-l';d.insertBefore(sc,d.firstChild);d.appendChild(L);sc.addEventListener('click',function(){d.close()});
 function geo(){var T=tile.getBoundingClientRect(),P=pl.getBoundingClientRect(),s=T.width/P.width;return {T:T,s:s,dx:T.left+T.width/2-(P.left+P.width/2),dy:T.top+T.height/2-(P.top+P.height/2),tx:T.left+T.width/2,ty:T.top+T.height/2}}
-function opened(){tile=tileOf(src);src=null;
+function opened(){tile=tileOf(src);src=null;rl=!!(tile&&tile.matches('[data-reel]'));
 if(calm||!tile){sc.animate([{opacity:0},{opacity:1}],{duration:calm?200:300});pl.animate([{opacity:0},{opacity:1}],{duration:calm?200:300});return}
 var g=geo();tile.classList.add('lifted');
-if(plain){var P=pl.getBoundingClientRect();corners(L,P,480,22);rec(L,P)}
-specks(L,g.tx,g.ty,16,{near:g.T.width*.45,far:g.T.width*.9,dur:700,jx:g.T.width*.3,jy:g.T.height*.25});
+if(plain&&!rl){var P=pl.getBoundingClientRect();corners(L,P,480,22);rec(L,P)}
+var sw=rl?Math.max(g.T.width,220):g.T.width;specks(L,g.tx,g.ty,16,{near:sw*.45,far:sw*.9,dur:700,jx:sw*.3,jy:rl?g.T.height*.5:g.T.height*.25,paint:rl});
 sc.animate([{opacity:0},{opacity:1}],{duration:500});x.animate([{opacity:0},{opacity:0,offset:.7},{opacity:1}],{duration:750});
 pl.animate([{transform:'translate('+g.dx+'px,'+g.dy+'px) scale('+g.s+')',boxShadow:'0 2px 6px rgba(0,0,0,.2)'},
 {transform:'translate('+g.dx*.35+'px,'+(g.dy*.35-24)+'px) scale('+(g.s+(1-g.s)*.62)+') rotate(-1.6deg)',boxShadow:'0 50px 90px rgba(0,0,0,.5)',offset:.55},
@@ -803,7 +807,7 @@ if(calm||!tileOf(tile)){Promise.all([sc.animate([{opacity:1},{opacity:0}],{durat
 var g=geo();x.animate([{opacity:1},{opacity:0}],{duration:200,fill:'forwards'});
 Promise.all([sc.animate([{opacity:1},{opacity:0}],{duration:450,delay:150,fill:'forwards'}).finished,
 pl.animate([{transform:'none'},{transform:'translate('+g.dx*.55+'px,'+(g.dy*.55-18)+'px) scale('+(g.s+(1-g.s)*.45)+') rotate(1.2deg)',offset:.5},{transform:'translate('+g.dx+'px,'+g.dy+'px) scale('+g.s+')',boxShadow:'0 0 0 rgba(0,0,0,0)'}],{duration:620,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'}).finished]).then(function(){
-var t=tile;done();var T=t.getBoundingClientRect();if(plain)corners(top,T,0,12);specks(top,T.left+T.width/2,T.top+T.height*.9,10,{dir:-1.57,spread:1.2,near:20,far:60,dur:600,jx:T.width*.4,min:2,max:7})},done)};
+var t=tile,r2=rl;done();var T=t.getBoundingClientRect();if(plain&&!r2)corners(top,T,0,12);specks(top,T.left+T.width/2,T.top+T.height*.9,10,{dir:-1.57,spread:1.2,near:20,far:60,dur:600,jx:T.width*.4,min:2,max:7,paint:r2})},done)};
 d.addEventListener('close',function(){d.getAnimations({subtree:true}).forEach(function(a){a.cancel()});busy=false;if(tile)tile.classList.remove('lifted')});
 d.addEventListener('cancel',function(e){e.preventDefault();d.close()});});})();
 </script>
