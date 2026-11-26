@@ -614,11 +614,13 @@ el.style.cssText='left:'+(b[5]!=null?b[5]:x)+'%;top:'+(b[6]!=null?b[6]:y)+'%;wid
 var hero=document.querySelector('section.hero'),ttl=document.querySelector('h1.name .ttl');
 if(hero&&ttl){var lay=document.createElement('div');lay.className='hero-specks';lay.setAttribute('aria-hidden','true');hero.insertBefore(lay,hero.firstChild);
 var calm=matchMedia('(prefers-reduced-motion: reduce)').matches,items=[];
-var KEEP=[46,54,15,20,34,38,0,23,41,28],list=KEEP.map(function(i){return {b:S.title[i],sc:1}});
+var list=S.title.map(function(b){return {b:b,sc:1}});
 function build(){lay.innerHTML='';items=[];seed=11;var W=lay.offsetWidth,H=innerHeight,tr=ttl.getBoundingClientRect(),lr=lay.getBoundingClientRect(),TW=tr.width||W*.9;
 var tx0=tr.left-lr.left,ty0=tr.top-lr.top,tx1=tx0+tr.width,ty1=ty0+tr.height;var eb=hero.querySelector('.eyebrow'),er=eb?eb.getBoundingClientRect():null,ex0=er?er.left-lr.left-40:0,ex1=er?er.right-lr.left+40:0,ey0=er?er.top-lr.top-40:0,ey1=er?er.bottom-lr.top+40:0;
-list.forEach(function(it){var b=it.b,big=b[4]>200,sc=1.3*it.sc*(big?1.15:.85+r()*.6),w=b[2]/100*TW*sc,h=b[3]/100*TW*423/1400*sc,x,y,n=0;
-var m=Math.max(w,h)/2;do{x=W*(.02+r()*.94);y=H*(.1+r()*.86);n++}while(n<40&&((er&&x+m>ex0&&x-m<ex1&&y+m>ey0&&y-m<ey1)||(x>tx0+tr.width*.04&&x<tx1-tr.width*.04&&y>ty0&&y<ty1&&r()<.85)));
+var SH=TW*423/1400,cx=tx0+TW/2,cy=ty0+SH/2,SPX=1.1,SPY=1.8;
+list.forEach(function(it){var b=it.b,big=b[4]>200,sc=big?1.1:1.4+r()*.5,w=b[2]/100*TW*sc,h=b[3]/100*SH*sc,
+ox=tx0+((b.length>5?b[5]:b[0])+b[2]/2)/100*TW,oy=ty0+((b.length>6?b[6]:b[1])+b[3]/2)/100*SH,x=cx+(ox-cx)*SPX,y=cy+(oy-cy)*SPY,m=Math.max(w,h)/2;
+x=Math.max(m+4,Math.min(W-m-4,x));if(er&&x+m>ex0&&x-m<ex1&&y+m>ey0&&y-m<ey1)y=ey1+m;
 var sx=.55+r()*.45;
 var hs=document.createElement('span');hs.className='hs';hs.style.cssText='left:'+(x-w/2).toFixed(1)+'px;top:'+(y-h/2).toFixed(1)+'px;width:'+w.toFixed(1)+'px;height:'+h.toFixed(1)+'px';
 var el=sprite('st',b),st=el.style;st.left=st.top='0';st.width=st.height='100%';var sz=b[4],mid=sz>40;
@@ -681,7 +683,7 @@ var rt;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(size,
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',col);
 new MutationObserver(col).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
 size();})();
-(function(){if(document.getElementById('brand'))return;var SPL=window.__SPL||[],HERO=[46,54,15,20,34,38,0,23,41,28],EXTRA=[36,6,33],home=!!document.querySelector('.hero .ttl'),T=(home?EXTRA:EXTRA.concat(HERO)).map(function(i){return SPL[i]}).filter(Boolean);if(!T.length)return;
+(function(){if(document.getElementById('brand'))return;var SPL=window.__SPL||[],HERO=[46,54,15,20,34,38,0,23,41,28],EXTRA=[36,6,33],home=!!document.querySelector('.hero .ttl'),T=(home?[]:EXTRA.concat(HERO)).map(function(i){return SPL[i]}).filter(Boolean);if(!T.length)return;
 var L=document.createElement('div');L.className='splotch-bg';L.setAttribute('aria-hidden','true');var cv=document.querySelector('.dots-bg');document.body.insertBefore(L,cv?cv.nextSibling:document.body.firstChild);
 // each page gets its own seed, so its splotches differ in size, turn, flip, stretch, and placement from every other page (Lili, 2026-11-26)
 var pg=(location.pathname.split('/').pop()||'index').replace(/\.html$/,'')||'index',ps=0;for(var c=0;c<pg.length;c++)ps=(ps*31+pg.charCodeAt(c))%2147483647;
