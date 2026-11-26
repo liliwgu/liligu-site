@@ -524,6 +524,9 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 .pv-c .role,.ixr .role{display:block;font-family:var(--body);font-style:italic;font-size:.95rem;color:var(--muted)}
 .ix .spec{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--muted);margin-top:.15rem}
+.ix .eps{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-top:.5rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ix .eps button{font:inherit;letter-spacing:.08em;color:var(--teal);background:none;border:1px solid currentColor;border-radius:999px;padding:.25rem .65rem;cursor:pointer}
+.ix .eps button:hover,.ix .eps button:focus-visible{background:var(--teal);color:#06141c}
 .ix .desc{display:block;font-family:var(--body);font-size:.9rem;line-height:1.45;margin-top:.45rem}
 .ix ul.laurels{list-style:none;margin:.5rem 0 0;padding:0;display:flex;flex-direction:column;gap:.15rem}
 .ix ul.laurels li{font-family:var(--body);font-size:.9rem;line-height:1.4;padding-left:1.1rem;position:relative}
@@ -620,10 +623,6 @@ main.inner section.block:has(> .bh){padding-top:0}
       <p class="bh-l bh-l2">Film &amp; video<br>Since 2008</p>
       <h2 class="bh-w" id="film-h" style="--fs:44vw">Film<span class="sr"> &amp; video</span></h2>
     </header>
-    <div class="cbs">
-      <article class="cb l"><div class="cb-m"><div class="mv"><img src="img/haircut.jpg" alt="Two people stand on a hilltop trail overlooking a wide valley and distant mountains" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>HAIRCUT</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
-      <article class="cb r"><div class="cb-m"><div class="mv"><img src="img/lovedoc.jpg" alt="An older woman with gray hair resting her head on a pillow" loading="lazy" width="1000" height="750"></div></div><div class="cb-c"><span class="pill">In progress</span><h3>LOVE DOC</h3><p class="meta">Documentary / installation · Ongoing</p></div></article>
-    </div>
     <div class="wrap">
       <div class="dvh sm"><h3 class="sub" id="films">Filmography</h3><span class="dv l-a" aria-hidden="true"></span></div>
       <div class="filters" role="group" aria-label="Filter films by form">
@@ -649,7 +648,10 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 <script>
 const FILMS=[
+  {y:"—",t:"HAIRCUT",img:"haircut",og:1,f:"Documentary",g:"Documentary / installation"},
+  {y:"—",t:"LOVE DOC",img:"lovedoc",og:1,f:"Documentary",g:"Documentary / installation"},
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
+  {y:2020,t:"One Second a Day",og:1,f:"Experimental",g:"Experimental documentary series",img:"https://i.ytimg.com/vi/WSPStqxztRU/maxresdefault.jpg",u:"https://youtu.be/WSPStqxztRU",yt:[["2025","WSPStqxztRU"],["2024","-ZvWVRpXbJY"]]},
   {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655",v:"445467655",vt:150},
   {y:"—",t:"The Sky Is Red",img:"skyisred",f:"Documentary",hold:1,r:"Producer, Writer, Director",u:"https://vimeo.com/305896047",v:"305896047",vt:10},
   {y:2017,t:"Sadness and Other Self Portraits",img:"sadness",og:1,r:"Producer, Director, Editor",f:"Experimental",g:"Experimental documentary"},
@@ -688,14 +690,14 @@ function show(li){
   if(cur)cur.classList.remove("on");cur=li;li.classList.add("on");
   const f=FILMS[+li.dataset.i];
   const none=pvm.querySelector(".none");if(none)none.remove();
-  if(f.img){pimg.hidden=false;pimg.src="img/"+f.img+".jpg";pimg.style.animation="none";void pimg.offsetWidth;pimg.style.animation="";}
+  if(f.img){pimg.hidden=false;pimg.src=f.img.includes("/")?f.img:"img/"+f.img+".jpg";pimg.style.animation="none";void pimg.offsetWidth;pimg.style.animation="";}
   else{pimg.hidden=true;pvm.insertAdjacentHTML("beforeend",'<span class="none">'+esc(f.f)+'</span>');}
   Object.keys(frames).forEach(k=>{if(k!==f.v){frames[k].classList.remove("show");send(frames[k],"pause")}});
   if(moving&&f.v){let fr=frames[f.v];
     if(!fr){fr=document.createElement("iframe");fr.src="https://player.vimeo.com/video/"+f.v+"?background=1&dnt=1#t="+(f.vt||0)+"s";fr.title="";fr.tabIndex=-1;fr.allow="autoplay";
       fr.addEventListener("load",()=>setTimeout(()=>{fr.dataset.ok=1;if(cur&&FILMS[+cur.dataset.i].v===f.v)fr.classList.add("show")},1600));pvm.appendChild(fr);frames[f.v]=fr;}
     else{send(fr,"play");if(fr.dataset.ok)fr.classList.add("show")}}
-  pvm.classList.toggle("pop",!!f.v);
+  pvm.classList.toggle("pop",!!(f.v||f.yt));
   const html=li.querySelector(".det").innerHTML,old=pcap.querySelector("ul.laurels"),tok=(show.t=(show.t||0)+1);
   const put=()=>{if(tok!==show.t)return;pcap.innerHTML=html;const ul=pcap.querySelector("ul.laurels");
     if(ul&&!matchMedia("(prefers-reduced-motion: reduce)").matches){ul.classList.add("blur");ul.querySelectorAll("li").forEach((x,k)=>x.style.setProperty("--i",k));void ul.offsetWidth;requestAnimationFrame(()=>ul.classList.add("in"))}
@@ -707,9 +709,9 @@ function render(filter){
   const rows=FILMS.map((f,i)=>[f,i]).filter(([f])=>filter==="all"||f.f===filter);
   list.innerHTML=rows.map(([f,i])=>`<li class="ixr" data-i="${i}">
     <span class="yr">${f.y}</span>
-    <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr">${f.v?" (plays video)":" (opens Vimeo)"}</span></a>`:esc(f.t)}</span>
-    <span class="tags"><span>${f.g||f.f}</span>${f.og?'<span class="og">Ongoing</span>':""}${f.hold?'<span class="hold">On hold</span>':f.trt?`<span>TRT ${f.trt}</span>`:""}${f.v?'<span class="vm wt">▶ Watch</span>':""}${f.u?'<span class="vm">Vimeo ↗</span>':""}</span></span>
-    <span class="det">${f.hold?'<span class="note">On hold</span>':""}${f.og?'<span class="note og">Ongoing</span>':""}${f.r?`<span class="role">${esc(f.r)}</span>`:""}${f.sz||f.md?`<span class="spec">${[f.sz,f.md].filter(Boolean).map(esc).join(" · ")}</span>`:""}${f.d?`<span class="desc">${esc(f.d)}</span>`:""}${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
+    <span class="tl"><span class="t">${f.u?`<a href="${f.u}" target="_blank" rel="noopener">${esc(f.t)}<span class="sr">${f.v||f.yt?" (plays video)":" (opens Vimeo)"}</span></a>`:esc(f.t)}</span>
+    <span class="tags"><span>${f.g||f.f}</span>${f.og?'<span class="og">Ongoing</span>':""}${f.hold?'<span class="hold">On hold</span>':f.trt?`<span>TRT ${f.trt}</span>`:""}${f.v||f.yt?'<span class="vm wt">▶ Watch</span>':""}${f.u&&!f.yt?'<span class="vm">Vimeo ↗</span>':""}</span></span>
+    <span class="det">${f.hold?'<span class="note">On hold</span>':""}${f.og?'<span class="note og">Ongoing</span>':""}${f.r?`<span class="role">${esc(f.r)}</span>`:""}${f.sz||f.md?`<span class="spec">${[f.sz,f.md].filter(Boolean).map(esc).join(" · ")}</span>`:""}${f.d?`<span class="desc">${esc(f.d)}</span>`:""}${f.yt?`<span class="eps">Watch ${f.yt.map(([y,id])=>`<button type="button" data-yt="${id}">${y}</button>`).join("")}</span>`:""}${f.l?`<ul class="laurels">${f.l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}</span></li>`).join("");
   cur=null;show(list.firstElementChild);
 }
 // hover intent: while the pointer is heading for the preview, rows it crosses on the way don't take over
@@ -727,9 +729,11 @@ list.addEventListener("focusin",e=>{const li=e.target.closest(".ixr");if(li)show
 const ix=list.parentNode;let px=-1,py=-1;addEventListener("mousemove",e=>{px=e.clientX;py=e.clientY},{passive:true});
 function atPointer(){if(py<0)return;const q=pv.getBoundingClientRect();if(px>=q.left&&px<=q.right&&py>=q.top&&py<=q.bottom)return;const b=ix.getBoundingClientRect();if(px<b.left||px>b.right||py<b.top||py>b.bottom)return;for(const li of list.children){const r=li.getBoundingClientRect();if(py>=r.top&&py<r.bottom){show(li);return}}}
 let sq=false;addEventListener("scroll",()=>{if(!sq){sq=true;requestAnimationFrame(()=>{sq=false;atPointer()})}},{passive:true});
-pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.v&&window.lgVimeo)lgVimeo(f.v)});
+const ytPlay=id=>{if(window.lgPop)lgPop("https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0","One Second a Day");else open("https://youtu.be/"+id,"_blank")};
+pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.yt)ytPlay(f.yt[0][1]);else if(f.v&&window.lgVimeo)lgVimeo(f.v)});
+pcap.addEventListener("click",e=>{const b=e.target.closest("[data-yt]");if(b)ytPlay(b.dataset.yt)});
 // clicking a film's title (or its Watch tag) opens the video full screen here; cmd/ctrl-click still opens Vimeo
-list.addEventListener("click",e=>{const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v)}});
+list.addEventListener("click",e=>{const yb=e.target.closest("[data-yt]");if(yb){ytPlay(yb.dataset.yt);return}const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.yt&&!e.metaKey&&!e.ctrlKey){e.preventDefault();ytPlay(f.yt[0][1]);return}if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v)}});
 addEventListener("resize",place);
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
