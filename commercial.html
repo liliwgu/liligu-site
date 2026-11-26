@@ -1030,19 +1030,19 @@ var cv=document.createElement('canvas');cv.className='dots-bg';cv.setAttribute('
 var GRID=!!document.getElementById('brand'),dc='',tc=[0,0,0];
 var ctx=cv.getContext('2d'),W=0,H=0,DPR=1,dots=[],GAP=GRID?26:44,R=GRID?120:150,mx=-1e4,my=-1e4,tx=-1e4,ty=-1e4,run=false,vis=true,last=0,calm=0,sheet=new Image(),url='';
 function rnd(i){var x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)}
-function col(){var cs=getComputedStyle(document.documentElement);dc=cs.getPropertyValue('--dot').trim();var h=cs.getPropertyValue('--teal').trim().replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16),nc=[n>>16&255,n>>8&255,n&255];if(nc.join()!==tc.join())dots.forEach(function(d){d.img=null});tc=nc;if(GRID){draw(0);return}var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
+function col(){var cs=getComputedStyle(document.documentElement);dc=cs.getPropertyValue('--dot').trim();var h=cs.getPropertyValue('--teal').trim().replace('#','');if(h.length===3)h=h.replace(/./g,'$&$&');var n=parseInt(h,16),nc=[n>>16&255,n>>8&255,n&255],np=['--wash1','--wash2','--wash3'].map(function(v){var x=parseInt(cs.getPropertyValue(v).trim().replace('#',''),16);return [x>>16&255,x>>8&255,x&255]});if(nc.join()!==tc.join()||np.join()!==pal.join())dots.forEach(function(d){d.img=null});tc=nc;pal=np;if(GRID){draw(0);return}var u=getComputedStyle(document.documentElement).getPropertyValue('--sheet').trim().replace(/^url\(["']?|["']?\)$/g,'');if(u&&u!==url){url=u;sheet.onload=function(){draw(0)};sheet.src=u}}
 function size(){DPR=Math.min(2,devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);dots=[];var i=0;
 for(var y=GAP/2;y<H+GAP;y+=GAP)for(var x=GAP/2;x<W+GAP;x+=GAP){i++;var j=GRID?0:.8,hx=x+(rnd(i)-.5)*GAP*j,hy=y+(rnd(i+9)-.5)*GAP*j;
 var pn=6+((rnd(i+19)*5)|0),pts=[];for(var q=0;q<pn;q++)pts.push(.55+rnd(i*31+q*7+3)*.45);dots.push({hx:hx,hy:hy,x:hx,y:hy,vx:0,vy:0,s:0,k:rnd(i+7),pts:pts,ax:.6+rnd(i+23)*.4,dr:rnd(i+29)<.3?[rnd(i+37)*6.283,1.5+rnd(i+41),.18+rnd(i+43)*.2]:null,rot:rnd(i+17)*6.283})}col();draw(0)}
-var WK=3;function wc(d,i){var r0=2.1*(1+d.k*.8),hs=r0*3.1,c=document.createElement('canvas'),g=c.getContext('2d'),P=d.pts,n=P.length,col='rgb('+tc[0]+','+tc[1]+','+tc[2]+')';
+// soft-bloom watercolor (Lili picked C, 2026-11-26): wet-in-wet, three pale washes in the site's blues and teals stacked with no hard outline, grainy pigment settled in the middle
+var WK=3,pal=[[60,198,240],[48,224,196],[29,111,214]];function wc(d,i){var r0=2.1*(1+d.k*.8),hs=r0*4,c=document.createElement('canvas'),g=c.getContext('2d'),P=d.pts,n=P.length;
+function rg(c,a){return 'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')'}
 c.width=c.height=Math.ceil(hs*2*WK);g.scale(WK,WK);g.translate(hs,hs);
-function blob(rr,ox,oy){g.beginPath();for(var q=0;q<=n;q++){var a0=q/n*6.283,r=P[q%n]*rr;if(!q)g.moveTo(ox+Math.cos(a0)*r,oy+Math.sin(a0)*r);else g.quadraticCurveTo(ox+Math.cos(a0-3.1416/n)*r*1.08,oy+Math.sin(a0-3.1416/n)*r*1.08,ox+Math.cos(a0)*r,oy+Math.sin(a0)*r)}g.closePath()}
-g.fillStyle=g.strokeStyle=col;g.lineJoin='round';
-g.filter='blur('+(.35*WK/WK).toFixed(2)+'px)';g.globalAlpha=.16;blob(r0*1.12,(rnd(i+51)-.5)*r0*.3,(rnd(i+53)-.5)*r0*.3);g.fill();
-g.filter='none';g.globalAlpha=.34;blob(r0,0,0);g.fill();
-g.globalAlpha=.55;g.lineWidth=r0*.2;blob(r0*.94,0,0);g.stroke();
-g.globalAlpha=.22;for(var q=0;q<5;q++){var a=rnd(i*13+q)*6.283,rd=rnd(i*17+q)*r0*.6;g.beginPath();g.arc(Math.cos(a)*rd,Math.sin(a)*rd,r0*(.06+rnd(i*19+q)*.08),0,6.283);g.fill()}
-if(d.dr){var da=d.dr[0],dd=r0*d.dr[1],dr=r0*d.dr[2];g.globalAlpha=.4;g.beginPath();g.arc(Math.cos(da)*dd,Math.sin(da)*dd,dr,0,6.283);g.fill();g.globalAlpha=.5;g.lineWidth=dr*.35;g.beginPath();g.arc(Math.cos(da)*dd,Math.sin(da)*dd,dr*.85,0,6.283);g.stroke()}
+function blob(rr,ox,oy,wob,sd){g.beginPath();for(var q=0;q<=n;q++){var a0=q/n*6.283,r=P[q%n]*rr*(1+(rnd(sd+q%n)-.5)*wob);if(!q)g.moveTo(ox+Math.cos(a0)*r,oy+Math.sin(a0)*r);else g.quadraticCurveTo(ox+Math.cos(a0-3.1416/n)*r*1.08,oy+Math.sin(a0-3.1416/n)*r*1.08,ox+Math.cos(a0)*r,oy+Math.sin(a0)*r)}g.closePath()}
+var A=pal[(rnd(i+3)*3)|0],B=pal[(rnd(i+5)*3)|0],M=[0,1,2].map(function(k){return Math.round((A[k]+B[k])/2)});
+for(var q=0;q<3;q++){g.filter='blur('+(.6+q*.5)+'px)';g.fillStyle=rg(q%2?B:A,.2);blob(r0*(1.25-q*.18),(rnd(i+q*5)-.5)*r0*.5,(rnd(i+q*7)-.5)*r0*.5,.5,i+q*20);g.fill()}
+g.filter='none';g.fillStyle=rg(M,.5);for(var k=0;k<14;k++){var t=rnd(i*23+k)*6.283,rd=Math.sqrt(rnd(i*29+k))*r0*.85;g.beginPath();g.arc(Math.cos(t)*rd,Math.sin(t)*rd,r0*(.04+rnd(i*31+k)*.07),0,6.283);g.fill()}
+g.strokeStyle=rg(B,.22);g.lineWidth=r0*.08;blob(r0*1.18,0,0,.5,i);g.stroke();
 d.img=c;d.hs=hs}
 function draw(dt){ctx.clearRect(0,0,W,H);var moving=0,ok=sheet.complete&&sheet.naturalWidth,SW=sheet.naturalWidth,SH=sheet.naturalHeight;mx+=(tx-mx)*.35;my+=(ty-my)*.35;
 for(var i=0;i<dots.length;i++){var d=dots[i],dx=d.x-mx,dy=d.y-my,dist=Math.sqrt(dx*dx+dy*dy)||1,f=dist<R?1-dist/R:0;
@@ -1050,9 +1050,9 @@ if(f){var p=f*f*900*dt/dist;d.vx+=dx*p;d.vy+=dy*p}
 d.vx+=(d.hx-d.x)*60*dt;d.vy+=(d.hy-d.y)*60*dt;d.vx*=.86;d.vy*=.86;d.x+=d.vx*dt*10;d.y+=d.vy*dt*10;d.s+=(f-d.s)*.15;
 if(d.s>.01||Math.abs(d.vx)+Math.abs(d.vy)>.05)moving++;
 if(GRID){ctx.fillStyle=d.s>.08?'rgba('+tc[0]+','+tc[1]+','+tc[2]+','+(.35+d.s*.6).toFixed(2)+')':dc;ctx.beginPath();ctx.arc(d.x,d.y,1.3+d.s*4.2,0,6.283);ctx.fill();continue}
-// each speck is painted once as a little watercolor sprite (pale wash, pigment pooled at the edge, a few grains), then just placed, grown, and turned (Lili, 2026-11-26)
+// each speck is painted once as a watercolor sprite, then just placed, grown, and turned
 if(!d.img)wc(d,i);var sz=1+d.s*2.2;
-ctx.save();ctx.globalAlpha=Math.min(1,(.22+d.s*.5)*1.7);ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sz,d.ax*sz);ctx.drawImage(d.img,-d.hs,-d.hs,d.hs*2,d.hs*2);ctx.restore()}
+ctx.save();ctx.globalAlpha=Math.min(1,(.22+d.s*.5)*1.4);ctx.translate(d.x,d.y);ctx.rotate(d.rot+d.s*1.2);ctx.scale(sz,Math.max(.8,d.ax)*sz);ctx.drawImage(d.img,-d.hs,-d.hs,d.hs*2,d.hs*2);ctx.restore()}
 return moving}
 function loop(t){var dt=Math.min(.05,(t-last)/1000||.016);last=t;var m=draw(dt);calm=m?0:calm+1;if(vis&&calm<30)requestAnimationFrame(loop);else run=false}
 function wake(){if(!run&&vis){run=true;calm=0;last=performance.now();requestAnimationFrame(loop)}}
