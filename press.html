@@ -454,9 +454,8 @@ main.inner section.block:has(> .bh){padding-top:0}
   #brand :is(.bgrid .work,.cs-grid .work,.cs-hero) .photo:hover img{transform:scale(1.03)}
 }
 .mv.eggs{background:#0b151d}
-.mv.eggs .ew{position:absolute;inset:-40% -10% auto;display:grid;grid-template-columns:repeat(6,1fr);transform:rotate(-8deg);animation:eggs 60s linear infinite}
+.mv.eggs .ew{position:absolute;inset:-60% -25% auto;display:grid;grid-template-columns:repeat(6,1fr);transform:rotate(-8deg);animation:eggs 60s linear infinite}
 .mv.eggs .ew i{aspect-ratio:1;padding:3px;background-origin:content-box;background-clip:content-box;background-size:cover;background-position:center}
-.mv.eggs .ew i:nth-child(5n+1){background-image:url(img/eggtop-1.jpg)}.mv.eggs .ew i:nth-child(5n+2){background-image:url(img/eggtop-2.jpg)}.mv.eggs .ew i:nth-child(5n+3){background-image:url(img/eggtop-3.jpg)}.mv.eggs .ew i:nth-child(5n+4){background-image:url(img/eggtop-4.jpg)}.mv.eggs .ew i:nth-child(5n){background-image:url(img/eggtop-5.jpg)}
 .mv.eggs::after{content:"";position:absolute;inset:0;background:rgba(5,12,17,.22)}
 .bh .mv.eggs{filter:none}
 @keyframes eggs{from{transform:rotate(-8deg) translateY(0)}to{transform:rotate(-8deg) translateY(-33.3333%)}}
@@ -568,6 +567,7 @@ main.inner section.block:has(> .bh){padding-top:0}
 .cb-m:hover .gs-track{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.mv.gridscroll .gs-track{animation:none}}
 
+.cb .credit{font-size:.62rem;opacity:.6;margin-top:.6rem}.cb .credit a{color:inherit;text-decoration:none}.cb .credit a:hover{color:var(--teal)}
 /* Other work: series cards and the photo pop-out */
 .mv[data-pop],.gc{cursor:zoom-in}
 .pc{list-style:none;margin:.7rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem .5rem;justify-content:inherit}
