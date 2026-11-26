@@ -164,6 +164,10 @@ main.inner section.block:not(:has(> .bh)){padding-top:clamp(2.5rem,5vw,4rem)}
 .dv .bar{background-image:var(--bar)}
 .dv .bar::after{content:"";position:absolute;inset:0;-webkit-mask:var(--bar) center / 100% 100% no-repeat;mask:var(--bar) center / 100% 100% no-repeat;background:linear-gradient(100deg,transparent 40%,var(--glint) 50%,transparent 60%) no-repeat;background-size:300% 100%;background-position:150% 0;animation:glint 9s ease-in-out var(--gd,1.8s) infinite}
 .dv .dots{position:absolute;inset:0}
+.dv{container-type:size}
+/* round both ends of every bar (Tim's bar scans were cropped flat at the edges) */
+.dv::after,.dv .bar{-webkit-mask:radial-gradient(circle 12.5cqh at 50% 47%,#000 92%,transparent) left center / 25cqh 100% no-repeat,radial-gradient(circle 12.5cqh at 50% 47%,#000 92%,transparent) right center / 25cqh 100% no-repeat,linear-gradient(#000,#000) center / calc(100% - 25cqh) 100% no-repeat;mask:radial-gradient(circle 12.5cqh at 50% 47%,#000 92%,transparent) left center / 25cqh 100% no-repeat,radial-gradient(circle 12.5cqh at 50% 47%,#000 92%,transparent) right center / 25cqh 100% no-repeat,linear-gradient(#000,#000) center / calc(100% - 25cqh) 100% no-repeat}
+
 .dv{--a:1}.dvh.sm .dv{--a:.6}
 .dt{background-image:var(--dots);animation:dd var(--dur) ease-in-out var(--del) infinite}
 @keyframes glint{0%{background-position:150% 0}35%,100%{background-position:-50% 0}}
