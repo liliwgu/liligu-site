@@ -669,8 +669,8 @@ main.inner section.block:has(> .bh){padding-top:0}
 
 <script>
 const FILMS=[
-  {y:"—",t:"Haircut",img:"haircut",og:1,f:"Documentary",g:"Documentary / installation"},
-  {y:"—",t:"Love Doc",img:"lovedoc",og:1,f:"Documentary",g:"Documentary / installation"},
+  {y:"—",t:"Haircut",img:"haircut",op:"50% 83%",og:1,f:"Documentary",g:"Documentary / installation"},
+  {y:"—",t:"Love Doc",img:"lovedoc",op:"50% 100%",og:1,f:"Documentary",g:"Documentary / installation"},
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
   {y:2020,t:"One Second a Day",og:1,f:"Experimental",g:"Experimental documentary series",img:"https://i.ytimg.com/vi/WSPStqxztRU/maxresdefault.jpg",u:"https://youtu.be/WSPStqxztRU",yt:[["2025","WSPStqxztRU"],["2024","-ZvWVRpXbJY"]]},
   {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655",v:"445467655",vt:150},
@@ -711,7 +711,7 @@ function show(li){
   if(cur)cur.classList.remove("on");cur=li;li.classList.add("on");
   const f=FILMS[+li.dataset.i];
   const none=pvm.querySelector(".none");if(none)none.remove();
-  if(f.img){pimg.hidden=false;pimg.src=f.img.includes("/")?f.img:"img/"+f.img+".jpg";pimg.style.animation="none";void pimg.offsetWidth;pimg.style.animation="";}
+  if(f.img){pimg.hidden=false;pimg.src=f.img.includes("/")?f.img:"img/"+f.img+".jpg";pimg.style.objectPosition=f.op||"";pimg.style.animation="none";void pimg.offsetWidth;pimg.style.animation="";}
   else{pimg.hidden=true;pvm.insertAdjacentHTML("beforeend",'<span class="none">'+esc(f.f)+'</span>');}
   Object.keys(frames).forEach(k=>{if(k!==f.v){frames[k].classList.remove("show");send(frames[k],"pause")}});
   if(moving&&f.v){let fr=frames[f.v];
