@@ -1160,7 +1160,7 @@ const FILMS=[
   {y:2022,t:"We Don't Just Matter In Death",img:"wdjmid",f:"Documentary",trt:"9:22",r:"Producer, Writer, Director, Editor"},
   {y:2020,t:"One Second a Day",og:1,f:"Experimental",g:"Experimental documentary series",img:"https://i.ytimg.com/vi/WSPStqxztRU/maxresdefault.jpg",u:"https://youtu.be/WSPStqxztRU",yt:[["2025","WSPStqxztRU"],["2024","-ZvWVRpXbJY"]]},
   {y:2020,t:"BIPOC Excellence in Ultimate",img:"bipoc",f:"Highlight Reel",trt:"4:25",r:"Producer, Editor",u:"https://vimeo.com/445467655",v:"445467655",vt:150},
-  {y:"—",t:"The Sky Is Red",img:"skyisred",f:"Documentary",hold:1,r:"Producer, Writer, Director",u:"https://vimeo.com/305896047",v:"305896047",vt:10},
+  {y:"—",t:"The Sky Is Red",img:"skyisred",f:"Documentary",hold:1,r:"Producer, Writer, Director",u:"https://vimeo.com/305896047",v:"305896047",vt:10,cr:.02},
   {y:2017,t:"Sadness and Other Self Portraits",img:"sadness",og:1,r:"Producer, Director, Editor",f:"Experimental",g:"Experimental documentary"},
   {y:2016,t:"Experiment",img:"experiment",f:"Experimental",trt:"3:30",r:"Producer, Writer, Director, Editor",u:"https://vimeo.com/246539799",v:"246539799",vt:15,l:[
     "Finalist, Sight of Sound International Film Competition (2016)",
@@ -1201,7 +1201,7 @@ function show(li){
   else{pimg.hidden=true;pvm.insertAdjacentHTML("beforeend",'<span class="none">'+esc(f.f)+'</span>');}
   Object.keys(frames).forEach(k=>{if(k!==f.v){frames[k].classList.remove("show");send(frames[k],"pause")}});
   if(moving&&f.v){let fr=frames[f.v];
-    if(!fr){fr=document.createElement("iframe");fr.src="https://player.vimeo.com/video/"+f.v+"?background=1&dnt=1#t="+(f.vt||0)+"s";fr.title="";fr.tabIndex=-1;fr.allow="autoplay";
+    if(!fr){fr=document.createElement("iframe");fr.src="https://player.vimeo.com/video/"+f.v+"?background=1&dnt=1#t="+(f.vt||0)+"s";fr.title="";fr.tabIndex=-1;fr.allow="autoplay";if(f.cr)fr.style.transform="translate(-50%,-50%) scale("+(1/(1-2*f.cr)).toFixed(3)+")";
       fr.addEventListener("load",()=>setTimeout(()=>{fr.dataset.ok=1;if(cur&&FILMS[+cur.dataset.i].v===f.v)fr.classList.add("show")},1600));pvm.appendChild(fr);frames[f.v]=fr;}
     else{send(fr,"play");if(fr.dataset.ok)fr.classList.add("show")}}
   pvm.classList.toggle("pop",!!(f.v||f.yt));
@@ -1237,10 +1237,10 @@ const ix=list.parentNode;let px=-1,py=-1;addEventListener("mousemove",e=>{px=e.c
 function atPointer(){if(py<0)return;const q=pv.getBoundingClientRect();if(px>=q.left&&px<=q.right&&py>=q.top&&py<=q.bottom)return;const b=ix.getBoundingClientRect();if(px<b.left||px>b.right||py<b.top||py>b.bottom)return;for(const li of list.children){const r=li.getBoundingClientRect();if(py>=r.top&&py<r.bottom){show(li);return}}}
 let sq=false;addEventListener("scroll",()=>{if(!sq){sq=true;requestAnimationFrame(()=>{sq=false;atPointer()})}},{passive:true});
 const ytPlay=id=>{if(window.lgPop)lgPop("https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0","One Second a Day");else open("https://youtu.be/"+id,"_blank")};
-pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.yt)ytPlay(f.yt[0][1]);else if(f.v&&window.lgVimeo)lgVimeo(f.v)});
+pvm.addEventListener("click",()=>{if(!cur)return;const f=FILMS[+cur.dataset.i];if(f.yt)ytPlay(f.yt[0][1]);else if(f.v&&window.lgVimeo)lgVimeo(f.v,0,f.cr)});
 pcap.addEventListener("click",e=>{const b=e.target.closest("[data-yt]");if(b)ytPlay(b.dataset.yt)});
 // clicking a film's title (or its Watch tag) opens the video full screen here; cmd/ctrl-click still opens Vimeo
-list.addEventListener("click",e=>{const yb=e.target.closest("[data-yt]");if(yb){ytPlay(yb.dataset.yt);return}const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.yt&&!e.metaKey&&!e.ctrlKey){e.preventDefault();ytPlay(f.yt[0][1]);return}if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v)}});
+list.addEventListener("click",e=>{const yb=e.target.closest("[data-yt]");if(yb){ytPlay(yb.dataset.yt);return}const li=e.target.closest(".ixr");if(!li)return;const f=FILMS[+li.dataset.i];if(f.yt&&!e.metaKey&&!e.ctrlKey){e.preventDefault();ytPlay(f.yt[0][1]);return}if(f.v&&window.lgVimeo&&!e.metaKey&&!e.ctrlKey){e.preventDefault();lgVimeo(f.v,0,f.cr)}});
 addEventListener("resize",place);
 document.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{
   document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",String(c===b)));
